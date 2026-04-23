@@ -1,4 +1,4 @@
-import type { ApiError } from '../../api';
+import type { ApiError } from '../../types';
 
 export const isApiError = (error: unknown): error is ApiError => {
   return (
