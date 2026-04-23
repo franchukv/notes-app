@@ -19,20 +19,22 @@ export const TagsPage = () => {
   }
 
   return (
-    <section className="py-5">
-      <div className="custom-container">
-        {!isDesktop && !tagSlug ? (
-          <TagsList title="Tags">
-            {tags.map((tag) => (
-              <Tag key={tag.id} to={`/tags/${tag.slug}`}>
-                {tag.text}
-              </Tag>
-            ))}
-          </TagsList>
-        ) : (
-          <Outlet />
-        )}
-      </div>
-    </section>
+    <>
+      {!isDesktop && !tagSlug ? (
+        <div className="py-5">
+          <div className="custom-container">
+            <TagsList title="Tags">
+              {tags.map((tag) => (
+                <Tag key={tag.id} to={`/tags/${tag.slug}`}>
+                  {tag.text}
+                </Tag>
+              ))}
+            </TagsList>
+          </div>
+        </div>
+      ) : (
+        <Outlet />
+      )}
+    </>
   );
 };
