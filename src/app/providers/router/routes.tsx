@@ -1,6 +1,6 @@
-import { RootLayout, AppLayout } from '../../layouts';
+import { Navigate } from 'react-router';
 import { RecoveryGuard, PrivateGuard, PublicGuard } from '../../guards';
-// import { NotesPage } from '@/pages/notes';
+import { RootLayout, AppLayout } from '../../layouts';
 import { NotFoundPage } from '@/pages/not-found';
 import { AuthLoginPage } from '@/pages/auth-login';
 import { AuthRegisterPage } from '@/pages/auth-register';
@@ -11,7 +11,6 @@ import { NotesPage } from '@/pages/notes';
 import { NotePage } from '@/pages/note';
 import { TagsPage } from '@/pages/tags-page';
 import { TagPage } from '@/pages/tag';
-import { Navigate } from 'react-router';
 
 export const routes = [
   {
@@ -38,6 +37,7 @@ export const routes = [
               {
                 path: 'notes',
                 Component: NotesPage,
+                handle: { title: 'All Notes' },
                 children: [
                   {
                     path: ':noteSlug',
@@ -48,6 +48,7 @@ export const routes = [
               {
                 path: 'tags',
                 Component: TagsPage,
+                handle: { title: 'All Tags' },
                 children: [
                   {
                     path: ':tagSlug',

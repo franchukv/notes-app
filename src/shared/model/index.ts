@@ -6,3 +6,4 @@ export {
   selectIsTablet,
   selectIsMobile,
 } from './responsive';
+export { pageSlice, setPageTitle, selectPageTitle } from './page';
