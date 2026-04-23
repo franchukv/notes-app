@@ -30,11 +30,12 @@ export const Sidebar = () => {
       </nav>
 
       <TagsList title="Tags">
-        {tags.map((tag) => (
-          <Tag key={tag.id} to={`/tags/${tag.slug}`}>
-            {tag.text}
-          </Tag>
-        ))}
+        {tags.length > 0 &&
+          tags.map((tag) => (
+            <Tag key={tag.id} to={`/tags/${tag.slug}`}>
+              {tag.text}
+            </Tag>
+          ))}
       </TagsList>
     </aside>
   );
