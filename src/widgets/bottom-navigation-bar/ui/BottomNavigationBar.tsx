@@ -21,7 +21,7 @@ export const BottomNavigationBar = () => {
   const isMobile = useAppSelector(selectIsMobile);
 
   return (
-    <nav className="fixed bottom-0 left-0 w-full py-3 px-4 grid grid-cols-5 bg-white border-t border-neutral-200 shadow-[0_-4px_6px_0_rgba(240,240,240,0.6)] md:px-8 md:grid-cols-9">
+    <nav className="fixed bottom-0 left-0 w-full py-3 px-4 grid grid-cols-5 bg-white border-t border-neutral-200 shadow-[0_-4px_6px_0_rgba(240,240,240,0.6)] sm:px-8 sm:grid-cols-9">
       {buttons.map((button, index) => (
         <React.Fragment key={button.text}>
           <NavLink

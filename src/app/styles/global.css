@@ -60,8 +60,8 @@
 }
 
 @layer components {
-  .container {
-    @apply mx-auto px-4;
+  .custom-container {
+    @apply w-full mx-auto px-4 sm:max-lg:px-8;
   }
 
   .link {

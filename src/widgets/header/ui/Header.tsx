@@ -10,7 +10,7 @@ export const Header = () => {
   const title = useAppSelector(selectPageTitle);
 
   return (
-    <header className="w-full py-3 px-4 flex items-center gap-4 md:py-6 md:px-8 lg:py-4.5 lg:border-b lg:border-neutral-200">
+    <header className="w-full py-3 px-4 flex items-center gap-4 sm:py-6 sm:px-8 lg:py-4.5 lg:border-b lg:border-neutral-200">
       {!isDesktop ? (
         <Link to="/notes">
           <Logo />
