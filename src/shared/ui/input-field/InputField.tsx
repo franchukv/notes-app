@@ -28,7 +28,7 @@ export const InputField = ({
   const inputType =
     type === 'password' ? (showPassword ? 'text' : 'password') : type;
   const inputClassNames = cn(
-    'h-10.5 w-full px-4 text-preset-5 text-neutral-950 bg-white placeholder:text-neutral-500 border border-neutral-300 rounded-lg shadow-[0_1px_2px_0_rgba(10,13,20,0.03)] outline-offset-2 outline-neutral-500 not-focus:hover:bg-neutral-50 not-focus:hover:text-neutral-500 focus:outline-2 disabled:bg-neutral-50! disabled:text-neutral-300! disabled:pointer-events-none',
+    'h-10.5 w-full px-4 text-preset-5 text-neutral-950 bg-white placeholder:text-neutral-500 border border-neutral-300 rounded-lg shadow-[0_1px_2px_0_rgba(10,13,20,0.03)] not-focus:hover:bg-neutral-50 not-focus:hover:text-neutral-500 disabled:bg-neutral-50! disabled:text-neutral-300! disabled:pointer-events-none',
     type === 'password' && 'pr-10',
     error && 'border-red-500',
   );

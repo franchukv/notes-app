@@ -15,7 +15,7 @@ export const Button = ({
   ...restProps
 }: ButtonProps) => {
   const classNames = cn(
-    'py-3 px-4 flex items-center justify-center gap-2 text-center text-preset-4 rounded-sm transition-all duration-300 cursor-pointer outline-offset-2 outline-neutral-500 border focus-visible:outline-2 focus-visible:bg-blue-500 disabled:bg-neutral-100 disabled:text-neutral-300! disabled:border-neutral-100! disabled:pointer-events-none',
+    'py-3 px-4 flex items-center justify-center gap-2 text-center text-preset-4 rounded-lg transition-all duration-300 cursor-pointer border focus-visible:bg-blue-500 disabled:bg-neutral-100 disabled:text-neutral-300! disabled:border-neutral-100! disabled:pointer-events-none',
     className,
     variant === 'primary' &&
       'text-white bg-blue-500 border-blue-500 not-focus-visible:hover:bg-blue-700 not-focus-visible:hover:bg-blue-500',
