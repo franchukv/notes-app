@@ -15,7 +15,7 @@ export const AppLayout = () => {
       <div className="w-full flex flex-col">
         <Header />
 
-        <main className="max-sm:min-h-[calc(100dvh-(57px+52px))] sm:max-lg:min-h-[calc(100dvh-(76.5px*2))] max-lg:bg-white max-lg:rounded-tl-lg max-lg:rounded-tr-lg lg:min-h-[calc(100dvh-79px)]">
+        <main className="max-sm:min-h-[calc(100dvh-(57px+52px))] sm:max-lg:min-h-[calc(100dvh-(76.5px*2))] max-lg:bg-white max-lg:rounded-tl-lg max-lg:rounded-tr-lg lg:min-h-[calc(100dvh-79px)] lg:max-h-[calc(100dvh-79px)] overflow-auto">
           <Outlet />
         </main>
 
