@@ -28,7 +28,7 @@ export const Header = () => {
 
           <Link
             to="/settings"
-            className="w-10.5 h-10.5 flex items-center justify-center text-neutral-500 transition-all duration-300 rounded-lg hover:text-blue-500 hover:bg-blue-50"
+            className="w-10.5 h-10.5 flex items-center justify-center text-neutral-500 transition-all duration-300 rounded-lg hover:text-blue-500 hover:bg-blue-50 active:text-blue-500 active:bg-blue-50"
           >
             <SettingsIcon />
           </Link>

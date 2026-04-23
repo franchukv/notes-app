@@ -19,7 +19,7 @@ export const NavigationButton = ({
       to={to}
       className={({ isActive }) =>
         cn(
-          'w-full py-2.5 px-3 flex items-center gap-2 text-preset-4 rounded-lg transition-all duration-300 hover:bg-neutral-100',
+          'w-full py-2.5 px-3 flex items-center gap-2 text-preset-4 rounded-lg transition-all duration-300 hover:bg-neutral-100 active:bg-neutral-100',
           className,
           isActive && 'bg-neutral-100 [&>svg]:text-blue-500 cursor-default',
         )
