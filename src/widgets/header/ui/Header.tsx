@@ -5,7 +5,7 @@ import Logo from '@/shared/assets/img/svg/logo.svg?react';
 import SettingsIcon from '@/shared/assets/icons/settings-icon.svg?react';
 
 export const Header = () => {
-  const { tagSlug } = useParams();
+  const { tagSlug, noteSlug } = useParams();
   const isDesktop = useAppSelector(selectIsDesktop);
   const title = useAppSelector(selectPageTitle);
 
@@ -18,7 +18,7 @@ export const Header = () => {
       ) : (
         <>
           <h2 className="mr-auto text-preset-1">
-            {tagSlug && (
+            {tagSlug && !noteSlug && (
               <span className="text-neutral-600">Notes Tagged: </span>
             )}
             {title}
