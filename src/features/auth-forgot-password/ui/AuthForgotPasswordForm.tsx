@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSendPasswordResetMutation } from '../api/authForgotPasswordApi';
+import { credentialsSchema } from '@/entities/user';
 import { Button, InputField } from '@/shared/ui';
-import { authSchema, isApiError } from '@/shared/lib';
+import { isApiError } from '@/shared/lib';
 
-const authForgotPasswordSchema = authSchema.pick({ email: true });
+const authForgotPasswordSchema = credentialsSchema.pick({ email: true });
 type AuthFormData = z.infer<typeof authForgotPasswordSchema>;
 
 export const AuthForgotPasswordForm = () => {

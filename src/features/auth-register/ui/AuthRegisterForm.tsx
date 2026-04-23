@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRegisterMutation } from '../api/authRegisterApi';
+import { credentialsSchema } from '@/entities/user';
 import { Button, InputField } from '@/shared/ui';
-import { authSchema, isApiError } from '@/shared/lib';
+import { isApiError } from '@/shared/lib';
 
-type AuthFormData = z.infer<typeof authSchema>;
+type AuthFormData = z.infer<typeof credentialsSchema>;
 
 export const AuthRegisterForm = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export const AuthRegisterForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<AuthFormData>({
-    resolver: zodResolver(authSchema),
+    resolver: zodResolver(credentialsSchema),
   });
 
   const onSubmit = async (data: AuthFormData) => {
