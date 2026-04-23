@@ -2,7 +2,7 @@ import { Navigate, Outlet } from 'react-router';
 import { selectIsRecoveryFlow, useGetUserQuery } from '@/entities/user';
 import { useAppSelector } from '@/shared/lib';
 
-export const RecoveryLayout = () => {
+export const RecoveryGuard = () => {
   const isRecoveryFlow = useAppSelector(selectIsRecoveryFlow);
   const { data: user, isLoading } = useGetUserQuery();
 
