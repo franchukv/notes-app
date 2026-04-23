@@ -51,7 +51,7 @@
   }
 
   html {
-    @apply h-full font-app text-neutral-950 bg-white;
+    @apply h-full font-app text-neutral-950 bg-neutral-100 lg:bg-white;
   }
 
   body {
