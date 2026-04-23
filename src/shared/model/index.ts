@@ -1,1 +1,8 @@
-export { responsiveSlice, setIsDesktop, selectIsDesktop } from './responsive';
+export {
+  responsiveSlice,
+  setDeviceType,
+  selectDeviceType,
+  selectIsDesktop,
+  selectIsTablet,
+  selectIsMobile,
+} from './responsive';

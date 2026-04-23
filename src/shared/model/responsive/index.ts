@@ -1,25 +1,36 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 interface ResponsiveState {
-  isDesktop: boolean;
+  deviceType: 'desktop' | 'tablet' | 'mobile';
 }
 
 const initialState: ResponsiveState = {
-  isDesktop: false,
+  deviceType: 'mobile',
 };
 
 export const responsiveSlice = createSlice({
   name: 'responsive',
   initialState,
   reducers: {
-    setIsDesktop: (state, action: PayloadAction<boolean>) => {
-      state.isDesktop = action.payload;
+    setDeviceType: (
+      state,
+      action: PayloadAction<ResponsiveState['deviceType']>,
+    ) => {
+      state.deviceType = action.payload;
     },
   },
   selectors: {
-    selectIsDesktop: (state) => state.isDesktop,
+    selectDeviceType: (state) => state.deviceType,
+    selectIsDesktop: (state) => state.deviceType === 'desktop',
+    selectIsTablet: (state) => state.deviceType === 'tablet',
+    selectIsMobile: (state) => state.deviceType === 'mobile',
   },
 });
 
-export const { setIsDesktop } = responsiveSlice.actions;
-export const { selectIsDesktop } = responsiveSlice.selectors;
+export const { setDeviceType } = responsiveSlice.actions;
+export const {
+  selectDeviceType,
+  selectIsDesktop,
+  selectIsTablet,
+  selectIsMobile,
+} = responsiveSlice.selectors;

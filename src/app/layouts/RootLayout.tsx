@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect } from 'react';
 import { Outlet, useMatches, type UIMatch } from 'react-router';
 import { generatePageTitle, useAppDispatch } from '@/shared/lib';
-import { setIsDesktop } from '@/shared/model';
+import { setDeviceType } from '@/shared/model';
 
 export const RootLayout = () => {
   const dispatch = useAppDispatch();
@@ -10,14 +10,32 @@ export const RootLayout = () => {
   const title = generatePageTitle(match?.handle.title);
 
   useEffect(() => {
-    const media = matchMedia('(min-width: 1024px)');
-    const mediaListener = (e: MediaQueryListEvent) =>
-      dispatch(setIsDesktop(e.matches));
+    const desktopMedia = matchMedia('(min-width: 1024px)');
+    const tabletMedia = matchMedia('(min-width: 768px)');
 
-    dispatch(setIsDesktop(media.matches));
-    media.addEventListener('change', mediaListener);
+    const getDeviceType = () => {
+      if (desktopMedia.matches) {
+        return 'desktop';
+      }
 
-    return () => media.removeEventListener('change', mediaListener);
+      if (tabletMedia.matches) {
+        return 'tablet';
+      }
+
+      return 'mobile';
+    };
+
+    const mediaListener = () => dispatch(setDeviceType(getDeviceType()));
+
+    dispatch(setDeviceType(getDeviceType()));
+
+    desktopMedia.addEventListener('change', mediaListener);
+    tabletMedia.addEventListener('change', mediaListener);
+
+    return () => {
+      desktopMedia.removeEventListener('change', mediaListener);
+      tabletMedia.removeEventListener('change', mediaListener);
+    };
   }, [dispatch]);
 
   useLayoutEffect(() => {
