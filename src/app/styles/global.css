@@ -73,28 +73,26 @@
   }
 }
 
-@layer utilities {
-  .text-preset-6 {
-    @apply font-normal text-12 leading-[1.3] -tracking-[0.2px];
-  }
+@utility text-preset-6 {
+  @apply font-normal text-12 leading-[1.3] -tracking-[0.2px];
+}
 
-  .text-preset-5 {
-    @apply font-normal text-14 leading-[1.3] -tracking-[0.2px];
-  }
+@utility text-preset-5 {
+  @apply font-normal text-14 leading-[1.3] -tracking-[0.2px];
+}
 
-  .text-preset-4 {
-    @apply font-medium text-14 leading-[1.2] -tracking-[0.2px];
-  }
+@utility text-preset-4 {
+  @apply font-medium text-14 leading-[1.2] -tracking-[0.2px];
+}
 
-  .text-preset-3 {
-    @apply font-semibold text-16 leading-[1.2] -tracking-[0.3px];
-  }
+@utility text-preset-3 {
+  @apply font-semibold text-16 leading-[1.2] -tracking-[0.3px];
+}
 
-  .text-preset-2 {
-    @apply font-bold text-20 leading-[1.2] -tracking-[0.5px];
-  }
+@utility text-preset-2 {
+  @apply font-bold text-20 leading-[1.2] -tracking-[0.5px];
+}
 
-  .text-preset-1 {
-    @apply font-bold text-24 leading-[1.2] -tracking-[0.5px];
-  }
+@utility text-preset-1 {
+  @apply font-bold text-24 leading-[1.2] -tracking-[0.5px];
 }
