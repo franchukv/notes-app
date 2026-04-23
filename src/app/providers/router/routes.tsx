@@ -1,16 +1,17 @@
-import {
-  RootLayout,
-  RecoveryLayout,
-  PrivateLayout,
-  PublicLayout,
-} from '../../layouts';
-import { NotesPage } from '@/pages/notes';
+import { RootLayout, AppLayout } from '../../layouts';
+import { RecoveryGuard, PrivateGuard, PublicGuard } from '../../guards';
+// import { NotesPage } from '@/pages/notes';
 import { NotFoundPage } from '@/pages/not-found';
 import { AuthLoginPage } from '@/pages/auth-login';
 import { AuthRegisterPage } from '@/pages/auth-register';
 import { AuthCheckEmailPage } from '@/pages/auth-check-email';
 import { AuthForgotPasswordPage } from '@/pages/auth-forgot-password';
 import { AuthResetPasswordPage } from '@/pages/auth-reset-password';
+import { NotesPage } from '@/pages/notes';
+import { NotePage } from '@/pages/note';
+import { TagsPage } from '@/pages/tags-page';
+import { TagPage } from '@/pages/tag';
+import { Navigate } from 'react-router';
 
 export const routes = [
   {
@@ -18,7 +19,7 @@ export const routes = [
     Component: RootLayout,
     children: [
       {
-        Component: RecoveryLayout,
+        Component: RecoveryGuard,
         children: [
           {
             path: 'reset-password',
@@ -28,17 +29,44 @@ export const routes = [
         ],
       },
       {
-        Component: PrivateLayout,
+        Component: PrivateGuard,
         children: [
           {
-            index: true,
-            Component: NotesPage,
-            handle: { title: 'All notes' },
+            Component: AppLayout,
+            children: [
+              { index: true, element: <Navigate to="/notes" replace /> },
+              {
+                path: 'notes',
+                Component: NotesPage,
+                children: [
+                  {
+                    path: ':noteSlug',
+                    Component: NotePage,
+                  },
+                ],
+              },
+              {
+                path: 'tags',
+                Component: TagsPage,
+                children: [
+                  {
+                    path: ':tagSlug',
+                    Component: TagPage,
+                    children: [
+                      {
+                        path: ':noteSlug',
+                        Component: NotePage,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
       {
-        Component: PublicLayout,
+        Component: PublicGuard,
         children: [
           {
             path: 'login',
