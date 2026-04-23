@@ -1,10 +1,11 @@
-import { Link } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { useAppSelector } from '@/shared/lib';
 import { selectIsDesktop, selectPageTitle } from '@/shared/model';
 import Logo from '@/shared/assets/img/svg/logo.svg?react';
 import SettingsIcon from '@/shared/assets/icons/settings-icon.svg?react';
 
 export const Header = () => {
+  const { tagSlug } = useParams();
   const isDesktop = useAppSelector(selectIsDesktop);
   const title = useAppSelector(selectPageTitle);
 
@@ -16,7 +17,12 @@ export const Header = () => {
         </Link>
       ) : (
         <>
-          <h2 className="mr-auto text-preset-1">{title}</h2>
+          <h2 className="mr-auto text-preset-1">
+            {tagSlug && (
+              <span className="text-neutral-600">Notes Tagged: </span>
+            )}
+            {title}
+          </h2>
 
           <div>SearchForm</div>
 
