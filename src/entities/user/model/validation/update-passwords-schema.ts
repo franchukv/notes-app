@@ -1,11 +1,6 @@
-import { z } from 'zod';
+import z from 'zod';
 
-export const authSchema = z.object({
-  email: z.email(),
-  password: z.string().min(8),
-});
-
-export const authUpdatePasswordSchema = z
+export const updatePasswordSchema = z
   .object({
     password: z.string().min(8),
     confirmPassword: z.string().min(8),
