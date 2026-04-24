@@ -1,7 +1,9 @@
+import type { Tag } from '../@x/tag';
+
 export type Note = {
   id: number;
   slug: string;
   title: string;
-  tags: string[] | null;
+  tags: Tag[] | null;
   date: string;
 };
