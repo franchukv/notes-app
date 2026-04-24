@@ -40,7 +40,7 @@ export const TagPage = () => {
   usePageTitle(tagSlug);
 
   return (
-    <div className="w-full flex">
+    <div className="min-h-full w-full flex overflow-auto">
       {(isDesktop || !noteSlug) && (
         <NotesList parentSlug={`tags/${tagSlug}`} notes={notes}>
           {!isDesktop && (

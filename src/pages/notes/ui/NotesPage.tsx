@@ -38,7 +38,7 @@ export const NotesPage = () => {
   ];
 
   return (
-    <div className="w-full flex">
+    <div className="min-h-full w-full flex">
       {(isDesktop || !noteSlug) && (
         <NotesList parentSlug="notes" notes={notes}>
           {!isDesktop && <h1 className="text-preset-1">All Notes</h1>}
