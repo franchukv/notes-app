@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useParams } from 'react-router';
-import { Tag } from '@/entities/tag';
+import { TagButton } from '@/entities/tag';
 import { useAppSelector } from '@/shared/lib';
 import { TagsList } from '@/shared/ui';
 import { selectIsDesktop } from '@/shared/model';
@@ -25,9 +25,9 @@ export const TagsPage = () => {
           <div className="custom-container">
             <TagsList title="Tags">
               {tags.map((tag) => (
-                <Tag key={tag.id} to={`/tags/${tag.slug}`}>
+                <TagButton key={tag.id} url={`/tags/${tag.slug}`}>
                   {tag.text}
-                </Tag>
+                </TagButton>
               ))}
             </TagsList>
           </div>

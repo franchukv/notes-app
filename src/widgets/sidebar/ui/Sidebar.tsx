@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Tag } from '@/entities/tag';
+import { TagButton } from '@/entities/tag';
 import { NavigationButton, TagsList } from '@/shared/ui';
 import Logo from '@/shared/assets/img/svg/logo.svg?react';
 import HomeIcon from '@/shared/assets/icons/home-icon.svg?react';
@@ -32,9 +32,9 @@ export const Sidebar = () => {
       <TagsList title="Tags">
         {tags.length > 0 &&
           tags.map((tag) => (
-            <Tag key={tag.id} to={`/tags/${tag.slug}`}>
+            <TagButton key={tag.id} url={`/tags/${tag.slug}`}>
               {tag.text}
-            </Tag>
+            </TagButton>
           ))}
       </TagsList>
     </aside>
