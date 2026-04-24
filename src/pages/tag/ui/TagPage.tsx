@@ -11,28 +11,31 @@ export const TagPage = () => {
       id: 1,
       slug: 'note-1',
       title: 'React Performance Optimization',
-      tags: ['Dev', 'React'],
+      tags: [
+        { id: 1, slug: 'cooking-1', text: 'Cooking 1' },
+        { id: 2, slug: 'cooking-2', text: 'Cooking 2' },
+      ],
       date: '29 Oct 2026',
     },
     {
       id: 2,
       slug: 'note-2',
       title: 'Japan Travel Planning',
-      tags: ['Travel', 'Personal'],
+      tags: null,
       date: '28 Oct 2026',
     },
     {
       id: 3,
       slug: 'note-3',
       title: 'Favorite Pasta Recipes',
-      tags: ['Cooking', 'Recipes'],
+      tags: null,
       date: '27 Oct 2026',
     },
     {
       id: 4,
       slug: 'note-4',
       title: 'Meal Prep Ideas',
-      tags: ['Cooking', 'Health', 'Recipes'],
+      tags: null,
       date: '12 Oct 2026',
     },
   ];
@@ -42,7 +45,7 @@ export const TagPage = () => {
   return (
     <div className="min-h-full w-full flex overflow-auto">
       {(isDesktop || !noteSlug) && (
-        <NotesList parentSlug={`tags/${tagSlug}`} notes={notes}>
+        <NotesList parentUrl={`/tags/${tagSlug}`} notes={notes}>
           {!isDesktop && (
             <div className="flex flex-col gap-4">
               <h1>
