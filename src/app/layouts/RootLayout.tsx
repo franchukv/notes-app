@@ -5,10 +5,10 @@ import { useDeviceType } from '@/shared/lib/hooks';
 export const RootLayout = () => {
   const { pathname } = useLocation();
   const matches = useMatches() as UIMatch<unknown, { title?: string }>[];
-  const match = matches.find((m) => m.handle?.title);
+  const title = matches[matches.length - 1].handle?.title;
 
   useDeviceType();
-  usePageTitle(match?.handle.title, pathname);
+  usePageTitle(title, pathname);
 
   return <Outlet />;
 };
