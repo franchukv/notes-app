@@ -1,19 +1,18 @@
 import cn from 'classnames';
-import type { ButtonHTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef, ElementType } from 'react';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-  className?: string;
+type ButtonProps<T extends ElementType> = {
+  as?: T;
   variant?: 'primary' | 'secondary' | 'border';
-}
+} & Omit<ComponentPropsWithoutRef<T>, 'variant'>;
 
-export const Button = ({
+export const Button = <T extends ElementType = 'button'>({
+  as: Tag = 'button' as T,
   children,
   className,
   variant = 'primary',
-  type = 'button',
   ...restProps
-}: ButtonProps) => {
+}: ButtonProps<T>) => {
   const classNames = cn(
     'py-3 px-4 flex items-center justify-center gap-2 text-center text-preset-4 rounded-lg transition-all duration-300 cursor-pointer border focus-visible:bg-blue-500 disabled:bg-neutral-100 disabled:text-neutral-300! disabled:border-neutral-100! disabled:pointer-events-none',
     variant === 'primary' &&
@@ -26,8 +25,9 @@ export const Button = ({
   );
 
   return (
-    <button type={type} className={classNames} {...restProps}>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    <Tag className={classNames} {...(restProps as any)}>
       {children}
-    </button>
+    </Tag>
   );
 };
