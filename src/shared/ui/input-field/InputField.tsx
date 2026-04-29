@@ -53,7 +53,7 @@ export const InputField = ({
         {type === 'password' && (
           <button
             type="button"
-            onClick={() => setShowPassword((sp) => !sp)}
+            onClick={() => setShowPassword((prev) => !prev)}
             className="absolute top-1/2  right-4 -translate-y-1/2 cursor-pointer disabled:text-neutral-300 disabled:pointer-events-none"
             disabled={disabled}
           >

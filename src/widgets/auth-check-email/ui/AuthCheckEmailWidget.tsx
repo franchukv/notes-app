@@ -24,7 +24,9 @@ export const AuthCheckEmailWidget = () => {
       }
       className="gap-4!"
     >
-      <Button onClick={() => navigate('/login')}>Back to login</Button>
+      <Button type="button" onClick={() => navigate('/login')}>
+        Back to login
+      </Button>
     </FormLayout>
   );
 };
