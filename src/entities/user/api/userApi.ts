@@ -1,4 +1,5 @@
 import { type Session, type User } from '@supabase/supabase-js';
+import { setUserId } from '../model';
 import { supabase, supabaseApi } from '@/shared/api';
 
 export const userApi = supabaseApi.injectEndpoints({
@@ -36,6 +37,14 @@ export const userApi = supabaseApi.injectEndpoints({
         return { data: data.user };
       },
       providesTags: ['User'],
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUserId(data.id));
+        } catch (error) {
+          console.error(error);
+        }
+      },
     }),
     logout: build.mutation<void, void>({
       queryFn: async () => {
