@@ -32,9 +32,7 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
     resolver: zodResolver(noteSchema),
     defaultValues: {
       title: note.title,
-      tags: note.tags
-        ? note.tags.map((tag) => ({ value: tag.slug, label: tag.name }))
-        : [],
+      tags: note.tags.map((tag) => ({ value: tag.slug, label: tag.name })),
       content: note.content,
     },
   });
