@@ -1,13 +1,26 @@
-import { Link, useParams } from 'react-router';
+import {
+  Link,
+  useLocation,
+  useMatches,
+  useParams,
+  type UIMatch,
+} from 'react-router';
 import { useAppSelector } from '@/shared/lib';
 import { selectIsDesktop, selectPageTitle } from '@/shared/model';
 import Logo from '@/shared/assets/img/svg/logo.svg?react';
 import SettingsIcon from '@/shared/assets/icons/settings-icon.svg?react';
 
 export const Header = () => {
-  const { tagSlug, noteSlug } = useParams();
+  const { pathname } = useLocation();
+  const { tagSlug } = useParams();
+  const matches = useMatches() as UIMatch<unknown, { title?: string }>[];
+
   const isDesktop = useAppSelector(selectIsDesktop);
-  const title = useAppSelector(selectPageTitle);
+  const title =
+    useAppSelector(selectPageTitle) ||
+    matches[matches.length - 2].handle?.title;
+
+  const isCreateNewNotePage = pathname.includes('/create-new-note');
 
   return (
     <header className="w-full py-3 px-4 flex items-center gap-4 sm:py-6 sm:px-8 lg:py-4.5 lg:border-b lg:border-neutral-200">
@@ -17,12 +30,12 @@ export const Header = () => {
         </Link>
       ) : (
         <>
-          <h2 className="mr-auto text-preset-1">
-            {tagSlug && !noteSlug && (
+          <span className="mr-auto text-preset-1">
+            {tagSlug && !isCreateNewNotePage && (
               <span className="text-neutral-600">Notes Tagged: </span>
             )}
             {title}
-          </h2>
+          </span>
 
           <div>SearchForm</div>
 
