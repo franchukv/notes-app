@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { TagButton, useGetTagsQuery } from '@/entities/tag';
-import { NavigationButton, TagsList } from '@/shared/ui';
+import { NavigationButton, Notice, TagsList } from '@/shared/ui';
 import Logo from '@/shared/assets/img/svg/logo.svg?react';
 import HomeIcon from '@/shared/assets/icons/home-icon.svg?react';
 import ArchiveIcon from '@/shared/assets/icons/archive-icon.svg?react';
@@ -32,8 +32,9 @@ export const Sidebar = () => {
             </TagButton>
           ))
         ) : (
-          <p>There is not tags yet</p>
+          <></>
         )}
+        <Notice>There are no tags yet.</Notice>
       </TagsList>
     </aside>
   );
