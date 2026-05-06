@@ -32,9 +32,8 @@ export const Sidebar = () => {
             </TagButton>
           ))
         ) : (
-          <></>
+          <Notice>There are no tags yet.</Notice>
         )}
-        <Notice>There are no tags yet.</Notice>
       </TagsList>
     </aside>
   );
