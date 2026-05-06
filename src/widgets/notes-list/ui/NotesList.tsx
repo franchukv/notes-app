@@ -35,6 +35,9 @@ export const NotesList = ({
               {isDesktop ? '+ Create New Note' : <PlusIcon />}
             </Button>
           )}
+
+          {children}
+
           {isLoading ? (
             <div className="flex flex-col">
               <SkeletonNoteItem />
@@ -45,8 +48,6 @@ export const NotesList = ({
             </div>
           ) : (
             <>
-              {children}
-
               {notes.length > 0 && (
                 <div className="flex flex-col">
                   {notes.map((note) => (
