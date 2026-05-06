@@ -11,6 +11,9 @@ import { NotesPage } from '@/pages/notes';
 import { NotePage } from '@/pages/note';
 import { TagsPage } from '@/pages/tags-page';
 import { TagPage } from '@/pages/tag';
+import { CreateNotePage } from '@/pages/create-note';
+import { ArchivedNotesPage } from '@/pages/archived-notes';
+import { EditNotePage } from '@/pages/edit-note';
 
 export const routes = [
   {
@@ -40,6 +43,27 @@ export const routes = [
                 handle: { title: 'All Notes' },
                 children: [
                   {
+                    path: 'create-new-note',
+                    Component: CreateNotePage,
+                    handle: { title: 'Create New Note' },
+                  },
+                  {
+                    path: 'edit/:noteSlug',
+                    Component: EditNotePage,
+                    handle: { title: 'Edit Note' },
+                  },
+                  {
+                    path: ':noteSlug',
+                    Component: NotePage,
+                  },
+                ],
+              },
+              {
+                path: 'archived-notes',
+                Component: ArchivedNotesPage,
+                handle: { title: 'Archived Notes' },
+                children: [
+                  {
                     path: ':noteSlug',
                     Component: NotePage,
                   },
@@ -54,6 +78,11 @@ export const routes = [
                     path: ':tagSlug',
                     Component: TagPage,
                     children: [
+                      {
+                        path: 'create-new-note',
+                        Component: CreateNotePage,
+                        handle: { title: 'Create New Note' },
+                      },
                       {
                         path: ':noteSlug',
                         Component: NotePage,
