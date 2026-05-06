@@ -11,7 +11,7 @@ type AuthFormData = z.infer<typeof credentialsSchema>;
 
 export const AuthRegisterForm = () => {
   const navigate = useNavigate();
-  const [signUp, { isLoading, isError, error }] = useRegisterMutation();
+
   const {
     register,
     handleSubmit,
@@ -19,6 +19,8 @@ export const AuthRegisterForm = () => {
   } = useForm<AuthFormData>({
     resolver: zodResolver(credentialsSchema),
   });
+
+  const [signUp, { isLoading, isError, error }] = useRegisterMutation();
 
   const onSubmit = async (data: AuthFormData) => {
     const response = await signUp(data);

@@ -10,7 +10,6 @@ import { isApiError } from '@/shared/lib';
 type AuthFormData = z.infer<typeof credentialsSchema>;
 
 export const AuthLoginForm = () => {
-  const [login, { isLoading, isError, error }] = useLoginMutation();
   const {
     register,
     handleSubmit,
@@ -18,6 +17,8 @@ export const AuthLoginForm = () => {
   } = useForm<AuthFormData>({
     resolver: zodResolver(credentialsSchema),
   });
+
+  const [login, { isLoading, isError, error }] = useLoginMutation();
 
   const onSubmit = async (data: AuthFormData) => {
     await login(data);

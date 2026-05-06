@@ -12,8 +12,7 @@ type AuthFormData = z.infer<typeof authForgotPasswordSchema>;
 
 export const AuthForgotPasswordForm = () => {
   const navigate = useNavigate();
-  const [sendPasswordReset, { isLoading, isError, error }] =
-    useSendPasswordResetMutation();
+
   const {
     register,
     handleSubmit,
@@ -21,6 +20,9 @@ export const AuthForgotPasswordForm = () => {
   } = useForm<AuthFormData>({
     resolver: zodResolver(authForgotPasswordSchema),
   });
+
+  const [sendPasswordReset, { isLoading, isError, error }] =
+    useSendPasswordResetMutation();
 
   const onSubmit = async ({ email }: AuthFormData) => {
     const response = await sendPasswordReset({ email });

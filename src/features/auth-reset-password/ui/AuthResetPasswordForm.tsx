@@ -9,9 +9,6 @@ import { isApiError } from '@/shared/lib';
 type AuthFormData = z.infer<typeof updatePasswordSchema>;
 
 export const AuthResetPasswordForm = () => {
-  const [resetPassword, { isLoading, isError, error }] =
-    useResetPasswordMutation();
-  const [logout] = useLogoutMutation();
   const {
     register,
     handleSubmit,
@@ -19,6 +16,10 @@ export const AuthResetPasswordForm = () => {
   } = useForm<AuthFormData>({
     resolver: zodResolver(updatePasswordSchema),
   });
+
+  const [resetPassword, { isLoading, isError, error }] =
+    useResetPasswordMutation();
+  const [logout] = useLogoutMutation();
 
   const onSubmit = async ({ password }: AuthFormData) => {
     const response = await resetPassword({ password });

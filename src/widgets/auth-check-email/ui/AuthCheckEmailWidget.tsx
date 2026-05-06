@@ -4,8 +4,8 @@ import Logo from '@/shared/assets/img/svg/logo.svg?react';
 import { Button, FormLayout } from '@/shared/ui';
 
 export const AuthCheckEmailWidget = () => {
-  const { state } = useLocation();
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   useLayoutEffect(() => {
     if (!state?.email) {
