@@ -1,54 +1,35 @@
-import { Outlet, useParams } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import { NotesList } from '@/widgets/notes-list';
+import { useGetNotArchivedNotesQuery } from '@/entities/note';
 import { useAppSelector } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
+import { Notice } from '@/shared/ui';
 
 export const NotesPage = () => {
+  const { pathname } = useLocation();
+
   const isDesktop = useAppSelector(selectIsDesktop);
-  const { noteSlug } = useParams();
-  const notes = [
-    {
-      id: 1,
-      slug: 'note-1',
-      title: 'React Performance Optimization',
-      tags: [
-        { id: 1, slug: 'cooking-1', text: 'Cooking 1' },
-        { id: 2, slug: 'cooking-2', text: 'Cooking 2' },
-      ],
-      date: '29 Oct 2026',
-    },
-    {
-      id: 2,
-      slug: 'note-2',
-      title: 'Japan Travel Planning',
-      tags: null,
-      date: '28 Oct 2026',
-    },
-    {
-      id: 3,
-      slug: 'note-3',
-      title: 'Favorite Pasta Recipes',
-      tags: null,
-      date: '27 Oct 2026',
-    },
-    {
-      id: 4,
-      slug: 'note-4',
-      title: 'Meal Prep Ideas',
-      tags: null,
-      date: '12 Oct 2026',
-    },
-  ];
+
+  const isRootPath = pathname === '/notes';
+
+  const { data: notes, isLoading, isSuccess } = useGetNotArchivedNotesQuery();
 
   return (
     <div className="min-h-full w-full flex">
-      {(isDesktop || !noteSlug) && (
-        <NotesList parentUrl="/notes" notes={notes}>
-          {!isDesktop && <h1 className="text-preset-1">All Notes</h1>}
+      {(isDesktop || isRootPath) && (
+        <NotesList parentUrl="/notes" notes={notes ?? []} isLoading={isLoading}>
+          <h1 className="text-preset-1 lg:sr-only">All Notes</h1>
+
+          {isSuccess && notes.length === 0 && (
+            <Notice>
+              You don’t have any active notes yet. <br />
+              Start a new note to capture your thoughts and ideas.
+            </Notice>
+          )}
         </NotesList>
       )}
 
-      {(isDesktop || noteSlug) && <Outlet />}
+      {(isDesktop || !isRootPath) && <Outlet />}
     </div>
   );
 };
