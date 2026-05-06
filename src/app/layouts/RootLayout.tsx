@@ -8,7 +8,7 @@ export const RootLayout = () => {
   const title = matches[matches.length - 1].handle?.title;
 
   useDeviceType();
-  usePageTitle(title, pathname);
+  usePageTitle({ title, pathname });
 
   return <Outlet />;
 };
