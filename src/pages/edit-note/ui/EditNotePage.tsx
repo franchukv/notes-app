@@ -36,7 +36,7 @@ export const EditNotePage = () => {
 
                   <Button
                     type="submit"
-                    form="create-note-form"
+                    form="edit-note-form"
                     variant="primary-link"
                   >
                     Save Note

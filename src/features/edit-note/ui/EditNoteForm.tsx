@@ -63,7 +63,7 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
 
   return (
     <form
-      id="create-note-form"
+      id="edit-note-form"
       className="h-full flex flex-col gap-3 sm:gap-4"
       onSubmit={handleSubmit(onSubmit)}
     >
