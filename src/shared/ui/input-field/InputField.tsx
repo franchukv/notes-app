@@ -24,7 +24,6 @@ export const InputField = ({
   ...restProps
 }: InputFieldProps) => {
   const [showPassword, setShowPassword] = useState(false);
-  const { disabled } = restProps;
   const inputType =
     type === 'password' ? (showPassword ? 'text' : 'password') : type;
   const inputClassNames = cn(
@@ -55,7 +54,7 @@ export const InputField = ({
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
             className="absolute top-1/2  right-4 -translate-y-1/2 cursor-pointer disabled:text-neutral-300 disabled:pointer-events-none"
-            disabled={disabled}
+            disabled={restProps.disabled}
           >
             {showPassword ? <EyeClosed /> : <Eye />}
           </button>
