@@ -1,18 +1,15 @@
 import { Navigate, Outlet, useParams } from 'react-router';
-import { TagButton } from '@/entities/tag';
+import { TagButton, useGetTagsQuery } from '@/entities/tag';
 import { useAppSelector } from '@/shared/lib';
 import { TagsList } from '@/shared/ui';
 import { selectIsDesktop } from '@/shared/model';
 
 export const TagsPage = () => {
   const { tagSlug } = useParams();
+
   const isDesktop = useAppSelector(selectIsDesktop);
-  const tags = [
-    { id: 1, slug: 'cooking-1', text: 'Cooking 1' },
-    { id: 2, slug: 'cooking-2', text: 'Cooking 2' },
-    { id: 3, slug: 'cooking-3', text: 'Cooking 3' },
-    { id: 4, slug: 'cooking-4', text: 'Cooking 4' },
-  ];
+
+  const { data: tags } = useGetTagsQuery();
 
   if (isDesktop && !tagSlug) {
     return <Navigate to="/notes" replace />;
@@ -24,11 +21,15 @@ export const TagsPage = () => {
         <div className="py-5">
           <div className="custom-container">
             <TagsList title="Tags">
-              {tags.map((tag) => (
-                <TagButton key={tag.id} url={`/tags/${tag.slug}`}>
-                  {tag.text}
-                </TagButton>
-              ))}
+              {tags && tags.length > 0 ? (
+                tags.map((tag) => (
+                  <TagButton key={tag.id} url={`/tags/${tag.slug}`}>
+                    {tag.name}
+                  </TagButton>
+                ))
+              ) : (
+                <p>There is not tags yet</p>
+              )}
             </TagsList>
           </div>
         </div>
