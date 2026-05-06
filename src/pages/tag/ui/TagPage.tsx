@@ -1,64 +1,58 @@
-import { Outlet, useParams } from 'react-router';
+import { Outlet, useLocation, useParams } from 'react-router';
 import { NotesList } from '@/widgets/notes-list';
+import { useGetTagBySlugQuery } from '@/entities/tag';
+import { useGetNotesByTagSlugQuery } from '@/entities/note';
 import { useAppSelector, usePageTitle } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
+import { Notice } from '@/shared/ui';
 
 export const TagPage = () => {
-  const isDesktop = useAppSelector(selectIsDesktop);
+  const { pathname } = useLocation();
   const { tagSlug, noteSlug } = useParams();
-  const notes = [
-    {
-      id: 1,
-      slug: 'note-1',
-      title: 'React Performance Optimization',
-      tags: [
-        { id: 1, slug: 'cooking-1', text: 'Cooking 1' },
-        { id: 2, slug: 'cooking-2', text: 'Cooking 2' },
-      ],
-      date: '29 Oct 2026',
-    },
-    {
-      id: 2,
-      slug: 'note-2',
-      title: 'Japan Travel Planning',
-      tags: null,
-      date: '28 Oct 2026',
-    },
-    {
-      id: 3,
-      slug: 'note-3',
-      title: 'Favorite Pasta Recipes',
-      tags: null,
-      date: '27 Oct 2026',
-    },
-    {
-      id: 4,
-      slug: 'note-4',
-      title: 'Meal Prep Ideas',
-      tags: null,
-      date: '12 Oct 2026',
-    },
-  ];
 
-  usePageTitle(tagSlug);
+  const isDesktop = useAppSelector(selectIsDesktop);
+
+  const isCreateNewNotePage = pathname.includes('/create-new-note');
+
+  const { data: tag } = useGetTagBySlugQuery({ slug: tagSlug! });
+  const {
+    data: notes,
+    isLoading: isNotesLoading,
+    isSuccess,
+  } = useGetNotesByTagSlugQuery({ slug: tagSlug! });
+
+  usePageTitle({
+    title: isCreateNewNotePage ? undefined : tag?.name,
+    extraTextInDocumentTitle: ' tag',
+  });
 
   return (
     <div className="min-h-full w-full flex overflow-auto">
-      {(isDesktop || !noteSlug) && (
-        <NotesList parentUrl={`/tags/${tagSlug}`} notes={notes}>
-          {!isDesktop && (
-            <div className="flex flex-col gap-4">
-              <h1>
-                Notes Tagged: <b>{tagSlug}</b>
-              </h1>
+      {(isDesktop || (!noteSlug && !isCreateNewNotePage)) && (
+        <NotesList
+          parentUrl={`/tags/${tagSlug}`}
+          notes={notes ?? []}
+          isLoading={isNotesLoading}
+        >
+          <h1 className="text-preset-1 lg:sr-only">
+            <span className="text-neutral-600">Notes Tagged: </span>
+            {tag?.name}
+          </h1>
 
-              <p>All notes with the "{tagSlug}" tag are shown here.</p>
-            </div>
-          )}
+          {isSuccess &&
+            (notes.length > 0 ? (
+              <p className="text-preset-5 text-neutral-700">
+                All notes with the "{tag?.name}" tag are shown here.
+              </p>
+            ) : (
+              <Notice>
+                You don’t have any notes with "{tag?.name}" tag yet.
+              </Notice>
+            ))}
         </NotesList>
       )}
 
-      {(isDesktop || noteSlug) && <Outlet />}
+      {(isDesktop || noteSlug || isCreateNewNotePage) && <Outlet />}
     </div>
   );
 };
