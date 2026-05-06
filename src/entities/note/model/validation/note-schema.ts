@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const createNoteSchema = z.object({
+export const noteSchema = z.object({
   title: z.string().min(1, { message: 'Please enter the title' }),
   tags: z
     .array(
