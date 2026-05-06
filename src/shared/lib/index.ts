@@ -1,3 +1,3 @@
-export { generatePageTitle } from './utils';
+export { generatePageTitle, formatDate } from './utils';
 export { isApiError } from './guards';
 export { useAppDispatch, useAppSelector, usePageTitle } from './hooks';
