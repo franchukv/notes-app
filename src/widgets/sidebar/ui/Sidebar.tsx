@@ -1,20 +1,15 @@
 import { Link } from 'react-router';
-import { TagButton } from '@/entities/tag';
+import { TagButton, useGetTagsQuery } from '@/entities/tag';
 import { NavigationButton, TagsList } from '@/shared/ui';
 import Logo from '@/shared/assets/img/svg/logo.svg?react';
 import HomeIcon from '@/shared/assets/icons/home-icon.svg?react';
 import ArchiveIcon from '@/shared/assets/icons/archive-icon.svg?react';
 
 export const Sidebar = () => {
-  const tags = [
-    { id: 1, slug: 'cooking-1', text: 'Cooking 1' },
-    { id: 2, slug: 'cooking-2', text: 'Cooking 2' },
-    { id: 3, slug: 'cooking-3', text: 'Cooking 3' },
-    { id: 4, slug: 'cooking-4', text: 'Cooking 4' },
-  ];
+  const { data: tags } = useGetTagsQuery();
 
   return (
-    <aside className="max-w-67.5 w-full min-h-dvh max-h-dvh py-3 px-4 flex flex-col border-r border-neutral-200 overflow-auto">
+    <aside className="w-full min-h-dvh max-h-dvh py-3 px-4 flex flex-col border-r border-neutral-200 overflow-auto lg:max-w-60 xl:max-w-67.5">
       <Link to="/notes" className="my-3">
         <Logo />
       </Link>
@@ -24,18 +19,21 @@ export const Sidebar = () => {
           <HomeIcon /> All Notes
         </NavigationButton>
 
-        <NavigationButton to="/archived">
+        <NavigationButton to="/archived-notes">
           <ArchiveIcon /> Archived Notes
         </NavigationButton>
       </nav>
 
       <TagsList title="Tags">
-        {tags.length > 0 &&
+        {tags && tags.length > 0 ? (
           tags.map((tag) => (
             <TagButton key={tag.id} url={`/tags/${tag.slug}`}>
-              {tag.text}
+              {tag.name}
             </TagButton>
-          ))}
+          ))
+        ) : (
+          <p>There is not tags yet</p>
+        )}
       </TagsList>
     </aside>
   );
