@@ -12,7 +12,7 @@ import SettingsIcon from '@/shared/assets/icons/settings-icon.svg?react';
 const buttons = [
   { url: '/notes', icon: HomeIcon, text: 'Home' },
   { url: '/search', icon: SearchIcon, text: 'Search' },
-  { url: '/archived', icon: ArchiveIcon, text: 'Archived' },
+  { url: '/archived-notes', icon: ArchiveIcon, text: 'Archived' },
   { url: '/tags', icon: TagIcon, text: 'Tags' },
   { url: '/settings', icon: SettingsIcon, text: 'Settings' },
 ];
