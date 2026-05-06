@@ -7,7 +7,8 @@ export const mapNote = (dto: NoteDTO): Note => ({
   updatedAt: dto.updated_at,
   slug: dto.slug,
   title: dto.title,
-  tags: dto.note_tags?.map((nt) => mapTag(nt.tags)) ?? [],
+  tags:
+    dto.note_tags?.flatMap((nt) => (nt.tags ? [mapTag(nt.tags)] : [])) ?? [],
   content: dto.content,
   isArchived: dto.is_archived,
 });
