@@ -3,7 +3,7 @@ import { useAppDispatch } from './useAppDispatch';
 import { setPageTitle } from '../../model';
 import { generatePageTitle } from '../utils';
 
-interface usePageTitleProps {
+interface UsePageTitleProps {
   title: string | undefined;
   headerTitle?: string | undefined;
   pathname?: string;
@@ -17,7 +17,7 @@ export const usePageTitle = ({
   headerTitle,
   extraTextInDocumentTitle = '',
   previousHeaderTitle = false,
-}: usePageTitleProps) => {
+}: UsePageTitleProps) => {
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
