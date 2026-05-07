@@ -20,7 +20,7 @@ export const authRegisterApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: 400,
+              status: error.code ?? 400,
               data: { message: error.message },
             },
           };
@@ -29,7 +29,7 @@ export const authRegisterApi = supabaseApi.injectEndpoints({
         if (data.user && data.user.identities?.length === 0) {
           return {
             error: {
-              status: 400,
+              status: 409,
               data: { message: 'User with this email already exists' },
             },
           };

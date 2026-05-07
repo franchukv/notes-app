@@ -13,7 +13,7 @@ export const authResetPasswordApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: 400,
+              status: error.code ?? 400,
               data: { message: error.message },
             },
           };

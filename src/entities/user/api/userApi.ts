@@ -11,7 +11,7 @@ export const userApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: 400,
+              status: error.code ?? 400,
               data: { message: error.message },
             },
           };
@@ -28,7 +28,7 @@ export const userApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: 400,
+              status: error.code ?? 400,
               data: { message: error.message },
             },
           };
@@ -53,7 +53,7 @@ export const userApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: 400,
+              status: error.code ?? 400,
               data: { message: error.message },
             },
           };
