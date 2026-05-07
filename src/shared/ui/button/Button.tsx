@@ -7,6 +7,7 @@ type ButtonProps<T extends ElementType> = {
     | 'primary'
     | 'secondary'
     | 'border'
+    | 'red'
     | 'primary-link'
     | 'secondary-link';
 } & Omit<ComponentPropsWithoutRef<T>, 'variant'>;
@@ -29,6 +30,8 @@ export const Button = <T extends ElementType = 'button'>({
       'text-neutral-600 bg-neutral-100 border-neutral-100 hover:bg-white active:bg-white hover:text-neutral-950 active:text-neutral-950 hover:border-neutral-300 active:border-neutral-300 focus-visible:bg-white focus-visible:text-neutral-950 focus-visible:border-neutral-950',
     variant === 'border' &&
       'text-neutral-950 bg-white border-neutral-300 hover:text-neutral-600 active:text-neutral-600 hover:bg-neutral-100 active:bg-neutral-100 hover:border-neutral-100 active:border-neutral-100 focus-visible:bg-white focus-visible:text-neutral-950 focus-visible:border-neutral-950',
+    variant === 'red' &&
+      'text-white bg-red-500 border-red-500 not-focus-visible:hover:bg-red-700 not-focus-visible:hover:border-red-700 not-focus-visible:active:border-red-700 not-focus-visible:active:bg-red-700',
     variant === 'primary-link' &&
       'text-blue-500 hover:text-blue-700 active:text-blue-700',
     variant === 'secondary-link' &&
