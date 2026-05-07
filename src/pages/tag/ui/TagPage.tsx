@@ -1,11 +1,12 @@
+import cn from 'classnames';
 import { Outlet, useLocation, useParams } from 'react-router';
 import { NotesList } from '@/widgets/notes-list';
+import { ActionBarWidget } from '@/widgets/action-bar';
 import { useGetTagBySlugQuery } from '@/entities/tag';
 import { useGetNotesByTagSlugQuery } from '@/entities/note';
 import { useAppSelector, usePageTitle } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
 import { Notice } from '@/shared/ui';
-import { ActionBarWidget } from '@/widgets/action-bar';
 
 export const TagPage = () => {
   const { pathname } = useLocation();
@@ -14,6 +15,10 @@ export const TagPage = () => {
   const isDesktop = useAppSelector(selectIsDesktop);
 
   const isCreateNewNotePage = pathname.includes('/create-new-note');
+  const classNames = cn(
+    'min-h-full w-full flex overflow-auto',
+    !isDesktop && !noteSlug && 'max-lg:pt-5 max-lg:flex-col',
+  );
 
   const { data: tag } = useGetTagBySlugQuery({ slug: tagSlug! });
   const {
@@ -28,16 +33,16 @@ export const TagPage = () => {
   });
 
   return (
-    <div className="min-h-full w-full pt-5 flex flex-col overflow-auto">
-      <div className="custom-container">
-        {!isDesktop && (
+    <div className={classNames}>
+      {!isDesktop && !noteSlug && (
+        <div className="custom-container">
           <ActionBarWidget
             parentUrl="/tags"
             variant="without-border"
             className="-mb-1"
           />
-        )}
-      </div>
+        </div>
+      )}
 
       {(isDesktop || (!noteSlug && !isCreateNewNotePage)) && (
         <NotesList
