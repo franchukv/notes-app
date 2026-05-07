@@ -65,7 +65,7 @@
   }
 
   .overlay {
-    @apply fixed inset-0 max-h-dvh flex flex-col bg-neutral-950/50 overflow-auto;
+    @apply fixed inset-0 z-9999 max-h-dvh flex flex-col bg-neutral-950/50 overflow-auto;
   }
 
   .modal {
