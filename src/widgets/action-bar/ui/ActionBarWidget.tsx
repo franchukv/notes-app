@@ -1,20 +1,30 @@
+import cn from 'classnames';
 import { useNavigate } from 'react-router';
 import { Button } from '@/shared/ui';
 import BackArrowIcon from '@/shared/assets/icons/back-arrow-icon.svg?react';
 
 interface ActionBarWidgetProps {
   parentUrl?: string;
+  className?: string;
+  variant?: 'default' | 'without-border';
   children?: React.ReactNode;
 }
 
 export const ActionBarWidget = ({
   parentUrl,
+  className,
+  variant = 'default',
   children,
 }: ActionBarWidgetProps) => {
   const navigate = useNavigate();
+  const classNames = cn(
+    'w-full pb-3 flex items-center gap-4 justify-between border-b border-neutral-200 sm:pb-4',
+    variant === 'without-border' && 'pb-0! border-none!',
+    className,
+  );
 
   return (
-    <div className="w-full pb-3 flex items-center gap-4 justify-between border-b border-neutral-200 sm:pb-4">
+    <div className={classNames}>
       <Button
         type="button"
         variant="secondary-link"
