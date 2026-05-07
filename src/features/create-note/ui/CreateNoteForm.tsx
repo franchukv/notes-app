@@ -50,6 +50,12 @@ export const CreateNoteForm = ({
   const options = tags
     ? tags.map((tag) => ({ value: tag.slug, label: tag.name }))
     : [];
+  const classNames = {
+    titleInput: cn(
+      'p-0 text-preset-2 border-b border-transparent focus:border-neutral-950 outline-none placeholder:text-neutral-700 sm:text-preset-1',
+      errors.title?.message && 'border-red-500!',
+    ),
+  };
 
   const onSubmit = async ({ title, tags, content }: CreateNoteFormData) => {
     const response = await createNote({
@@ -82,10 +88,7 @@ export const CreateNoteForm = ({
             {...register('title')}
             type="text"
             placeholder="Enter a title…"
-            className={cn(
-              'p-0 text-preset-2 border-b border-transparent focus:border-neutral-950 outline-none placeholder:text-neutral-700 sm:text-preset-1',
-              errors.title?.message && 'border-red-500!',
-            )}
+            className={classNames.titleInput}
           />
           {errors.title?.message && (
             <Hint type="error" text={errors.title.message} />

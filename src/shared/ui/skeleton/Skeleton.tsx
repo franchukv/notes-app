@@ -5,7 +5,7 @@ interface SkeletonProps {
 }
 
 export const Skeleton = ({ className }: SkeletonProps) => {
-  return (
-    <div className={cn('animate-pulse bg-neutral-200 rounded-md', className)} />
-  );
+  const classNames = cn('animate-pulse bg-neutral-200 rounded-md', className);
+
+  return <div className={classNames} />;
 };
