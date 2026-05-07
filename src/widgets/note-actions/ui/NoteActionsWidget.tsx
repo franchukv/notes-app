@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import { openModal } from '../@x/modal-manager';
+import { useRestoreNote } from '@/features/restore-note';
 import { type Note } from '@/entities/note';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
@@ -8,7 +9,6 @@ import ArchiveIcon from '@/shared/assets/icons/archive-icon.svg?react';
 import RestoreIcon from '@/shared/assets/icons/restore-icon.svg?react';
 import DeleteIcon from '@/shared/assets/icons/delete-icon.svg?react';
 import EditIcon from '@/shared/assets/icons/edit-icon.svg?react';
-import { useRestoreNote } from '@/features/restore-note';
 
 interface NoteActionsWidgetProps {
   parentUrl: string;
@@ -43,7 +43,7 @@ export const NoteActionsWidget = ({
     dispatch(
       openModal({
         modal: 'confirm-delete',
-        props: { noteId: note.id, parentUrl },
+        props: { noteId: note.id, noteSlug: note.slug, parentUrl },
       }),
     );
   };

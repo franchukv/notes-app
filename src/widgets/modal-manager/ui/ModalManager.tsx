@@ -21,6 +21,7 @@ export const ModalManager = () => {
         isOpen
         onClose={handleClose}
         noteId={activeModal.props.noteId}
+        noteSlug={activeModal.props.noteSlug}
         parentUrl={activeModal.props.parentUrl}
       />
     );
