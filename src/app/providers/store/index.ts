@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { supabaseAuthMiddleware } from './middleware/supabaseMiddleware';
+import { modalSlice } from '@/widgets/modal-manager';
 import { userSlice } from '@/entities/user';
 import { supabaseApi } from '@/shared/api';
 import { pageSlice, responsiveSlice } from '@/shared/model';
@@ -9,6 +10,7 @@ export const store = configureStore({
     page: pageSlice.reducer,
     responsive: responsiveSlice.reducer,
     user: userSlice.reducer,
+    modal: modalSlice.reducer,
     [supabaseApi.reducerPath]: supabaseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

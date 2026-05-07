@@ -1,4 +1,5 @@
 import { Outlet, useLocation, useMatches, type UIMatch } from 'react-router';
+import { ModalManager } from '@/widgets/modal-manager';
 import { usePageTitle } from '@/shared/lib';
 import { useDeviceType } from '@/shared/lib/hooks';
 
@@ -10,5 +11,10 @@ export const RootLayout = () => {
   useDeviceType();
   usePageTitle({ title, pathname });
 
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <ModalManager />
+    </>
+  );
 };

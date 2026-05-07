@@ -64,6 +64,14 @@
     @apply w-full mx-auto px-4 sm:max-lg:px-8;
   }
 
+  .overlay {
+    @apply fixed inset-0 max-h-dvh flex flex-col bg-neutral-950/50 overflow-auto;
+  }
+
+  .modal {
+    @apply max-w-120 w-full m-auto flex bg-white rounded-xl overflow-hidden;
+  }
+
   .link {
     @apply transition-all duration-300 hover:text-blue-500!;
   }
