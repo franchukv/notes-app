@@ -2,10 +2,12 @@ import { useNavigate } from 'react-router';
 import { useDeleteNoteMutation } from '@/entities/note';
 import { Button, Modal } from '@/shared/ui';
 import DeleteIcon from '@/shared/assets/icons/delete-icon.svg?react';
+import { useToast } from '@/shared/lib';
 
 interface ConfirmDeleteModalProps {
   isOpen: boolean;
   noteId: number;
+  noteSlug: string;
   parentUrl: string;
   onClose: () => void;
 }
@@ -13,22 +15,28 @@ interface ConfirmDeleteModalProps {
 export const ConfirmDeleteModal = ({
   isOpen,
   noteId,
+  noteSlug,
   parentUrl,
   onClose,
 }: ConfirmDeleteModalProps) => {
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const [deleteNote, { isLoading }] = useDeleteNoteMutation();
 
   const handleConfirm = async () => {
+    onClose();
+    navigate(parentUrl);
+
     const { error } = await deleteNote({ id: noteId });
 
     if (error) {
+      showToast({ message: 'Failed to delete note.', type: 'error' });
+      navigate(`${parentUrl}/${noteSlug}`);
       return;
     }
 
-    onClose();
-    navigate(parentUrl);
+    showToast({ message: 'Note permanently deleted.' });
   };
 
   return (

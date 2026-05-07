@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router';
 import { useToggleNoteArchivedMutation } from '@/entities/note';
 import { Button, Modal } from '@/shared/ui';
 import ArchiveIcon from '@/shared/assets/icons/archive-icon.svg?react';
+import { useToast } from '@/shared/lib';
 
 interface ConfirmArchiveModalProps {
   isOpen: boolean;
@@ -19,6 +20,7 @@ export const ConfirmArchiveModal = ({
   onClose,
 }: ConfirmArchiveModalProps) => {
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const [toggleNoteArchived, { isLoading }] = useToggleNoteArchivedMutation();
 
@@ -28,11 +30,17 @@ export const ConfirmArchiveModal = ({
       isArchived,
     });
 
+    onClose();
+
     if (error) {
+      showToast({ message: 'Failed to archive note.', type: 'error' });
       return;
     }
 
-    onClose();
+    showToast({
+      message: 'Note archived.',
+      link: { url: '/archived-notes', text: 'Archived Notes' },
+    });
     navigate(parentUrl);
   };
 

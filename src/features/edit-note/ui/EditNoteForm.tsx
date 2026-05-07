@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { noteSchema, useUpdateNoteMutation, type Note } from '@/entities/note';
 import { useGetTagsQuery } from '@/entities/tag';
-import { formatDate, useAppSelector } from '@/shared/lib';
+import { formatDate, useAppSelector, useToast } from '@/shared/lib';
 import { Button, CreatableMultiSelect, Hint } from '@/shared/ui';
 import { selectIsDesktop } from '@/shared/model';
 import TagIcon from '@/shared/assets/icons/tag-icon.svg?react';
@@ -20,6 +20,7 @@ type EditNoteFormData = z.infer<typeof noteSchema>;
 
 export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const isDesktop = useAppSelector(selectIsDesktop);
 
@@ -59,9 +60,11 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
     });
 
     if (error) {
+      showToast({ message: 'Failed to edit note.', type: 'error' });
       return;
     }
 
+    showToast({ message: 'Note saved successfully!' });
     navigate(`/notes/${note.slug}`);
   };
 

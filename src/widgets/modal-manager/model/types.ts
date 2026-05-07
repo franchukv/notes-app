@@ -2,6 +2,7 @@ export interface ConfirmDeleteModalPayload {
   modal: 'confirm-delete';
   props: {
     noteId: number;
+    noteSlug: string;
     parentUrl: string;
   };
 }

@@ -3,7 +3,7 @@ import { supabaseAuthMiddleware } from './middleware/supabaseMiddleware';
 import { modalSlice } from '@/widgets/modal-manager';
 import { userSlice } from '@/entities/user';
 import { supabaseApi } from '@/shared/api';
-import { pageSlice, responsiveSlice } from '@/shared/model';
+import { pageSlice, responsiveSlice, toastSlice } from '@/shared/model';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +11,7 @@ export const store = configureStore({
     responsive: responsiveSlice.reducer,
     user: userSlice.reducer,
     modal: modalSlice.reducer,
+    toasts: toastSlice.reducer,
     [supabaseApi.reducerPath]: supabaseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

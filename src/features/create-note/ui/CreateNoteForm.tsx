@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { noteSchema, useCreateNoteMutation } from '@/entities/note';
 import { selectUserId } from '@/entities/user';
 import { useGetTagsQuery, type Tag } from '@/entities/tag';
-import { useAppSelector } from '@/shared/lib';
+import { useAppSelector, useToast } from '@/shared/lib';
 import { Button, CreatableMultiSelect, Hint } from '@/shared/ui';
 import { selectIsDesktop } from '@/shared/model';
 import TagIcon from '@/shared/assets/icons/tag-icon.svg?react';
@@ -26,6 +26,7 @@ export const CreateNoteForm = ({
   defaultTag,
 }: CreateNoteFormProps) => {
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const isDesktop = useAppSelector(selectIsDesktop);
   const userId = useAppSelector(selectUserId);
@@ -66,9 +67,11 @@ export const CreateNoteForm = ({
     });
 
     if (error) {
+      showToast({ message: 'Failed to save note.', type: 'error' });
       return;
     }
 
+    showToast({ message: 'Note saved successfully!' });
     navigate(
       tagSlug ? `/tags/${tagSlug}/${data?.slug}` : `/notes/${data?.slug}`,
     );

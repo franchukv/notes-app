@@ -9,3 +9,4 @@ export { TagsList } from './tags-list/TagsList';
 export { CreatableMultiSelect } from './creatable-multi-select/CreatableMultiSelect';
 export { Notice } from './notice/Notice';
 export { Modal } from './modal/Modal';
+export { Toast } from './toast/Toast';
