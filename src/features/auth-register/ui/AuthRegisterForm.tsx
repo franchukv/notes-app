@@ -23,9 +23,9 @@ export const AuthRegisterForm = () => {
   const [signUp, { isLoading, isError, error }] = useRegisterMutation();
 
   const onSubmit = async (data: AuthFormData) => {
-    const response = await signUp(data);
+    const { error } = await signUp(data);
 
-    if ('error' in response) {
+    if (error) {
       return;
     }
 

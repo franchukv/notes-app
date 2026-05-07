@@ -51,14 +51,14 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
   };
 
   const onSubmit = async ({ title, tags, content }: EditNoteFormData) => {
-    const response = await updateNote({
+    const { error } = await updateNote({
       id: note.id,
       tags: tags ? tags.map((tag) => tag.label) : [],
       title,
       content: content ?? '',
     });
 
-    if ('error' in response) {
+    if (error) {
       return;
     }
 

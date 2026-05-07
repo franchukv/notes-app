@@ -58,21 +58,19 @@ export const CreateNoteForm = ({
   };
 
   const onSubmit = async ({ title, tags, content }: CreateNoteFormData) => {
-    const response = await createNote({
+    const { data, error } = await createNote({
       userId: userId!,
       tags: tags ? tags.map((tag) => tag.label) : [],
       title,
       content: content ?? '',
     });
 
-    if ('error' in response) {
+    if (error) {
       return;
     }
 
     navigate(
-      tagSlug
-        ? `/tags/${tagSlug}/${response.data?.slug}`
-        : `/notes/${response.data?.slug}`,
+      tagSlug ? `/tags/${tagSlug}/${data?.slug}` : `/notes/${data?.slug}`,
     );
   };
 

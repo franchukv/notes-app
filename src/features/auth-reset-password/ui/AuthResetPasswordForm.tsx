@@ -22,9 +22,9 @@ export const AuthResetPasswordForm = () => {
   const [logout] = useLogoutMutation();
 
   const onSubmit = async ({ password }: AuthFormData) => {
-    const response = await resetPassword({ password });
+    const { error } = await resetPassword({ password });
 
-    if ('error' in response) {
+    if (error) {
       return;
     }
 

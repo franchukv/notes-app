@@ -25,9 +25,9 @@ export const AuthForgotPasswordForm = () => {
     useSendPasswordResetMutation();
 
   const onSubmit = async ({ email }: AuthFormData) => {
-    const response = await sendPasswordReset({ email });
+    const { error } = await sendPasswordReset({ email });
 
-    if ('error' in response) {
+    if (error) {
       return;
     }
 
