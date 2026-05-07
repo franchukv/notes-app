@@ -1,65 +1,56 @@
-import { Link, useNavigate } from 'react-router';
-import {
-  useDeleteNoteMutation,
-  useToggleNoteArchivedMutation,
-  type Note,
-} from '@/entities/note';
-import { useAppSelector } from '@/shared/lib';
+import { Link } from 'react-router';
+import { openModal } from '../@x/modal-manager';
+import { type Note } from '@/entities/note';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
 import { Button } from '@/shared/ui';
 import ArchiveIcon from '@/shared/assets/icons/archive-icon.svg?react';
 import RestoreIcon from '@/shared/assets/icons/restore-icon.svg?react';
 import DeleteIcon from '@/shared/assets/icons/delete-icon.svg?react';
 import EditIcon from '@/shared/assets/icons/edit-icon.svg?react';
+import { useRestoreNote } from '@/features/restore-note';
 
 interface NoteActionsWidgetProps {
   parentUrl: string;
   note: Note;
-  isArchivedNote: boolean;
 }
 
 export const NoteActionsWidget = ({
   parentUrl,
   note,
-  isArchivedNote,
 }: NoteActionsWidgetProps) => {
-  const navigate = useNavigate();
-
   const isDesktop = useAppSelector(selectIsDesktop);
+  const dispatch = useAppDispatch();
 
   const buttonVariant = isDesktop ? 'border' : 'secondary-link';
 
-  const [toggleNoteArchived, { isLoading: isToggleNoteArchiveLoading }] =
-    useToggleNoteArchivedMutation();
-  const [deleteNote, { isLoading: isDeleteNoteLoading }] =
-    useDeleteNoteMutation();
+  const { restoreNote, isLoading: isRestoreLoading } = useRestoreNote();
 
-  const handleToggleNoteArchived = async () => {
-    const response = await toggleNoteArchived({
-      id: note.id,
-      isArchived: note.isArchived,
-    });
-
-    if ('error' in response) {
-      return;
-    }
-
-    navigate(parentUrl);
+  const handleArchiveNoteClick = () => {
+    dispatch(
+      openModal({
+        modal: 'confirm-archive',
+        props: { noteId: note.id, isArchived: note.isArchived, parentUrl },
+      }),
+    );
   };
 
-  const handleDeleteNote = async () => {
-    const response = await deleteNote({ id: note.id });
+  const handleRestoreNoteClick = () => {
+    restoreNote({ noteId: note.id, parentUrl });
+  };
 
-    if ('error' in response) {
-      return;
-    }
-
-    navigate(parentUrl);
+  const handleDeleteNoteClick = () => {
+    dispatch(
+      openModal({
+        modal: 'confirm-delete',
+        props: { noteId: note.id, parentUrl },
+      }),
+    );
   };
 
   return (
     <>
-      {!isArchivedNote && (
+      {!note.isArchived && (
         <Button
           as={Link}
           to={`/notes/edit/${note.slug}`}
@@ -73,10 +64,12 @@ export const NoteActionsWidget = ({
       <Button
         variant={buttonVariant}
         className="justify-start"
-        onClick={handleToggleNoteArchived}
-        disabled={isToggleNoteArchiveLoading}
+        onClick={
+          note.isArchived ? handleRestoreNoteClick : handleArchiveNoteClick
+        }
+        disabled={isRestoreLoading}
       >
-        {isArchivedNote ? (
+        {note.isArchived ? (
           <>
             <RestoreIcon /> {isDesktop && 'Restore Note'}
           </>
@@ -90,8 +83,7 @@ export const NoteActionsWidget = ({
       <Button
         variant={buttonVariant}
         className="justify-start"
-        onClick={handleDeleteNote}
-        disabled={isDeleteNoteLoading}
+        onClick={handleDeleteNoteClick}
       >
         <DeleteIcon /> {isDesktop && 'Delete Note'}
       </Button>

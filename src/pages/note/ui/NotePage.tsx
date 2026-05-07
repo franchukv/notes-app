@@ -41,11 +41,7 @@ export const NotePage = () => {
             {!isDesktop && (
               <ActionBarWidget parentUrl={parentUrl}>
                 {isSuccess && (
-                  <NoteActionsWidget
-                    parentUrl={parentUrl}
-                    note={note}
-                    isArchivedNote={isArchivedNote}
-                  />
+                  <NoteActionsWidget parentUrl={parentUrl} note={note} />
                 )}
               </ActionBarWidget>
             )}
@@ -69,11 +65,7 @@ export const NotePage = () => {
         <aside className="h-full w-full py-5 flex flex-col gap-3 lg:max-w-45 xl:max-w-72.5">
           <div className="custom-container">
             <div className="flex flex-col gap-3">
-              <NoteActionsWidget
-                parentUrl={parentUrl}
-                note={note}
-                isArchivedNote={isArchivedNote}
-              />
+              <NoteActionsWidget parentUrl={parentUrl} note={note} />
             </div>
           </div>
         </aside>
