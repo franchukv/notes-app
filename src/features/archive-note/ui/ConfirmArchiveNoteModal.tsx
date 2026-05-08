@@ -4,7 +4,7 @@ import { Button, Modal } from '@/shared/ui';
 import ArchiveIcon from '@/shared/assets/icons/archive-icon.svg?react';
 import { useToast } from '@/shared/lib';
 
-interface ConfirmArchiveModalProps {
+interface ConfirmArchiveNoteModalProps {
   isOpen: boolean;
   noteId: number;
   isArchived: boolean;
@@ -12,13 +12,13 @@ interface ConfirmArchiveModalProps {
   onClose: () => void;
 }
 
-export const ConfirmArchiveModal = ({
+export const ConfirmArchiveNoteModal = ({
   isOpen,
   noteId,
   isArchived,
   parentUrl,
   onClose,
-}: ConfirmArchiveModalProps) => {
+}: ConfirmArchiveNoteModalProps) => {
   const navigate = useNavigate();
   const { showToast } = useToast();
 

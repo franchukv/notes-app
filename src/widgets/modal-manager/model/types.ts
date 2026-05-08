@@ -7,7 +7,7 @@ export interface ConfirmDeleteNoteModalPayload {
   };
 }
 
-export interface ConfirmArchiveModalPayload {
+export interface ConfirmArchiveNoteModalPayload {
   modal: 'confirm-archive';
   props: {
     noteId: number;
@@ -18,4 +18,4 @@ export interface ConfirmArchiveModalPayload {
 
 export type ModalPayload =
   | ConfirmDeleteNoteModalPayload
-  | ConfirmArchiveModalPayload;
+  | ConfirmArchiveNoteModalPayload;

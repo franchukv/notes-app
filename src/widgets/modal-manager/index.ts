@@ -6,6 +6,6 @@ export {
 } from './model/modalSlice';
 export type {
   ConfirmDeleteNoteModalPayload,
-  ConfirmArchiveModalPayload,
+  ConfirmArchiveNoteModalPayload,
 } from './model/types';
 export { ModalManager } from './ui/ModalManager';
