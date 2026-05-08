@@ -1,7 +1,7 @@
 import { useLocation, useMatches, useParams, type UIMatch } from 'react-router';
 import { ActionBarWidget } from '@/widgets/action-bar';
 import { NoteActionsWidget } from '@/widgets/note-actions';
-import { NoteContent } from '@/widgets/note-content';
+import { NoteContent, SkeletonNoteContent } from '@/widgets/note-content';
 import { useGetNoteBySlugQuery } from '@/entities/note';
 import { useAppSelector, usePageTitle } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
@@ -49,9 +49,7 @@ export const NotePage = () => {
             {isSuccess ? (
               <NoteContent note={note} />
             ) : isLoading ? (
-              <div className="m-auto text-preset-3 text-center">
-                Note is loading...
-              </div>
+              <SkeletonNoteContent isArchivedNote={isArchivedNote} />
             ) : (
               <div className="m-auto text-preset-3 text-center">
                 Note not found
