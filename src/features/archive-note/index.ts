@@ -1,1 +1,1 @@
-export { ConfirmArchiveModal } from './ui/ConfirmArchiveModal';
+export { ConfirmArchiveNoteModal } from './ui/ConfirmArchiveNoteModal';
