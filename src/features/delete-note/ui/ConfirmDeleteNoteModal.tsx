@@ -4,7 +4,7 @@ import { Button, Modal } from '@/shared/ui';
 import DeleteIcon from '@/shared/assets/icons/delete-icon.svg?react';
 import { useToast } from '@/shared/lib';
 
-interface ConfirmDeleteModalProps {
+interface ConfirmDeleteNoteModalProps {
   isOpen: boolean;
   noteId: number;
   noteSlug: string;
@@ -12,13 +12,13 @@ interface ConfirmDeleteModalProps {
   onClose: () => void;
 }
 
-export const ConfirmDeleteModal = ({
+export const ConfirmDeleteNoteModal = ({
   isOpen,
   noteId,
   noteSlug,
   parentUrl,
   onClose,
-}: ConfirmDeleteModalProps) => {
+}: ConfirmDeleteNoteModalProps) => {
   const navigate = useNavigate();
   const { showToast } = useToast();
 

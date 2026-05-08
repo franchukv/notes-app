@@ -1,4 +1,4 @@
-export interface ConfirmDeleteModalPayload {
+export interface ConfirmDeleteNoteModalPayload {
   modal: 'confirm-delete';
   props: {
     noteId: number;
@@ -17,5 +17,5 @@ export interface ConfirmArchiveModalPayload {
 }
 
 export type ModalPayload =
-  | ConfirmDeleteModalPayload
+  | ConfirmDeleteNoteModalPayload
   | ConfirmArchiveModalPayload;

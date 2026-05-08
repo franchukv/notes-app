@@ -1,5 +1,5 @@
 import { closeModal, selectActiveModal } from '../model/modalSlice';
-import { ConfirmDeleteModal } from '@/features/delete-note';
+import { ConfirmDeleteNoteModal } from '@/features/delete-note';
 import { ConfirmArchiveModal } from '@/features/archive-note';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 
@@ -17,7 +17,7 @@ export const ModalManager = () => {
 
   if (activeModal.modal === 'confirm-delete') {
     return (
-      <ConfirmDeleteModal
+      <ConfirmDeleteNoteModal
         isOpen
         onClose={handleClose}
         noteId={activeModal.props.noteId}

@@ -5,7 +5,7 @@ export {
   selectActiveModal,
 } from './model/modalSlice';
 export type {
-  ConfirmDeleteModalPayload,
+  ConfirmDeleteNoteModalPayload,
   ConfirmArchiveModalPayload,
 } from './model/types';
 export { ModalManager } from './ui/ModalManager';
