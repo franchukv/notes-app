@@ -29,7 +29,7 @@ export const NoteActionsWidget = ({
   const handleArchiveNoteClick = () => {
     dispatch(
       openModal({
-        modal: 'confirm-archive',
+        modal: 'confirm-archive-note',
         props: { noteId: note.id, isArchived: note.isArchived, parentUrl },
       }),
     );
@@ -42,7 +42,7 @@ export const NoteActionsWidget = ({
   const handleDeleteNoteClick = () => {
     dispatch(
       openModal({
-        modal: 'confirm-delete',
+        modal: 'confirm-delete-note',
         props: { noteId: note.id, noteSlug: note.slug, parentUrl },
       }),
     );

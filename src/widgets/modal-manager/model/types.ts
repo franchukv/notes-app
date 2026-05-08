@@ -1,5 +1,5 @@
 export interface ConfirmDeleteNoteModalPayload {
-  modal: 'confirm-delete';
+  modal: 'confirm-delete-note';
   props: {
     noteId: number;
     noteSlug: string;
@@ -7,8 +7,17 @@ export interface ConfirmDeleteNoteModalPayload {
   };
 }
 
+export interface ConfirmDeleteTagModalPayload {
+  modal: 'confirm-delete-tag';
+  props: {
+    tagId: number;
+    tagSlug: string;
+    parentUrl: string;
+  };
+}
+
 export interface ConfirmArchiveNoteModalPayload {
-  modal: 'confirm-archive';
+  modal: 'confirm-archive-note';
   props: {
     noteId: number;
     isArchived: boolean;
@@ -18,4 +27,5 @@ export interface ConfirmArchiveNoteModalPayload {
 
 export type ModalPayload =
   | ConfirmDeleteNoteModalPayload
+  | ConfirmDeleteTagModalPayload
   | ConfirmArchiveNoteModalPayload;

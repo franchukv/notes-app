@@ -2,15 +2,18 @@ import cn from 'classnames';
 import { Outlet, useLocation, useParams } from 'react-router';
 import { NotesList } from '@/widgets/notes-list';
 import { ActionBarWidget } from '@/widgets/action-bar';
+import { openModal } from '@/widgets/modal-manager';
 import { useGetTagBySlugQuery } from '@/entities/tag';
 import { useGetNotesByTagSlugQuery } from '@/entities/note';
-import { useAppSelector, usePageTitle } from '@/shared/lib';
+import { useAppDispatch, useAppSelector, usePageTitle } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
-import { Notice } from '@/shared/ui';
+import { Button, Notice } from '@/shared/ui';
+import DeleteIcon from '@/shared/assets/icons/delete-icon.svg?react';
 
 export const TagPage = () => {
   const { pathname } = useLocation();
   const { tagSlug, noteSlug } = useParams();
+  const dispatch = useAppDispatch();
 
   const isDesktop = useAppSelector(selectIsDesktop);
 
@@ -19,6 +22,7 @@ export const TagPage = () => {
     'min-h-full w-full flex overflow-auto',
     !isDesktop && !noteSlug && 'max-lg:pt-5 max-lg:flex-col',
   );
+  const parentUrl = '/tags';
 
   const { data: tag } = useGetTagBySlugQuery({ slug: tagSlug! });
   const {
@@ -32,15 +36,28 @@ export const TagPage = () => {
     extraTextInDocumentTitle: ' tag',
   });
 
+  const handleDeleteTagClick = () => {
+    if (!tag) {
+      return;
+    }
+
+    dispatch(
+      openModal({
+        modal: 'confirm-delete-tag',
+        props: { tagId: tag.id, tagSlug: tag.slug, parentUrl },
+      }),
+    );
+  };
+
   return (
     <div className={classNames}>
       {!isDesktop && !noteSlug && (
         <div className="custom-container">
-          <ActionBarWidget
-            parentUrl="/tags"
-            variant="without-border"
-            className="-mb-1"
-          />
+          <ActionBarWidget parentUrl={parentUrl}>
+            <Button variant="secondary-link" onClick={handleDeleteTagClick}>
+              <DeleteIcon />
+            </Button>
+          </ActionBarWidget>
         </div>
       )}
 
@@ -50,6 +67,12 @@ export const TagPage = () => {
           notes={notes ?? []}
           isLoading={isNotesLoading}
         >
+          {isDesktop && (
+            <Button variant="red" onClick={handleDeleteTagClick}>
+              <DeleteIcon /> Delete Tag
+            </Button>
+          )}
+
           {tag ? (
             <>
               <h1 className="text-preset-1 lg:sr-only">
