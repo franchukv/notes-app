@@ -48,7 +48,7 @@ export const ConfirmArchiveNoteModal = ({
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="modal">
         <div className="flex flex-col">
-          <div className="p-5 flex gap-4">
+          <div className="p-5 flex gap-4 max-sm:flex-col">
             <div className="h-10 w-10 flex items-center justify-center bg-neutral-100 rounded-lg">
               <ArchiveIcon className="h-6 w-6" />
             </div>
