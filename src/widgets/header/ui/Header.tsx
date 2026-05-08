@@ -31,7 +31,7 @@ export const Header = () => {
       ) : (
         <>
           <span className="mr-auto text-preset-1">
-            {tagSlug && !isCreateNewNotePage && (
+            {tagSlug && !isCreateNewNotePage && title !== 'Tag not found' && (
               <span className="text-neutral-600">Notes Tagged: </span>
             )}
             {title}

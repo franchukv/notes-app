@@ -32,8 +32,8 @@ export const TagPage = () => {
   } = useGetNotesByTagSlugQuery({ slug: tagSlug! });
 
   usePageTitle({
-    title: isCreateNewNotePage ? undefined : tag?.name,
-    extraTextInDocumentTitle: ' tag',
+    title: isCreateNewNotePage ? undefined : !tag ? 'Tag not found' : tag?.name,
+    extraTextInDocumentTitle: tag ? ' tag' : undefined,
   });
 
   const handleDeleteTagClick = () => {
@@ -54,9 +54,11 @@ export const TagPage = () => {
       {!isDesktop && !noteSlug && (
         <div className="custom-container">
           <ActionBarWidget parentUrl={parentUrl}>
-            <Button variant="secondary-link" onClick={handleDeleteTagClick}>
-              <DeleteIcon />
-            </Button>
+            {tag && (
+              <Button variant="secondary-link" onClick={handleDeleteTagClick}>
+                <DeleteIcon />
+              </Button>
+            )}
           </ActionBarWidget>
         </div>
       )}
@@ -66,15 +68,16 @@ export const TagPage = () => {
           parentUrl={`/tags/${tagSlug}`}
           notes={notes ?? []}
           isLoading={isNotesLoading}
+          hasCreateNewNoteButton={!!tag}
         >
-          {isDesktop && (
-            <Button variant="red" onClick={handleDeleteTagClick}>
-              <DeleteIcon /> Delete Tag
-            </Button>
-          )}
-
           {tag ? (
             <>
+              {isDesktop && (
+                <Button variant="red" onClick={handleDeleteTagClick}>
+                  <DeleteIcon /> Delete Tag
+                </Button>
+              )}
+
               <h1 className="text-preset-1 lg:sr-only">
                 <span className="text-neutral-600">Notes Tagged: </span>
                 {tag.name}
@@ -92,9 +95,7 @@ export const TagPage = () => {
                 ))}
             </>
           ) : (
-            <div className="m-auto text-preset-3 text-center">
-              Tag not found
-            </div>
+            <Notice>Tag not found.</Notice>
           )}
         </NotesList>
       )}
