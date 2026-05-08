@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { noteSchema, useUpdateNoteMutation, type Note } from '@/entities/note';
 import { useGetTagsQuery } from '@/entities/tag';
 import { formatDate, useAppSelector, useToast } from '@/shared/lib';
-import { Button, CreatableMultiSelect, Hint } from '@/shared/ui';
+import { Button, CreatableMultiSelect, Editor, Hint } from '@/shared/ui';
 import { selectIsDesktop } from '@/shared/model';
 import TagIcon from '@/shared/assets/icons/tag-icon.svg?react';
 import ClockIcon from '@/shared/assets/icons/clock-icon.svg?react';
@@ -114,11 +114,7 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
       </fieldset>
 
       <fieldset className="w-full h-full flex flex-col gap-3 sm:gap-4">
-        <textarea
-          {...register('content')}
-          placeholder="Start typing your note here…"
-          className="w-full min-h-60 h-full outline-none resize-none text-preset-6 placeholder:text-neutral-700 sm:text-preset-5"
-        ></textarea>
+        <Editor name="content" control={control} />
       </fieldset>
 
       {isDesktop && (

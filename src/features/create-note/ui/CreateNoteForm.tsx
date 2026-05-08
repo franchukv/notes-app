@@ -7,7 +7,7 @@ import { noteSchema, useCreateNoteMutation } from '@/entities/note';
 import { selectUserId } from '@/entities/user';
 import { useGetTagsQuery, type Tag } from '@/entities/tag';
 import { useAppSelector, useToast } from '@/shared/lib';
-import { Button, CreatableMultiSelect, Hint } from '@/shared/ui';
+import { Button, CreatableMultiSelect, Editor, Hint } from '@/shared/ui';
 import { selectIsDesktop } from '@/shared/model';
 import TagIcon from '@/shared/assets/icons/tag-icon.svg?react';
 import ClockIcon from '@/shared/assets/icons/clock-icon.svg?react';
@@ -121,11 +121,7 @@ export const CreateNoteForm = ({
       </fieldset>
 
       <fieldset className="w-full h-full flex flex-col gap-3 sm:gap-4">
-        <textarea
-          {...register('content')}
-          placeholder="Start typing your note here…"
-          className="w-full min-h-60 h-full outline-none resize-none text-preset-6 placeholder:text-neutral-700 sm:text-preset-5"
-        ></textarea>
+        <Editor name="content" control={control} />
       </fieldset>
 
       {isDesktop && (

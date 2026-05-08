@@ -10,3 +10,4 @@ export { CreatableMultiSelect } from './creatable-multi-select/CreatableMultiSel
 export { Notice } from './notice/Notice';
 export { Modal } from './modal/Modal';
 export { Toast } from './toast/Toast';
+export { Editor } from './editor/Editor';

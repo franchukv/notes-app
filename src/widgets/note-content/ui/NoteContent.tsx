@@ -50,9 +50,16 @@ export const NoteContent = ({ note }: NoteContentProps) => {
         </div>
       </div>
 
-      <div className="w-full flex flex-col text-preset-6 sm:text-preset-5">
-        {content}
-      </div>
+      {content ? (
+        <div
+          className="typical-content"
+          dangerouslySetInnerHTML={{
+            __html: content.replaceAll('&nbsp;', ' '),
+          }}
+        />
+      ) : (
+        <span className="text-neutral-400">There is no content yet.</span>
+      )}
     </>
   );
 };
