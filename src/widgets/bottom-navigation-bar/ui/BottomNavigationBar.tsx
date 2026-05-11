@@ -30,6 +30,7 @@ export const BottomNavigationBar = () => {
               cn(
                 'p-1 flex flex-col items-center gap-1 text-center text-preset-6 text-neutral-500 transition-all duration-300 rounded [&>svg]:h-6 [&>svg]:w-6',
                 isActive && 'text-blue-500! bg-blue-50',
+                isActive && button.text === 'Search' && 'pointer-events-none',
               )
             }
           >

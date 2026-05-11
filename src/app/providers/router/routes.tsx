@@ -9,11 +9,12 @@ import { AuthForgotPasswordPage } from '@/pages/auth-forgot-password';
 import { AuthResetPasswordPage } from '@/pages/auth-reset-password';
 import { NotesPage } from '@/pages/notes';
 import { NotePage } from '@/pages/note';
-import { TagsPage } from '@/pages/tags-page';
+import { TagsPage } from '@/pages/tags';
 import { TagPage } from '@/pages/tag';
 import { CreateNotePage } from '@/pages/create-note';
 import { ArchivedNotesPage } from '@/pages/archived-notes';
 import { EditNotePage } from '@/pages/edit-note';
+import { SearchPage } from '@/pages/search';
 
 export const routes = [
   {
@@ -88,6 +89,17 @@ export const routes = [
                         Component: NotePage,
                       },
                     ],
+                  },
+                ],
+              },
+              {
+                path: 'search',
+                Component: SearchPage,
+                handle: { title: 'Search' },
+                children: [
+                  {
+                    path: ':noteSlug',
+                    Component: NotePage,
                   },
                 ],
               },

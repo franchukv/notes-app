@@ -4,7 +4,7 @@ import { setPageTitle } from '../../model';
 import { generatePageTitle } from '../utils';
 
 interface UsePageTitleProps {
-  title: string | undefined;
+  title?: string | undefined;
   headerTitle?: string | undefined;
   pathname?: string;
   previousHeaderTitle?: boolean;

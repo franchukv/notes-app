@@ -3,14 +3,17 @@ import {
   useLocation,
   useMatches,
   useParams,
+  useSearchParams,
   type UIMatch,
 } from 'react-router';
 import { useAppSelector } from '@/shared/lib';
 import { selectIsDesktop, selectPageTitle } from '@/shared/model';
 import Logo from '@/shared/assets/img/svg/logo.svg?react';
 import SettingsIcon from '@/shared/assets/icons/settings-icon.svg?react';
+import { SearchForm } from '@/features/search';
 
 export const Header = () => {
+  const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
   const { tagSlug } = useParams();
   const matches = useMatches() as UIMatch<unknown, { title?: string }>[];
@@ -20,7 +23,9 @@ export const Header = () => {
     useAppSelector(selectPageTitle) ||
     matches[matches.length - 2].handle?.title;
 
+  const query = searchParams.get('q') ?? '';
   const isCreateNewNotePage = pathname.includes('/create-new-note');
+  const isSearchPage = pathname.includes('/search');
 
   return (
     <header className="w-full py-3 px-4 flex items-center gap-4 sm:py-6 sm:px-8 lg:py-4.5 lg:border-b lg:border-neutral-200">
@@ -34,10 +39,13 @@ export const Header = () => {
             {tagSlug && !isCreateNewNotePage && title !== 'Tag not found' && (
               <span className="text-neutral-600">Notes Tagged: </span>
             )}
+            {isSearchPage && query && (
+              <span className="text-neutral-600">Showing results for: </span>
+            )}
             {title}
           </span>
 
-          <div>SearchForm</div>
+          <SearchForm />
 
           <Link
             to="/settings"

@@ -12,5 +12,6 @@ export {
   useUpdateNoteMutation,
   useDeleteNoteMutation,
   useToggleNoteArchivedMutation,
+  useSearchNotesQuery,
 } from './api/noteApi';
 export { noteSchema } from './model/validation/note-schema';

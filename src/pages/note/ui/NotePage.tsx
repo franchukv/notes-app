@@ -1,4 +1,10 @@
-import { useLocation, useMatches, useParams, type UIMatch } from 'react-router';
+import {
+  useLocation,
+  useMatches,
+  useParams,
+  useSearchParams,
+  type UIMatch,
+} from 'react-router';
 import { ActionBarWidget } from '@/widgets/action-bar';
 import { NoteActionsWidget } from '@/widgets/note-actions';
 import { NoteContent, SkeletonNoteContent } from '@/widgets/note-content';
@@ -7,6 +13,7 @@ import { useAppSelector, usePageTitle } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
 
 export const NotePage = () => {
+  const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
   const { tagSlug, noteSlug } = useParams();
   const matches = useMatches() as UIMatch<unknown, { title?: string }>[];
@@ -14,12 +21,16 @@ export const NotePage = () => {
   const isDesktop = useAppSelector(selectIsDesktop);
   const headerTitle = matches[matches.length - 2].handle?.title;
 
+  const query = searchParams.get('q') ?? '';
+  const isSearchPage = pathname.includes('/search');
   const isArchivedNote = pathname.includes('/archived-notes');
-  const parentUrl = isArchivedNote
-    ? '/archived-notes'
-    : tagSlug
-      ? `/tags/${tagSlug}`
-      : '/notes';
+  const parentUrl = isSearchPage
+    ? `/search${query ? `?q=${query}` : ''}`
+    : isArchivedNote
+      ? '/archived-notes'
+      : tagSlug
+        ? `/tags/${tagSlug}`
+        : '/notes';
 
   const {
     data: note,

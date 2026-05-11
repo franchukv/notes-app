@@ -10,11 +10,13 @@ interface NotesListProps {
   notes: Note[];
   isLoading: boolean;
   hasCreateNewNoteButton?: boolean;
+  query?: string;
   children?: React.ReactNode;
 }
 
 export const NotesList = ({
   parentUrl,
+  query,
   notes,
   isLoading,
   hasCreateNewNoteButton = true,
@@ -23,9 +25,9 @@ export const NotesList = ({
   const isDesktop = useAppSelector(selectIsDesktop);
 
   return (
-    <div className="w-full py-5 lg:max-w-60 lg:border-r lg:border-neutral-200 xl:max-w-72.5 ">
-      <div className="custom-container">
-        <div className="flex flex-col gap-4">
+    <div className="w-full py-5 lg:max-w-60 lg:border-r lg:border-neutral-200 xl:max-w-72.5">
+      <div className="custom-container h-full">
+        <div className="flex flex-col gap-4 h-full">
           {hasCreateNewNoteButton && (
             <Button
               as={Link}
@@ -51,7 +53,12 @@ export const NotesList = ({
               {notes.length > 0 && (
                 <div className="flex flex-col">
                   {notes.map((note) => (
-                    <NoteItem key={note.id} parentUrl={parentUrl} {...note} />
+                    <NoteItem
+                      key={note.id}
+                      parentUrl={parentUrl}
+                      query={query}
+                      {...note}
+                    />
                   ))}
                 </div>
               )}

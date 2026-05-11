@@ -24,6 +24,10 @@ interface EditNoteArgs extends Pick<Note, 'id' | 'title' | 'content'> {
   tags: string[];
 }
 
+interface SearchNotesArgs {
+  query: string;
+}
+
 export const noteApi = supabaseApi.injectEndpoints({
   endpoints: (build) => ({
     getNoteBySlug: build.query<Note, NoteSlugArgs>({
@@ -230,6 +234,30 @@ export const noteApi = supabaseApi.injectEndpoints({
       },
       invalidatesTags: ['Note'],
     }),
+    searchNotes: build.query<Note[], SearchNotesArgs>({
+      queryFn: async ({ query }) => {
+        if (query === '') {
+          return { data: [] };
+        }
+
+        const { data, error } = await supabase
+          .from('notes')
+          .select(`*, note_tags ( tags (*) )`)
+          .or(`title.ilike.%${query}%,content.ilike.%${query}%`);
+
+        if (error) {
+          return {
+            error: {
+              status: error.code ?? 400,
+              data: { message: error.message },
+            },
+          };
+        }
+
+        return { data: data.map(mapNote) };
+      },
+      providesTags: ['Note'],
+    }),
   }),
 });
 
@@ -243,4 +271,5 @@ export const {
   useUpdateNoteMutation,
   useDeleteNoteMutation,
   useToggleNoteArchivedMutation,
+  useSearchNotesQuery,
 } = noteApi;
