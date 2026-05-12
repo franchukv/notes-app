@@ -15,6 +15,10 @@ import { CreateNotePage } from '@/pages/create-note';
 import { ArchivedNotesPage } from '@/pages/archived-notes';
 import { EditNotePage } from '@/pages/edit-note';
 import { SearchPage } from '@/pages/search';
+import { SettingsPage } from '@/pages/settings';
+import { SettingsColorThemePage } from '@/pages/settings-color-theme';
+import { SettingsFontThemePage } from '@/pages/settings-font-theme';
+import { SettingsChangePasswordPage } from '@/pages/settings-change-password';
 
 export const routes = [
   {
@@ -100,6 +104,29 @@ export const routes = [
                   {
                     path: ':noteSlug',
                     Component: NotePage,
+                  },
+                ],
+              },
+
+              {
+                path: 'settings',
+                Component: SettingsPage,
+                handle: { title: 'Settings' },
+                children: [
+                  {
+                    path: 'color-theme',
+                    Component: SettingsColorThemePage,
+                    handle: { title: 'Settings - Change color theme' },
+                  },
+                  {
+                    path: 'font-theme',
+                    Component: SettingsFontThemePage,
+                    handle: { title: 'Settings - Change font theme' },
+                  },
+                  {
+                    path: 'change-password',
+                    Component: SettingsChangePasswordPage,
+                    handle: { title: 'Settings - Change password' },
                   },
                 ],
               },
