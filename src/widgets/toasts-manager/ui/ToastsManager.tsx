@@ -16,6 +16,7 @@ export const ToastsManager = () => {
       {toasts.map((toast) => (
         <Toast
           key={toast.id}
+          type={toast.type}
           message={toast.message}
           link={toast.link}
           onClose={() => handleClose(toast.id)}

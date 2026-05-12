@@ -6,7 +6,7 @@ type ShowToastProps = Pick<Toast, 'message' | 'type' | 'link'>;
 export const useToast = () => {
   const dispatch = useAppDispatch();
 
-  const showToast = ({ message, type = 'success', link }: ShowToastProps) => {
+  const showToast = ({ message, type, link }: ShowToastProps) => {
     const id = Date.now();
 
     dispatch(addToast({ id, message, type, link }));
