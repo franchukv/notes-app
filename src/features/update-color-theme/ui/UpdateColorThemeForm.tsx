@@ -6,12 +6,12 @@ import {
   selectProfileSettings,
   useUpdateProfileSettingsMutation,
 } from '@/entities/profile';
+import { selectUserId } from '@/entities/user';
 import { useAppSelector, useToast } from '@/shared/lib';
 import SunIcon from '@/shared/assets/icons/sun-icon.svg?react';
 import MoonIcon from '@/shared/assets/icons/moon-icon.svg?react';
 import SplitIcon from '@/shared/assets/icons/split-icon.svg?react';
 import { Button, RadioCard } from '@/shared/ui';
-import { selectUserId } from '@/entities/user';
 
 const colorThemeSchema = z.object({
   theme: z.enum(['light', 'dark', 'system']),
