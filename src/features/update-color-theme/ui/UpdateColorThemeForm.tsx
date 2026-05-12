@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,7 +12,6 @@ import MoonIcon from '@/shared/assets/icons/moon-icon.svg?react';
 import SplitIcon from '@/shared/assets/icons/split-icon.svg?react';
 import { Button, RadioCard } from '@/shared/ui';
 import { selectUserId } from '@/entities/user';
-import { useEffect } from 'react';
 
 const colorThemeSchema = z.object({
   theme: z.enum(['light', 'dark', 'system']),
