@@ -1,4 +1,4 @@
-export { generatePageTitle, formatDate } from './utils';
+export { generatePageTitle, formatDate, profileStorage } from './utils';
 export { isApiError } from './guards';
 export {
   useAppDispatch,

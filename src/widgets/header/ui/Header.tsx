@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import {
   Link,
   useLocation,
@@ -6,11 +7,11 @@ import {
   useSearchParams,
   type UIMatch,
 } from 'react-router';
+import { SearchForm } from '@/features/search';
 import { useAppSelector } from '@/shared/lib';
 import { selectIsDesktop, selectPageTitle } from '@/shared/model';
 import Logo from '@/shared/assets/img/svg/logo.svg?react';
 import SettingsIcon from '@/shared/assets/icons/settings-icon.svg?react';
-import { SearchForm } from '@/features/search';
 
 export const Header = () => {
   const [searchParams] = useSearchParams();
@@ -26,6 +27,7 @@ export const Header = () => {
   const query = searchParams.get('q') ?? '';
   const isCreateNewNotePage = pathname.includes('/create-new-note');
   const isSearchPage = pathname.includes('/search');
+  const isSettingsPage = pathname.includes('/settings');
 
   return (
     <header className="w-full py-3 px-4 flex items-center gap-4 sm:py-6 sm:px-8 lg:py-4.5 lg:border-b lg:border-neutral-200">
@@ -49,7 +51,10 @@ export const Header = () => {
 
           <Link
             to="/settings"
-            className="w-10.5 h-10.5 flex items-center justify-center text-neutral-500 transition-all duration-300 rounded-lg hover:text-blue-500 hover:bg-blue-50 active:text-blue-500 active:bg-blue-50"
+            className={cn(
+              'w-10.5 h-10.5 flex items-center justify-center text-neutral-500 transition-all duration-300 rounded-lg hover:text-blue-500 hover:bg-blue-50 active:text-blue-500 active:bg-blue-50',
+              isSettingsPage && 'text-blue-500! bg-blue-50!',
+            )}
           >
             <SettingsIcon />
           </Link>

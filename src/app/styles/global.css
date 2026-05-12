@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 @import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-neutral-50: #f5f7fa;
@@ -51,7 +52,7 @@
   }
 
   html {
-    @apply h-full font-app text-neutral-950 bg-neutral-100 lg:bg-white;
+    @apply h-full font-app text-neutral-950 bg-neutral-100 lg:bg-white dark:text-white dark:bg-neutral-800;
   }
 
   body {

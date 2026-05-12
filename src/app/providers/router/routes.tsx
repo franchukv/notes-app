@@ -107,7 +107,6 @@ export const routes = [
                   },
                 ],
               },
-
               {
                 path: 'settings',
                 Component: SettingsPage,
@@ -116,17 +115,17 @@ export const routes = [
                   {
                     path: 'color-theme',
                     Component: SettingsColorThemePage,
-                    handle: { title: 'Settings - Change color theme' },
+                    handle: { title: 'Color Theme | Settings' },
                   },
                   {
                     path: 'font-theme',
                     Component: SettingsFontThemePage,
-                    handle: { title: 'Settings - Change font theme' },
+                    handle: { title: 'Font Theme | Settings' },
                   },
                   {
                     path: 'change-password',
                     Component: SettingsChangePasswordPage,
-                    handle: { title: 'Settings - Change password' },
+                    handle: { title: 'Change Password | Settings' },
                   },
                 ],
               },

@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { supabaseAuthMiddleware } from './middleware/supabaseMiddleware';
 import { modalSlice } from '@/widgets/modal-manager';
 import { userSlice } from '@/entities/user';
+import { profileSlice } from '@/entities/profile';
 import { supabaseApi } from '@/shared/api';
 import { pageSlice, responsiveSlice, toastSlice } from '@/shared/model';
 
@@ -10,6 +11,7 @@ export const store = configureStore({
     page: pageSlice.reducer,
     responsive: responsiveSlice.reducer,
     user: userSlice.reducer,
+    profile: profileSlice.reducer,
     modal: modalSlice.reducer,
     toasts: toastSlice.reducer,
     [supabaseApi.reducerPath]: supabaseApi.reducer,
