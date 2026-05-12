@@ -1,6 +1,6 @@
 import { AuthResetPasswordForm } from '@/features/auth-reset-password';
 import { FormLayout } from '@/shared/ui';
-import Logo from '@/shared/assets/img/svg/logo.svg?react';
+import Logo from '@/shared/assets/icons/logo.svg?react';
 
 export const AuthResetPasswordWidget = () => {
   return (

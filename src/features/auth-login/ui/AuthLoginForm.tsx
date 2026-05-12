@@ -49,7 +49,7 @@ export const AuthLoginForm = () => {
         extraLink={
           <Link
             to="/forgot-password"
-            className="underline-link text-preset-6 text-neutral-600"
+            className="underline-link text-preset-6 text-neutral-600 dark:text-neutral-400"
           >
             Forgot?
           </Link>
@@ -62,7 +62,7 @@ export const AuthLoginForm = () => {
         </span>
       )}
 
-      <Button type="submit" className="text-preset-3" isLoading={isLoading}>
+      <Button type="submit" className="text-preset-3!" isLoading={isLoading}>
         Login
       </Button>
     </form>

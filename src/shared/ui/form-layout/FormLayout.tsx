@@ -16,7 +16,7 @@ export const FormLayout = ({
   className,
 }: FormLayoutProps) => {
   const classNames = cn(
-    'max-w-135 w-full py-12 px-4 flex flex-col gap-10 rounded-xl bg-white border border-neutral-200 shadow-[0_8px_12px_0_rgba(240,240,240,0.6)] sm:px-12',
+    'max-w-135 w-full py-12 px-4 flex flex-col gap-10 rounded-xl bg-white border border-neutral-200 shadow-[0_8px_12px_0_rgba(240,240,240,0.6)] sm:px-12 dark:bg-neutral-950 dark:border-neutral-800 dark:shadow-none',
     className,
   );
 
@@ -30,7 +30,9 @@ export const FormLayout = ({
             {title && <h1 className="text-preset-1">{title}</h1>}
 
             {description && (
-              <p className="text-preset-5 text-neutral-600">{description}</p>
+              <p className="text-preset-5 text-neutral-600 dark:text-neutral-300">
+                {description}
+              </p>
             )}
           </div>
         </header>

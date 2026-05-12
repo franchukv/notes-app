@@ -61,7 +61,7 @@ export const AuthResetPasswordForm = () => {
         </span>
       )}
 
-      <Button type="submit" className="text-preset-3" isLoading={isLoading}>
+      <Button type="submit" className="text-preset-3!" isLoading={isLoading}>
         Reset Password
       </Button>
     </form>

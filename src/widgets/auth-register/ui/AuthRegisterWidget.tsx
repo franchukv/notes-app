@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import { AuthRegisterForm } from '@/features/auth-register';
 import { AuthOAuth } from '@/features/auth-oauth';
 import { FormLayout } from '@/shared/ui';
-import Logo from '@/shared/assets/img/svg/logo.svg?react';
+import Logo from '@/shared/assets/icons/logo.svg?react';
 
 export const AuthRegisterWidget = () => {
   return (
@@ -15,9 +15,9 @@ export const AuthRegisterWidget = () => {
 
       <AuthOAuth />
 
-      <p className="text-preset-5 text-center text-neutral-600">
+      <p className="text-preset-5 text-center text-neutral-600 dark:text-neutral-300">
         Already have an account?
-        <Link to="/login" className="link text-neutral-950">
+        <Link to="/login" className="link text-neutral-950 dark:text-white">
           {' '}
           Login
         </Link>

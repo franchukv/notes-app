@@ -10,7 +10,7 @@ import {
 import { SearchForm } from '@/features/search';
 import { useAppSelector } from '@/shared/lib';
 import { selectIsDesktop, selectPageTitle } from '@/shared/model';
-import Logo from '@/shared/assets/img/svg/logo.svg?react';
+import Logo from '@/shared/assets/icons/logo.svg?react';
 import SettingsIcon from '@/shared/assets/icons/settings-icon.svg?react';
 
 export const Header = () => {

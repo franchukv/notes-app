@@ -1,6 +1,6 @@
 import { useLayoutEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import Logo from '@/shared/assets/img/svg/logo.svg?react';
+import Logo from '@/shared/assets/icons/logo.svg?react';
 import { Button, FormLayout } from '@/shared/ui';
 
 export const AuthCheckEmailWidget = () => {
@@ -22,7 +22,7 @@ export const AuthCheckEmailWidget = () => {
           {state?.message} <b>{state?.email}</b>
         </>
       }
-      className="gap-4!"
+      className="gap-6!"
     >
       <Button type="button" onClick={() => navigate('/login')}>
         Back to login
