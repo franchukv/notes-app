@@ -45,7 +45,7 @@ export const ConfirmArchiveNoteModal = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={isLoading ? () => {} : onClose}>
       <div className="modal">
         <div className="flex flex-col">
           <div className="p-5 flex gap-4 max-sm:flex-col">
@@ -72,7 +72,7 @@ export const ConfirmArchiveNoteModal = ({
             <Button
               variant="primary"
               onClick={handleConfirm}
-              disabled={isLoading}
+              isLoading={isLoading}
             >
               Archive Note
             </Button>

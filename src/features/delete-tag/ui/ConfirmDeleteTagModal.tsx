@@ -25,9 +25,6 @@ export const ConfirmDeleteTagModal = ({
   const [deleteTag, { isLoading }] = useDeleteTagMutation();
 
   const handleConfirm = async () => {
-    onClose();
-    navigate(parentUrl);
-
     const { error } = await deleteTag({ id: tagId });
 
     if (error) {
@@ -37,10 +34,12 @@ export const ConfirmDeleteTagModal = ({
     }
 
     showToast({ message: 'Tag permanently deleted.' });
+    onClose();
+    navigate(parentUrl);
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={isLoading ? () => {} : onClose}>
       <div className="modal">
         <div className="flex flex-col">
           <div className="p-5 flex gap-4 max-sm:flex-col">
@@ -63,7 +62,7 @@ export const ConfirmDeleteTagModal = ({
               Cancel
             </Button>
 
-            <Button variant="red" onClick={handleConfirm} disabled={isLoading}>
+            <Button variant="red" onClick={handleConfirm} isLoading={isLoading}>
               Delete Tag
             </Button>
           </div>

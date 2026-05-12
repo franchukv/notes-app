@@ -25,9 +25,6 @@ export const ConfirmDeleteNoteModal = ({
   const [deleteNote, { isLoading }] = useDeleteNoteMutation();
 
   const handleConfirm = async () => {
-    onClose();
-    navigate(parentUrl);
-
     const { error } = await deleteNote({ id: noteId });
 
     if (error) {
@@ -37,10 +34,12 @@ export const ConfirmDeleteNoteModal = ({
     }
 
     showToast({ message: 'Note permanently deleted.' });
+    onClose();
+    navigate(parentUrl);
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={isLoading ? () => {} : onClose}>
       <div className="modal">
         <div className="flex flex-col">
           <div className="p-5 flex gap-4 max-sm:flex-col">
@@ -63,7 +62,7 @@ export const ConfirmDeleteNoteModal = ({
               Cancel
             </Button>
 
-            <Button variant="red" onClick={handleConfirm} disabled={isLoading}>
+            <Button variant="red" onClick={handleConfirm} isLoading={isLoading}>
               Delete Note
             </Button>
           </div>
