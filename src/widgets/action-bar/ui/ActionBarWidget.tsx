@@ -4,6 +4,7 @@ import { Button } from '@/shared/ui';
 import BackArrowIcon from '@/shared/assets/icons/back-arrow-icon.svg?react';
 
 interface ActionBarWidgetProps {
+  altText?: string;
   parentUrl?: string;
   className?: string;
   variant?: 'default' | 'without-border';
@@ -11,6 +12,7 @@ interface ActionBarWidgetProps {
 }
 
 export const ActionBarWidget = ({
+  altText,
   parentUrl,
   className,
   variant = 'default',
@@ -32,7 +34,7 @@ export const ActionBarWidget = ({
         className="gap-1!"
       >
         <BackArrowIcon />
-        Go Back
+        {altText ?? 'Go Back'}
       </Button>
 
       {children && <div className="flex items-center gap-4">{children}</div>}
