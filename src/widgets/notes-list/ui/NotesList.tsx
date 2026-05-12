@@ -25,14 +25,14 @@ export const NotesList = ({
   const isDesktop = useAppSelector(selectIsDesktop);
 
   return (
-    <div className="w-full py-5 lg:max-w-60 lg:border-r lg:border-neutral-200 xl:max-w-72.5">
+    <div className="w-full py-5 lg:max-w-60 lg:border-r lg:border-neutral-200 xl:max-w-72.5 dark:lg:border-neutral-800">
       <div className="custom-container h-full">
         <div className="flex flex-col gap-4 h-full">
           {hasCreateNewNoteButton && (
             <Button
               as={Link}
               to={`${parentUrl}/create-new-note`}
-              className="fixed bottom-18 right-4 z-1 sm:bottom-26.5 sm:right-8 min-w-0! max-sm:h-12 max-sm:w-12 max-lg:h-16 max-lg:w-16 max-lg:p-0 max-lg:rounded-full max-lg:shadow-[0_7px_11px_0_rgba(202,207,216,0.7)] lg:static"
+              className="fixed bottom-18 right-4 z-1 sm:bottom-26.5 sm:right-8 min-w-0! max-sm:h-12 max-sm:w-12 max-lg:h-16 max-lg:w-16 max-lg:p-0 max-lg:rounded-full max-lg:shadow-[0_7px_11px_0_rgba(202,207,216,0.7)] lg:static dark:max-lg:shadow-[0_7px_11px_0_rgba(0,0,0,0.7)]"
             >
               {isDesktop ? '+ Create New Note' : <PlusIcon />}
             </Button>

@@ -46,7 +46,7 @@ export const NotePage = () => {
 
   return (
     <div className="w-full flex">
-      <div className="h-full w-full py-5 flex flex-col lg:border-r lg:border-neutral-200 lg:max-w-[calc(100%-(180px))] xl:max-w-[calc(100%-290px)]">
+      <div className="h-full w-full py-5 flex flex-col lg:border-r lg:border-neutral-200 lg:max-w-[calc(100%-(180px))] xl:max-w-[calc(100%-290px)] dark:lg:border-neutral-800">
         <div className="custom-container h-full flex">
           <div className="w-full flex flex-col gap-3 sm:gap-4">
             {!isDesktop && (

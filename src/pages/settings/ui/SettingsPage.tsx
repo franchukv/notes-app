@@ -20,7 +20,7 @@ export const SettingsPage = () => {
   return (
     <div className="min-h-full w-full flex">
       {(isDesktop || isRootPath) && (
-        <div className="w-full py-5 lg:max-w-60 lg:border-r lg:border-neutral-200 xl:max-w-72.5">
+        <div className="w-full py-5 lg:max-w-60 lg:border-r lg:border-neutral-200 xl:max-w-72.5 dark:lg:border-neutral-800">
           <div className="custom-container h-full">
             <div className="h-full flex flex-col gap-4">
               <h1 className="text-preset-1 lg:sr-only">Settings</h1>
@@ -40,10 +40,10 @@ export const SettingsPage = () => {
                   </NavigationButton>
                 </div>
 
-                <div className="pt-2 flex flex-col gap-2 border-t border-neutral-200">
+                <div className="pt-2 flex flex-col gap-2 border-t border-neutral-200 dark:border-neutral-800 ">
                   <Button
                     variant="border"
-                    className="py-2.5! justify-start border-none!"
+                    className="min-h-0! py-2.5! justify-start border-none dark:hover:bg-neutral-800"
                     onClick={() => logout()}
                   >
                     <LogoutIcon /> Logout

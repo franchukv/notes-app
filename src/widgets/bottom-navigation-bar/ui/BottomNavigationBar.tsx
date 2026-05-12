@@ -21,15 +21,15 @@ export const BottomNavigationBar = () => {
   const isMobile = useAppSelector(selectIsMobile);
 
   return (
-    <nav className="fixed bottom-0 left-0 w-full py-3 px-4 grid grid-cols-5 bg-white border-t border-neutral-200 shadow-[0_-4px_6px_0_rgba(240,240,240,0.6)] sm:px-8 sm:grid-cols-9">
+    <nav className="fixed bottom-0 left-0 w-full py-3 px-4 grid grid-cols-5 bg-white border-t border-neutral-200 shadow-[0_-4px_6px_0_rgba(240,240,240,0.6)] sm:px-8 sm:grid-cols-9 dark:bg-neutral-950 dark:border-neutral-800 dark:shadow-[0_-4px_6px_0_rgba(0,0,0,0.5)]">
       {buttons.map((button, index) => (
         <React.Fragment key={button.text}>
           <NavLink
             to={button.url}
             className={({ isActive }) =>
               cn(
-                'p-1 flex flex-col items-center gap-1 text-center text-preset-6 text-neutral-500 transition-all duration-300 rounded [&>svg]:h-6 [&>svg]:w-6',
-                isActive && 'text-blue-500! bg-blue-50',
+                'p-1 flex flex-col items-center gap-1 text-center text-preset-6 text-neutral-500 transition-all duration-300 rounded [&>svg]:h-6 [&>svg]:w-6 hover:text-neutral-950 active:text-neutral-950 dark:hover:text-white dark:active:text-white',
+                isActive && 'text-blue-500! bg-blue-50 dark:bg-neutral-700',
                 isActive && button.text === 'Search' && 'pointer-events-none',
               )
             }
@@ -40,7 +40,7 @@ export const BottomNavigationBar = () => {
           </NavLink>
 
           {index < buttons.length - 1 && !isMobile && (
-            <span className="h-full w-px mx-auto bg-neutral-100"></span>
+            <span className="h-full w-px mx-auto bg-neutral-100 dark:bg-neutral-800"></span>
           )}
         </React.Fragment>
       ))}

@@ -20,7 +20,7 @@ export const ActionBarWidget = ({
 }: ActionBarWidgetProps) => {
   const navigate = useNavigate();
   const classNames = cn(
-    'w-full pb-3 flex items-center gap-4 justify-between border-b border-neutral-200 sm:pb-4',
+    'w-full pb-3 flex items-center gap-4 justify-between border-b border-neutral-200 sm:pb-4 dark:border-neutral-800',
     variant === 'without-border' && 'pb-0! border-none!',
     className,
   );

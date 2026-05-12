@@ -42,7 +42,9 @@ export const SearchPage = () => {
           <h1 className="text-preset-1 lg:sr-only">
             {query ? (
               <>
-                <span className="text-neutral-600">Showing results for: </span>
+                <span className="text-neutral-600 dark:text-neutral-300">
+                  Showing results for:{' '}
+                </span>
                 {query}
               </>
             ) : (
@@ -55,7 +57,7 @@ export const SearchPage = () => {
           )}
 
           {query && isSuccess && notes.length > 0 && (
-            <p className="text-preset-5 text-neutral-700">
+            <p className="text-preset-5 text-neutral-700 dark:text-neutral-300">
               All notes matching ”{query}” are displayed below.
             </p>
           )}

@@ -25,7 +25,7 @@ export const ArchivedNotesPage = () => {
         >
           <h1 className="text-preset-1 lg:sr-only">Archived Notes</h1>
 
-          <p className="text-preset-5 text-neutral-700">
+          <p className="text-preset-5 text-neutral-700 dark:text-neutral-200">
             All your archived notes are stored here. <br />
             You can restore or delete them anytime.
           </p>

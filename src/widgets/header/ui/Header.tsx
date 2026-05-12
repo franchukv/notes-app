@@ -30,7 +30,7 @@ export const Header = () => {
   const isSettingsPage = pathname.includes('/settings');
 
   return (
-    <header className="w-full py-3 px-4 flex items-center gap-4 sm:py-6 sm:px-8 lg:py-4.5 lg:border-b lg:border-neutral-200">
+    <header className="w-full py-3 px-4 flex items-center gap-4 sm:py-6 sm:px-8 lg:py-4.5 lg:border-b lg:border-neutral-200 dark:lg:border-neutral-800">
       {!isDesktop ? (
         <Link to="/notes">
           <Logo />
@@ -39,10 +39,14 @@ export const Header = () => {
         <>
           <span className="mr-auto text-preset-1">
             {tagSlug && !isCreateNewNotePage && title !== 'Tag not found' && (
-              <span className="text-neutral-600">Notes Tagged: </span>
+              <span className="text-neutral-600 dark:text-neutral-300">
+                Notes Tagged:{' '}
+              </span>
             )}
             {isSearchPage && query && (
-              <span className="text-neutral-600">Showing results for: </span>
+              <span className="text-neutral-600 dark:text-neutral-300">
+                Showing results for:{' '}
+              </span>
             )}
             {title}
           </span>
@@ -52,8 +56,9 @@ export const Header = () => {
           <Link
             to="/settings"
             className={cn(
-              'w-10.5 h-10.5 flex items-center justify-center text-neutral-500 transition-all duration-300 rounded-lg hover:text-blue-500 hover:bg-blue-50 active:text-blue-500 active:bg-blue-50',
-              isSettingsPage && 'text-blue-500! bg-blue-50!',
+              'w-10.5 h-10.5 flex items-center justify-center text-neutral-500 transition-all duration-300 rounded-lg hover:text-neutral-600 hover:bg-neutral-100 active:text-neutral-600 active:bg-neutral-100 dark:hover:bg-neutral-800 dark:active:bg-neutral-800',
+              isSettingsPage &&
+                'text-blue-500! bg-neutral-100! dark:bg-neutral-800!',
             )}
           >
             <SettingsIcon />

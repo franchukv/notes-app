@@ -52,7 +52,7 @@
   }
 
   html {
-    @apply h-full font-app text-neutral-950 bg-neutral-100 lg:bg-white dark:text-white dark:bg-neutral-800;
+    @apply h-full font-app text-neutral-950 bg-neutral-100 lg:bg-white dark:text-white dark:bg-neutral-800 dark:lg:bg-neutral-950;
   }
 
   body {
@@ -75,7 +75,7 @@
   }
 
   .modal {
-    @apply max-w-120 w-full m-auto flex bg-white rounded-xl overflow-hidden;
+    @apply max-w-120 w-full m-auto flex bg-white rounded-xl overflow-hidden dark:bg-neutral-700;
   }
 
   .link {
@@ -131,13 +131,14 @@
   }
 
   .quill blockquote,
-  .typical-content blockquote {
-    @apply pl-3 border-l-4 border-blue-500 italic;
+  .typical-content blockquote,
+  .ql-snow .ql-editor blockquote {
+    @apply pl-3! border-l-4! border-blue-500! italic!;
   }
 
   .quill pre,
   .typical-content pre {
-    @apply p-3 text-white bg-neutral-950 rounded-lg font-source-code-pro wrap-break-word whitespace-pre-wrap;
+    @apply py-1.5 px-2.5 text-white bg-neutral-950 font-source-code-pro wrap-break-word whitespace-pre-wrap dark:bg-neutral-900 rounded-sm;
   }
 
   .ql-snow a {
@@ -152,7 +153,11 @@
   .quill,
   .ql-toolbar,
   .ql-container {
-    @apply font-[inherit]! text-preset-5;
+    @apply font-[inherit]! text-preset-5!;
+  }
+
+  .ql-snow .ql-editor .ql-code-block-container {
+    @apply bg-neutral-950! dark:bg-neutral-900!;
   }
 
   .quill {
@@ -164,13 +169,13 @@
   }
 
   .ql-snow .ql-picker-label {
-    @apply border-neutral-200! rounded-sm;
+    @apply border-neutral-200! rounded-sm dark:border-neutral-800!;
   }
 
   .ql-tooltip,
   .ql-toolbar.ql-snow .ql-picker-options,
   .ql-toolbar.ql-snow {
-    @apply border-neutral-200! rounded-lg;
+    @apply border-neutral-200! rounded-lg dark:border-neutral-800! dark:bg-neutral-950!;
   }
 
   .ql-toolbar {
@@ -181,19 +186,19 @@
     @apply border-none!;
   }
 
-  .ql-snow.ql-toolbar button,
+  .ql-snow.ql-toolbar button:not(.ql-active),
   .ql-snow.ql-toolbar .ql-picker-label,
   .ql-snow.ql-toolbar .ql-picker-item,
   .ql-tooltip {
-    @apply text-[#333]!;
+    @apply text-[#333]! dark:text-neutral-300!;
   }
 
-  .ql-snow .ql-stroke {
-    @apply stroke-[#333]!;
+  .ql-snow.ql-toolbar button:not(.ql-active) .ql-stroke {
+    @apply stroke-[#333]! dark:stroke-neutral-300!;
   }
 
-  .ql-snow .ql-fill {
-    @apply fill-[#333]!;
+  .ql-snow.ql-toolbar button:not(.ql-active) .ql-fill {
+    @apply fill-[#333]! dark:fill-neutral-300!;
   }
 
   .ql-snow.ql-toolbar button:hover,

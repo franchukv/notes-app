@@ -48,7 +48,7 @@ export const ChangePasswordForm = () => {
       <InputField
         title="Old Password"
         register={register('oldPassword')}
-        id="new-password"
+        id="old-password"
         type="password"
         error={errors.oldPassword?.message}
         disabled={isLoading}
@@ -67,7 +67,7 @@ export const ChangePasswordForm = () => {
       <InputField
         title="Confirm New Password"
         register={register('confirmPassword')}
-        id="password"
+        id="confirm-password"
         type="password"
         error={errors.confirmPassword?.message}
         disabled={isLoading}

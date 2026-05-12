@@ -53,17 +53,18 @@ export const CreateNoteForm = ({
     : [];
   const classNames = {
     titleInput: cn(
-      'p-0 text-preset-2 border-b border-transparent focus:border-neutral-950 outline-none placeholder:text-neutral-700 sm:text-preset-1',
+      'p-0 text-preset-2 border-b border-transparent focus:border-neutral-950 outline-none placeholder:text-neutral-700 sm:text-preset-1 dark:focus:border-white dark:placeholder:text-neutral-300',
       errors.title?.message && 'border-red-500!',
     ),
   };
 
   const onSubmit = async ({ title, tags, content }: CreateNoteFormData) => {
+    console.log(content === '<p></p>');
     const { data, error } = await createNote({
       userId: userId!,
       tags: tags ? tags.map((tag) => tag.label) : [],
       title,
-      content: content ?? '',
+      content: content === '<p></p>' ? '' : (content ?? ''),
     });
 
     if (error) {
@@ -83,7 +84,7 @@ export const CreateNoteForm = ({
       className="h-full flex flex-col gap-3 sm:gap-4"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <fieldset className="pb-3 flex flex-col gap-3 border-b border-neutral-200 sm:pb-4 sm:gap-4">
+      <fieldset className="pb-3 flex flex-col gap-3 border-b border-neutral-200 sm:pb-4 sm:gap-4 dark:border-neutral-800">
         <div className="flex flex-col gap-1.5">
           <input
             {...register('title')}
@@ -96,7 +97,7 @@ export const CreateNoteForm = ({
           )}
         </div>
 
-        <div className="flex flex-col gap-2 text-preset-6 text-neutral-700 sm:text-preset-5">
+        <div className="flex flex-col gap-2 text-preset-6 text-neutral-700 sm:text-preset-5 dark:text-neutral-300">
           <div className="flex items-center gap-2">
             <div className="min-w-28.75 flex items-center gap-1.5">
               <TagIcon className="h-4 w-4" /> Tags
@@ -125,7 +126,7 @@ export const CreateNoteForm = ({
       </fieldset>
 
       {isDesktop && (
-        <div className="pt-4 flex items-center gap-4 border-t border-neutral-200">
+        <div className="pt-4 flex items-center gap-4 border-t border-neutral-200 dark:border-neutral-800">
           <Button type="submit" isLoading={isLoading}>
             Save Note
           </Button>

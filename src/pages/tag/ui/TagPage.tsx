@@ -79,13 +79,15 @@ export const TagPage = () => {
               )}
 
               <h1 className="text-preset-1 lg:sr-only">
-                <span className="text-neutral-600">Notes Tagged: </span>
+                <span className="text-neutral-600 dark:text-neutral-300">
+                  Notes Tagged:{' '}
+                </span>
                 {tag.name}
               </h1>
 
               {isSuccess &&
                 (notes.length > 0 ? (
-                  <p className="text-preset-5 text-neutral-700">
+                  <p className="text-preset-5 text-neutral-700 dark:text-neutral-200">
                     All notes with the "{tag.name}" tag are shown here.
                   </p>
                 ) : (

@@ -4,7 +4,7 @@ interface TagItemProps {
 
 export const TagItem = ({ children }: TagItemProps) => {
   return (
-    <div className="py-0.5 px-1.5 text-preset-6 text-center rounded-sm bg-neutral-200">
+    <div className="py-0.5 px-1.5 text-preset-6 text-center rounded-sm bg-neutral-200 dark:bg-neutral-600">
       {children}
     </div>
   );

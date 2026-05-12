@@ -29,7 +29,7 @@ export const SettingsFontThemePage = () => {
             <div className="flex flex-col gap-2">
               <h1 className="text-preset-1">Font Theme</h1>
 
-              <p className="text-preset-5 text-neutral-700">
+              <p className="text-preset-5 text-neutral-700 dark:text-neutral-200">
                 Choose your font theme:
               </p>
             </div>

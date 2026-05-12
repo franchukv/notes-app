@@ -32,7 +32,7 @@ export const Button = <T extends ElementType = 'button'>({
     variant === 'primary' &&
       'text-white bg-blue-500 border-blue-500 not-focus-visible:hover:bg-blue-700 not-focus-visible:hover:border-blue-700 not-focus-visible:active:border-blue-700 not-focus-visible:active:bg-blue-700',
     variant === 'secondary' &&
-      'text-neutral-600 bg-neutral-100 border-neutral-100 hover:bg-white active:bg-white hover:text-neutral-950 active:text-neutral-950 hover:border-neutral-300 active:border-neutral-300 focus-visible:bg-white focus-visible:text-neutral-950 focus-visible:border-neutral-950',
+      'text-neutral-600 bg-neutral-100 border-neutral-100 hover:bg-white active:bg-white hover:text-neutral-950 active:text-neutral-950 hover:border-neutral-300 active:border-neutral-300 focus-visible:bg-white focus-visible:text-neutral-950 focus-visible:border-neutral-950 dark:bg-neutral-600 dark:border-neutral-600 dark:text-neutral-200',
     variant === 'border' &&
       'text-neutral-950 bg-transparent border-neutral-300 hover:text-neutral-600 active:text-neutral-600 hover:bg-neutral-100 active:bg-neutral-100 hover:border-neutral-100 active:border-neutral-100 focus-visible:bg-white focus-visible:text-neutral-950 focus-visible:border-neutral-950 dark:text-white dark:border-neutral-600',
     variant === 'red' &&
@@ -40,7 +40,7 @@ export const Button = <T extends ElementType = 'button'>({
     variant === 'primary-link' &&
       'text-blue-500 hover:text-blue-700 active:text-blue-700',
     variant === 'secondary-link' &&
-      'text-neutral-600 hover:text-neutral-950 active:text-neutral-950',
+      'text-neutral-600 hover:text-neutral-950 active:text-neutral-950 dark:text-neutral-300 dark:hover:text-neutral-600 dark:active:text-neutral-600',
     isLoading && 'justify-center!',
     className,
   );

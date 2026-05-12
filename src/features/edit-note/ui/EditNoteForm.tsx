@@ -74,7 +74,7 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
       className="h-full flex flex-col gap-3 sm:gap-4"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <fieldset className="pb-3 flex flex-col gap-3 border-b border-neutral-200 sm:pb-4 sm:gap-4">
+      <fieldset className="pb-3 flex flex-col gap-3 border-b border-neutral-200 sm:pb-4 sm:gap-4 dark:border-neutral-800">
         <div className="flex flex-col gap-1.5">
           <input
             {...register('title')}
@@ -87,7 +87,7 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
           )}
         </div>
 
-        <div className="flex flex-col gap-2 text-preset-6 text-neutral-700 sm:text-preset-5">
+        <div className="flex flex-col gap-2 text-preset-6 text-neutral-700 sm:text-preset-5 dark:text-neutral-300">
           <div className="flex items-center gap-2">
             <div className="min-w-28.75 flex items-center gap-1.5">
               <TagIcon className="h-4 w-4" /> Tags
@@ -106,7 +106,7 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
               <ClockIcon className="h-4 w-4" /> Last edited
             </div>
 
-            <span className="text-neutral-700">
+            <span className="text-neutral-700 dark:text-neutral-300">
               {formatDate(note.updatedAt)}
             </span>
           </div>
@@ -118,7 +118,7 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
       </fieldset>
 
       {isDesktop && (
-        <div className="pt-4 flex items-center gap-4 border-t border-neutral-200">
+        <div className="pt-4 flex items-center gap-4 border-t border-neutral-200 dark:border-neutral-800">
           <Button type="submit" isLoading={isLoading}>
             Save Note
           </Button>

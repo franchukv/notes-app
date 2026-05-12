@@ -23,7 +23,7 @@ export const EditNotePage = () => {
   });
 
   return (
-    <div className="w-full py-5 flex lg:border-r lg:border-neutral-200 lg:max-w-[calc(100%-(240px+180px))] xl:max-w-[calc(100%-(290px*2))]">
+    <div className="w-full py-5 flex lg:border-r lg:border-neutral-200 lg:max-w-[calc(100%-(240px+180px))] xl:max-w-[calc(100%-(290px*2))] dark:lg:border-neutral-800">
       <div className="custom-container">
         <div className="h-full flex flex-col gap-3 sm:gap-4">
           {!isDesktop && (
