@@ -25,7 +25,7 @@ export const profileApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };
@@ -55,7 +55,7 @@ export const profileApi = supabaseApi.injectEndpoints({
         if (fetchError) {
           return {
             error: {
-              status: fetchError.code ?? 400,
+              status: fetchError.code,
               data: { message: fetchError.message },
             },
           };
@@ -73,7 +73,7 @@ export const profileApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };

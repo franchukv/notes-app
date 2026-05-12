@@ -15,7 +15,7 @@ export const authForgotPasswordApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };

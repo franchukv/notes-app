@@ -41,7 +41,7 @@ export const noteApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };
@@ -60,7 +60,7 @@ export const noteApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };
@@ -80,7 +80,7 @@ export const noteApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };
@@ -100,7 +100,7 @@ export const noteApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };
@@ -120,7 +120,7 @@ export const noteApi = supabaseApi.injectEndpoints({
         if (noteTagsError) {
           return {
             error: {
-              status: noteTagsError.code ?? 400,
+              status: noteTagsError.code,
               data: { message: noteTagsError.message },
             },
           };
@@ -141,7 +141,7 @@ export const noteApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };
@@ -163,7 +163,7 @@ export const noteApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };
@@ -185,7 +185,7 @@ export const noteApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };
@@ -207,7 +207,7 @@ export const noteApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };
@@ -224,7 +224,7 @@ export const noteApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };
@@ -248,7 +248,7 @@ export const noteApi = supabaseApi.injectEndpoints({
         if (error) {
           return {
             error: {
-              status: error.code ?? 400,
+              status: error.code,
               data: { message: error.message },
             },
           };
