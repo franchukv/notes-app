@@ -61,7 +61,11 @@ export const InputField = ({
             className="absolute top-1/2  right-4 -translate-y-1/2 cursor-pointer disabled:text-neutral-300 disabled:pointer-events-none"
             disabled={restProps.disabled}
           >
-            {showPassword ? <EyeClosed /> : <Eye />}
+            {showPassword ? (
+              <EyeClosed />
+            ) : (
+              <Eye className="text-neutral-500" />
+            )}
           </button>
         )}
       </span>
