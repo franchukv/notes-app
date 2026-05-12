@@ -1,5 +1,5 @@
-import type { Profile, ProfileSettings } from '@/shared/model';
 import { selectProfileSettings, setProfileSettings } from '../model/index';
+import type { Profile, ProfileSettings } from '@/shared/model';
 import { supabase, supabaseApi } from '@/shared/api';
 import { profileStorage } from '@/shared/lib';
 
