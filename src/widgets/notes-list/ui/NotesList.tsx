@@ -32,7 +32,7 @@ export const NotesList = ({
             <Button
               as={Link}
               to={`${parentUrl}/create-new-note`}
-              className="fixed bottom-18 right-4 z-1 sm:bottom-26.5 sm:right-8 max-sm:h-12 max-sm:w-12 max-lg:h-16 max-lg:w-16 max-lg:p-0 max-lg:rounded-full max-lg:shadow-[0_7px_11px_0_rgba(202,207,216,0.7)] lg:static"
+              className="fixed bottom-18 right-4 z-1 sm:bottom-26.5 sm:right-8 min-w-0! max-sm:h-12 max-sm:w-12 max-lg:h-16 max-lg:w-16 max-lg:p-0 max-lg:rounded-full max-lg:shadow-[0_7px_11px_0_rgba(202,207,216,0.7)] lg:static"
             >
               {isDesktop ? '+ Create New Note' : <PlusIcon />}
             </Button>
