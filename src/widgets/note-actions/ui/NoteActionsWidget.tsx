@@ -67,7 +67,7 @@ export const NoteActionsWidget = ({
         onClick={
           note.isArchived ? handleRestoreNoteClick : handleArchiveNoteClick
         }
-        disabled={isRestoreLoading}
+        isLoading={isRestoreLoading}
       >
         {note.isArchived ? (
           <>

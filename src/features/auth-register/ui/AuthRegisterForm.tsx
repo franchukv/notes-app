@@ -23,16 +23,16 @@ export const AuthRegisterForm = () => {
   const [signUp, { isLoading, isError, error }] = useRegisterMutation();
 
   const onSubmit = async (data: AuthFormData) => {
-    const { error } = await signUp(data);
+    const { data: authData, error } = await signUp(data);
 
     if (error) {
       return;
     }
 
-    if (response.data?.user && !response.data?.user.email_confirmed_at) {
+    if (authData?.user && !authData?.user.email_confirmed_at) {
       navigate('/check-email', {
         state: {
-          email: response.data.user.email,
+          email: authData.user.email,
           message: 'We sent a confirmation link to',
         },
       });
@@ -70,8 +70,8 @@ export const AuthRegisterForm = () => {
         </span>
       )}
 
-      <Button type="submit" className="text-preset-3" disabled={isLoading}>
-        {isLoading ? 'Loading...' : 'Sign up'}
+      <Button type="submit" className="text-preset-3" isLoading={isLoading}>
+        Sign up
       </Button>
     </form>
   );

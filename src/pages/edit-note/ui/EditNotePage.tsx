@@ -14,7 +14,11 @@ export const EditNotePage = () => {
 
   const parentUrl = tagSlug ? `/tags/${tagSlug}` : '/notes';
 
-  const { data: note, isSuccess } = useGetNoteBySlugQuery({
+  const {
+    data: note,
+    isLoading,
+    isSuccess,
+  } = useGetNoteBySlugQuery({
     slug: noteSlug!,
   });
 
@@ -38,6 +42,7 @@ export const EditNotePage = () => {
                     type="submit"
                     form="edit-note-form"
                     variant="primary-link"
+                    isLoading={isLoading}
                   >
                     Save Note
                   </Button>

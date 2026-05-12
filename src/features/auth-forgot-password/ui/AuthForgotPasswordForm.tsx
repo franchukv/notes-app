@@ -57,8 +57,8 @@ export const AuthForgotPasswordForm = () => {
         </span>
       )}
 
-      <Button type="submit" className="text-preset-3" disabled={isLoading}>
-        {isLoading ? 'Loading...' : 'Send Reset Link'}
+      <Button type="submit" className="text-preset-3" isLoading={isLoading}>
+        Send Reset Link
       </Button>
     </form>
   );

@@ -46,7 +46,7 @@ export const CreateNoteForm = ({
   });
 
   const { data: tags, isLoading: isTagsLoading } = useGetTagsQuery();
-  const [createNote] = useCreateNoteMutation();
+  const [createNote, { isLoading }] = useCreateNoteMutation();
 
   const options = tags
     ? tags.map((tag) => ({ value: tag.slug, label: tag.name }))
@@ -126,12 +126,15 @@ export const CreateNoteForm = ({
 
       {isDesktop && (
         <div className="pt-4 flex items-center gap-4 border-t border-neutral-200">
-          <Button type="submit">Save Note</Button>
+          <Button type="submit" isLoading={isLoading}>
+            Save Note
+          </Button>
 
           <Button
             type="button"
             variant="secondary"
             onClick={() => navigate(parentUrl)}
+            disabled={isLoading}
           >
             Cancel
           </Button>

@@ -2,11 +2,11 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useResetPasswordMutation } from '../api/authResetPasswordApi';
-import { updatePasswordSchema, useLogoutMutation } from '@/entities/user';
+import { resetPasswordSchema, useLogoutMutation } from '@/entities/user';
 import { Button, InputField } from '@/shared/ui';
 import { isApiError } from '@/shared/lib';
 
-type AuthFormData = z.infer<typeof updatePasswordSchema>;
+type AuthFormData = z.infer<typeof resetPasswordSchema>;
 
 export const AuthResetPasswordForm = () => {
   const {
@@ -14,7 +14,7 @@ export const AuthResetPasswordForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<AuthFormData>({
-    resolver: zodResolver(updatePasswordSchema),
+    resolver: zodResolver(resetPasswordSchema),
   });
 
   const [resetPassword, { isLoading, isError, error }] =
@@ -61,8 +61,8 @@ export const AuthResetPasswordForm = () => {
         </span>
       )}
 
-      <Button type="submit" className="text-preset-3" disabled={isLoading}>
-        {isLoading ? 'Loading...' : 'Reset Password'}
+      <Button type="submit" className="text-preset-3" isLoading={isLoading}>
+        Reset Password
       </Button>
     </form>
   );

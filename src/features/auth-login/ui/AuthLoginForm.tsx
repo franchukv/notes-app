@@ -62,8 +62,8 @@ export const AuthLoginForm = () => {
         </span>
       )}
 
-      <Button type="submit" className="text-preset-3" disabled={isLoading}>
-        {isLoading ? 'Loading...' : 'Login'}
+      <Button type="submit" className="text-preset-3" isLoading={isLoading}>
+        Login
       </Button>
     </form>
   );
