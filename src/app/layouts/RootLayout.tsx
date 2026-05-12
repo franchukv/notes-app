@@ -5,17 +5,17 @@ import { selectProfileSettings } from '@/entities/profile';
 import { usePageTitle } from '@/shared/lib';
 import { useDeviceType } from '@/shared/lib/hooks';
 import { useAppSelector } from '@/shared/lib';
-import { useTheme } from '@/shared/lib/hooks/useTheme';
+import { useThemes } from '@/shared/lib/hooks/useThemes';
 
 export const RootLayout = () => {
   const { pathname } = useLocation();
   const matches = useMatches() as UIMatch<unknown, { title?: string }>[];
   const title = matches[matches.length - 1].handle?.title;
-  const { colorTheme } = useAppSelector(selectProfileSettings);
+  const { colorTheme, fontTheme } = useAppSelector(selectProfileSettings);
 
   useDeviceType();
   usePageTitle({ title, pathname });
-  useTheme(colorTheme);
+  useThemes({ colorTheme, fontTheme });
 
   return (
     <>

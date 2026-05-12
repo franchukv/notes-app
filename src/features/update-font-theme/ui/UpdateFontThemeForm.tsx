@@ -3,38 +3,38 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  colorThemeSchema,
+  fontThemeSchema,
   selectProfileSettings,
   useUpdateProfileSettingsMutation,
 } from '@/entities/profile';
 import { selectUserId } from '@/entities/user';
 import { useAppSelector, useToast } from '@/shared/lib';
 import { Button, RadioCard } from '@/shared/ui';
-import SunIcon from '@/shared/assets/icons/sun-icon.svg?react';
-import MoonIcon from '@/shared/assets/icons/moon-icon.svg?react';
-import SplitIcon from '@/shared/assets/icons/split-icon.svg?react';
+import SansSerifIcon from '@/shared/assets/icons/sans-serif-icon.svg?react';
+import SerifIcon from '@/shared/assets/icons/serif-icon.svg?react';
+import MonospaceIcon from '@/shared/assets/icons/monospace-icon.svg?react';
 
-type ColorThemeFormData = z.infer<typeof colorThemeSchema>;
+type FontThemeFormData = z.infer<typeof fontThemeSchema>;
 
-export const UpdateColorThemeForm = () => {
+export const UpdateFontThemeForm = () => {
   const { showToast } = useToast();
 
   const userId = useAppSelector(selectUserId);
   const profileSettings = useAppSelector(selectProfileSettings);
 
-  const { register, handleSubmit, reset } = useForm<ColorThemeFormData>({
-    resolver: zodResolver(colorThemeSchema),
+  const { register, handleSubmit, reset } = useForm<FontThemeFormData>({
+    resolver: zodResolver(fontThemeSchema),
     defaultValues: {
-      theme: profileSettings.colorTheme,
+      theme: profileSettings.fontTheme,
     },
   });
 
   const [updateSettings] = useUpdateProfileSettingsMutation();
 
-  const onSubmit = async ({ theme }: ColorThemeFormData) => {
+  const onSubmit = async ({ theme }: FontThemeFormData) => {
     const { error } = await updateSettings({
       userId: userId!,
-      settings: { colorTheme: theme },
+      settings: { fontTheme: theme },
     });
 
     if (error) {
@@ -46,37 +46,37 @@ export const UpdateColorThemeForm = () => {
   };
 
   useEffect(() => {
-    reset({ theme: profileSettings.colorTheme });
-  }, [profileSettings.colorTheme, reset]);
+    reset({ theme: profileSettings.fontTheme });
+  }, [profileSettings.fontTheme, reset]);
 
   return (
     <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
       <fieldset className="flex flex-col gap-4">
         <RadioCard
           register={register('theme')}
-          id="light-mode"
-          value="light"
-          icon={<SunIcon />}
-          title="Light Mode"
-          text="Pick a clean and classic light theme"
+          id="sans-serif"
+          value="sans-serif"
+          icon={<SansSerifIcon />}
+          title="Sans-serif"
+          text="Clean and modern, easy to read."
         />
 
         <RadioCard
           register={register('theme')}
-          id="dark-mode"
-          value="dark"
-          icon={<MoonIcon />}
-          title="Dark Mode"
-          text="Select a sleek and modern dark theme"
+          id="serif"
+          value="serif"
+          icon={<SerifIcon />}
+          title="Serif"
+          text="Classic and elegant for a timeless feel."
         />
 
         <RadioCard
           register={register('theme')}
-          id="system-mode"
-          value="system"
-          icon={<SplitIcon />}
-          title="System"
-          text="Adapts to your device’s theme"
+          id="monospace"
+          value="monospace"
+          icon={<MonospaceIcon />}
+          title="Monospace"
+          text="Code-like, great for a technical vibe."
         />
       </fieldset>
 

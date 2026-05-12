@@ -1,6 +1,6 @@
 export interface ProfileSettings {
   colorTheme: 'light' | 'dark' | 'system';
-  fontTheme: 'sans-serif' | 'serif' | 'mono';
+  fontTheme: 'sans-serif' | 'serif' | 'monospace';
 }
 
 export interface Profile {
