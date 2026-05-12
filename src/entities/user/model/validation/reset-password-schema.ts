@@ -1,6 +1,6 @@
 import z from 'zod';
 
-export const updatePasswordSchema = z
+export const resetPasswordSchema = z
   .object({
     password: z.string().min(8),
     confirmPassword: z.string().min(8),

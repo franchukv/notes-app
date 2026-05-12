@@ -6,10 +6,12 @@ export {
   clearUserId,
   selectUserId,
 } from './model';
-export { updatePasswordSchema } from './model/validation/update-passwords-schema';
+export { resetPasswordSchema } from './model/validation/reset-password-schema';
+export { changePasswordSchema } from './model/validation/change-password-schema';
 export { credentialsSchema } from './model/validation/credentials-schema';
 export {
   useGetSessionQuery,
   useGetUserQuery,
   useLogoutMutation,
+  useChangePasswordMutation,
 } from './api/userApi';
