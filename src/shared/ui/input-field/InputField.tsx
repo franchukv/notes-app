@@ -28,14 +28,6 @@ export const InputField = ({
   const [showPassword, setShowPassword] = useState(false);
   const inputType =
     type === 'password' ? (showPassword ? 'text' : 'password') : type;
-  const classNames = {
-    input: cn(
-      'h-10.5 w-full px-4 text-preset-5 text-neutral-950 bg-white placeholder:text-neutral-500 border border-neutral-300 rounded-lg shadow-[0_1px_2px_0_rgba(10,13,20,0.03)] not-focus:hover:bg-neutral-50 not-focus:hover:text-neutral-500 disabled:bg-neutral-50! disabled:text-neutral-300! disabled:pointer-events-none dark:bg-neutral-950 dark:not-focus:hover:bg-neutral-800 dark:text-white dark:border-neutral-600 dark:disabled:bg-neutral-700!',
-      className,
-      type === 'password' && 'pr-10',
-      error && 'border-red-500',
-    ),
-  };
 
   return (
     <label htmlFor={id} className="w-full flex flex-col gap-1.5">
@@ -50,7 +42,12 @@ export const InputField = ({
           {...register}
           id={id}
           type={inputType}
-          className={classNames.input}
+          className={cn(
+            'h-10.5 w-full px-4 text-preset-5 text-neutral-950 bg-white placeholder:text-neutral-500 border border-neutral-300 rounded-lg shadow-[0_1px_2px_0_rgba(10,13,20,0.03)] not-focus:hover:bg-neutral-50 not-focus:hover:text-neutral-500 disabled:bg-neutral-50! disabled:text-neutral-300! disabled:pointer-events-none dark:bg-neutral-950 dark:not-focus:hover:bg-neutral-800 dark:text-white dark:border-neutral-600 dark:disabled:bg-neutral-700!',
+            className,
+            type === 'password' && 'pr-10',
+            error && 'border-red-500',
+          )}
           {...restProps}
         />
 

@@ -23,14 +23,15 @@ export const SearchForm = ({ className, defaultValue }: SearchFormProps) => {
     },
   });
 
-  const classNames = cn('max-w-75 w-full relative', className);
-
   const onSubmit = async ({ search }: SearchFormData) => {
     navigate(`/search?q=${encodeURIComponent(search)}`);
   };
 
   return (
-    <form className={classNames} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={cn('max-w-75 w-full relative', className)}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <SearchIcon className="absolute left-4 top-3 z-1 text-neutral-500" />
       <InputField
         register={register('search')}

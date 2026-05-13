@@ -18,10 +18,6 @@ export const TagPage = () => {
   const isDesktop = useAppSelector(selectIsDesktop);
 
   const isCreateNewNotePage = pathname.includes('/create-new-note');
-  const classNames = cn(
-    'min-h-full w-full flex overflow-auto',
-    !isDesktop && !noteSlug && 'max-lg:pt-5 max-lg:flex-col',
-  );
   const parentUrl = '/tags';
 
   const { data: tag } = useGetTagBySlugQuery({ slug: tagSlug! });
@@ -50,7 +46,12 @@ export const TagPage = () => {
   };
 
   return (
-    <div className={classNames}>
+    <div
+      className={cn(
+        'min-h-full w-full flex overflow-auto',
+        !isDesktop && !noteSlug && 'max-lg:pt-5 max-lg:flex-col',
+      )}
+    >
       {!isDesktop && !noteSlug && (
         <div className="custom-container">
           <ActionBarWidget parentUrl={parentUrl}>

@@ -15,13 +15,13 @@ export const FormLayout = ({
   children,
   className,
 }: FormLayoutProps) => {
-  const classNames = cn(
-    'max-w-135 w-full py-12 px-4 flex flex-col gap-10 rounded-xl bg-white border border-neutral-200 shadow-[0_8px_12px_0_rgba(240,240,240,0.6)] sm:px-12 dark:bg-neutral-950 dark:border-neutral-800 dark:shadow-none',
-    className,
-  );
-
   return (
-    <div className={classNames}>
+    <div
+      className={cn(
+        'max-w-135 w-full py-12 px-4 flex flex-col gap-10 rounded-xl bg-white border border-neutral-200 shadow-[0_8px_12px_0_rgba(240,240,240,0.6)] sm:px-12 dark:bg-neutral-950 dark:border-neutral-800 dark:shadow-none',
+        className,
+      )}
+    >
       {(icon || title || description) && (
         <header className="flex flex-col items-center gap-4">
           {icon}

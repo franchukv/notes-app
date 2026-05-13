@@ -6,7 +6,5 @@ interface LoaderProps {
 }
 
 export const Loader = ({ className = '' }: LoaderProps) => {
-  const classNames = cn('h-6 w-6 text-neutral-700', className);
-
-  return <LoaderIcon className={classNames} />;
+  return <LoaderIcon className={cn('h-6 w-6 text-neutral-700', className)} />;
 };
