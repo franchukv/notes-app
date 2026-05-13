@@ -29,7 +29,7 @@ export const UpdateFontThemeForm = () => {
     },
   });
 
-  const [updateSettings] = useUpdateProfileSettingsMutation();
+  const [updateSettings, { isLoading }] = useUpdateProfileSettingsMutation();
 
   const onSubmit = async ({ theme }: FontThemeFormData) => {
     const { error } = await updateSettings({
@@ -80,7 +80,7 @@ export const UpdateFontThemeForm = () => {
         />
       </fieldset>
 
-      <Button type="submit" className="w-fit self-end">
+      <Button type="submit" className="w-fit self-end" isLoading={isLoading}>
         Apply Changes
       </Button>
     </form>
