@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import type { Note } from '@/entities/note';
 import { formatDate } from '@/shared/lib';
 import TagIcon from '@/shared/assets/icons/tag-icon.svg?react';
@@ -12,7 +13,12 @@ export const NoteContent = ({ note }: NoteContentProps) => {
   const { title, tags, updatedAt, content, isArchived } = note;
   return (
     <>
-      <div className="pb-3 flex flex-col gap-3 border-b border-neutral-200 sm:pb-4 sm:gap-4 dark:border-neutral-800">
+      <motion.div
+        key="content"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="pb-3 flex flex-col gap-3 border-b border-neutral-200 sm:pb-4 sm:gap-4 dark:border-neutral-800"
+      >
         <h1 className="text-preset-1">{title}</h1>
 
         <div className="flex flex-col gap-2 text-preset-6 text-neutral-700 sm:text-preset-5 dark:text-neutral-300">
@@ -48,17 +54,25 @@ export const NoteContent = ({ note }: NoteContentProps) => {
             <span>{formatDate(updatedAt)}</span>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {content ? (
-        <div
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           className="typical-content"
           dangerouslySetInnerHTML={{
             __html: content.replaceAll('&nbsp;', ' '),
           }}
         />
       ) : (
-        <span className="text-neutral-400">There is no content yet.</span>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-neutral-400"
+        >
+          There is no content yet.
+        </motion.span>
       )}
     </>
   );

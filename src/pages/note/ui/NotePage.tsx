@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from 'motion/react';
 import {
   useLocation,
   useMatches,
@@ -39,7 +40,7 @@ export const NotePage = () => {
   } = useGetNoteBySlugQuery({ slug: noteSlug! });
 
   useTitles({
-    documentTitle: note?.title,
+    documentTitle: note?.title ?? 'Note not found',
     headerTitle: headerTitle,
   });
 
@@ -56,15 +57,23 @@ export const NotePage = () => {
               </ActionBarWidget>
             )}
 
-            {isSuccess ? (
-              <NoteContent note={note} />
-            ) : isLoading ? (
-              <SkeletonNoteContent isArchivedNote={isArchivedNote} />
-            ) : (
-              <div className="m-auto text-preset-3 text-center">
-                Note not found
-              </div>
-            )}
+            <AnimatePresence mode="wait">
+              {isSuccess ? (
+                <NoteContent note={note} />
+              ) : isLoading ? (
+                <SkeletonNoteContent isArchivedNote={isArchivedNote} />
+              ) : (
+                <motion.div
+                  key="not-found"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="m-auto text-preset-3 text-center"
+                >
+                  Note not found
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
