@@ -19,17 +19,20 @@ export const useThemes = ({
       root.classList.toggle('dark', isDark);
     };
 
+    root.setAttribute('data-font', fontTheme);
+    applyColorTheme(colorTheme === 'dark');
+
     if (colorTheme === 'system') {
       const media = window.matchMedia('(prefers-color-scheme: dark)');
       applyColorTheme(media.matches);
 
-      media.addEventListener('change', (e) => applyColorTheme(e.matches));
+      const handler = (e: MediaQueryListEvent) => {
+        applyColorTheme(e.matches);
+      };
 
-      return () =>
-        media.removeEventListener('change', (e) => applyColorTheme(e.matches));
+      media.addEventListener('change', handler);
+
+      return () => media.removeEventListener('change', handler);
     }
-
-    root.setAttribute('data-font', fontTheme);
-    applyColorTheme(colorTheme === 'dark');
   }, [colorTheme, fontTheme]);
 };
