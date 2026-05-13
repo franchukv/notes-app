@@ -115,17 +115,20 @@ export const routes = [
                   {
                     path: 'color-theme',
                     Component: SettingsColorThemePage,
-                    handle: { title: 'Color Theme | Settings' },
+                    handle: { title: 'Color Theme', headerTitle: 'Settings' },
                   },
                   {
                     path: 'font-theme',
                     Component: SettingsFontThemePage,
-                    handle: { title: 'Font Theme | Settings' },
+                    handle: { title: 'Font Theme', headerTitle: 'Settings' },
                   },
                   {
                     path: 'change-password',
                     Component: SettingsChangePasswordPage,
-                    handle: { title: 'Change Password | Settings' },
+                    handle: {
+                      title: 'Change Password',
+                      headerTitle: 'Settings',
+                    },
                   },
                 ],
               },

@@ -1,15 +1,8 @@
 import cn from 'classnames';
-import {
-  Link,
-  useLocation,
-  useMatches,
-  useParams,
-  useSearchParams,
-  type UIMatch,
-} from 'react-router';
+import { Link, useLocation, useParams, useSearchParams } from 'react-router';
 import { SearchForm } from '@/features/search';
 import { useAppSelector } from '@/shared/lib';
-import { selectIsDesktop, selectPageTitle } from '@/shared/model';
+import { selectIsDesktop, selectHeaderTitle } from '@/shared/model';
 import Logo from '@/shared/assets/icons/logo.svg?react';
 import SettingsIcon from '@/shared/assets/icons/settings-icon.svg?react';
 
@@ -17,12 +10,9 @@ export const Header = () => {
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
   const { tagSlug } = useParams();
-  const matches = useMatches() as UIMatch<unknown, { title?: string }>[];
 
   const isDesktop = useAppSelector(selectIsDesktop);
-  const title =
-    useAppSelector(selectPageTitle) ||
-    matches[matches.length - 2].handle?.title;
+  const title = useAppSelector(selectHeaderTitle);
 
   const query = searchParams.get('q') ?? '';
   const isCreateNewNotePage = pathname.includes('/create-new-note');

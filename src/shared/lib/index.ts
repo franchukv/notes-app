@@ -1,9 +1,9 @@
-export { generatePageTitle, formatDate, profileStorage } from './utils';
+export { generateDocumentTitle, formatDate, profileStorage } from './utils';
 export { isApiError } from './guards';
 export {
   useAppDispatch,
   useAppSelector,
-  usePageTitle,
+  useTitles,
   useToast,
   useNavigationGuard,
 } from './hooks';

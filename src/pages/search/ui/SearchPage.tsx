@@ -8,7 +8,7 @@ import {
 import { NotesList } from '@/widgets/notes-list';
 import { SearchForm } from '@/features/search';
 import { useSearchNotesQuery } from '@/entities/note';
-import { useAppSelector, usePageTitle } from '@/shared/lib';
+import { useAppSelector, useTitles } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
 import { Notice } from '@/shared/ui';
 
@@ -23,7 +23,10 @@ export const SearchPage = () => {
 
   const { data: notes, isLoading, isSuccess } = useSearchNotesQuery({ query });
 
-  usePageTitle({ headerTitle: query ? '' : 'Search' });
+  useTitles({
+    documentTitle: 'Search',
+    headerTitle: query,
+  });
 
   if (isDesktop && !query) {
     return <Navigate to="/notes" replace />;

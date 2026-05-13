@@ -9,7 +9,7 @@ import { ActionBarWidget } from '@/widgets/action-bar';
 import { NoteActionsWidget } from '@/widgets/note-actions';
 import { NoteContent, SkeletonNoteContent } from '@/widgets/note-content';
 import { useGetNoteBySlugQuery } from '@/entities/note';
-import { useAppSelector, usePageTitle } from '@/shared/lib';
+import { useAppSelector, useTitles } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
 
 export const NotePage = () => {
@@ -19,8 +19,8 @@ export const NotePage = () => {
   const matches = useMatches() as UIMatch<unknown, { title?: string }>[];
 
   const isDesktop = useAppSelector(selectIsDesktop);
-  const headerTitle = matches[matches.length - 2].handle?.title;
 
+  const headerTitle = matches[matches.length - 2].handle?.title;
   const query = searchParams.get('q') ?? '';
   const isSearchPage = pathname.includes('/search');
   const isArchivedNote = pathname.includes('/archived-notes');
@@ -38,10 +38,9 @@ export const NotePage = () => {
     isSuccess,
   } = useGetNoteBySlugQuery({ slug: noteSlug! });
 
-  usePageTitle({
-    title: note?.title,
+  useTitles({
+    documentTitle: note?.title,
     headerTitle: headerTitle,
-    previousHeaderTitle: true,
   });
 
   return (
