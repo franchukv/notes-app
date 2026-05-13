@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { z } from 'zod';
 import cn from 'classnames';
 import { useForm } from 'react-hook-form';
@@ -51,15 +51,10 @@ export const CreateNoteForm = ({
   const { data: tags, isLoading: isTagsLoading } = useGetTagsQuery();
   const [createNote, { isLoading }] = useCreateNoteMutation();
 
-  const options = tags
-    ? tags.map((tag) => ({ value: tag.slug, label: tag.name }))
-    : [];
-  const classNames = {
-    titleInput: cn(
-      'p-0 text-preset-2 border-b border-transparent focus:border-neutral-950 outline-none placeholder:text-neutral-700 sm:text-preset-1 dark:focus:border-white dark:placeholder:text-neutral-300',
-      errors.title?.message && 'border-red-500!',
-    ),
-  };
+  const options = useMemo(
+    () => tags?.map((tag) => ({ value: tag.slug, label: tag.name })) ?? [],
+    [tags],
+  );
 
   const onSubmit = async ({ title, tags, content }: CreateNoteFormData) => {
     setIsSubmitting(true);
@@ -100,7 +95,10 @@ export const CreateNoteForm = ({
             {...register('title')}
             type="text"
             placeholder="Enter a title…"
-            className={classNames.titleInput}
+            className={cn(
+              'p-0 text-preset-2 border-b border-transparent focus:border-neutral-950 outline-none placeholder:text-neutral-700 sm:text-preset-1 dark:focus:border-white dark:placeholder:text-neutral-300',
+              errors.title?.message && 'border-red-500!',
+            )}
           />
           {errors.title?.message && (
             <Hint type="error" text={errors.title.message} />
