@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
-import { TagButton, useGetTagsQuery } from '@/entities/tag';
-import { NavigationButton, Notice, TagsList } from '@/shared/ui';
+import { TagsList } from '../@x/TagsList';
+import { useGetTagsQuery } from '@/entities/tag';
+import { NavigationButton } from '@/shared/ui';
 import Logo from '@/shared/assets/icons/logo.svg?react';
 import HomeIcon from '@/shared/assets/icons/home-icon.svg?react';
 import ArchiveIcon from '@/shared/assets/icons/archive-icon.svg?react';
@@ -24,17 +25,7 @@ export const Sidebar = () => {
         </NavigationButton>
       </nav>
 
-      <TagsList title="Tags">
-        {tags && tags.length > 0 ? (
-          tags.map((tag) => (
-            <TagButton key={tag.id} url={`/tags/${tag.slug}`}>
-              {tag.name}
-            </TagButton>
-          ))
-        ) : (
-          <Notice>There are no tags yet.</Notice>
-        )}
-      </TagsList>
+      <TagsList title="Tags" tags={tags ?? []} />
     </aside>
   );
 };
