@@ -20,7 +20,9 @@ export const TagPage = () => {
   const isCreateNewNotePage = pathname.includes('/create-new-note');
   const parentUrl = '/tags';
 
-  const { data: tag } = useGetTagBySlugQuery({ slug: tagSlug! });
+  const { data: tag, isLoading: isTagLoading } = useGetTagBySlugQuery({
+    slug: tagSlug!,
+  });
   const {
     data: notes,
     isLoading: isNotesLoading,
@@ -28,7 +30,13 @@ export const TagPage = () => {
   } = useGetNotesByTagSlugQuery({ slug: tagSlug! });
 
   usePageTitle({
-    title: isCreateNewNotePage ? undefined : !tag ? 'Tag not found' : tag?.name,
+    title: isTagLoading
+      ? '...'
+      : isCreateNewNotePage
+        ? undefined
+        : !tag
+          ? 'Tag not found'
+          : tag?.name,
     extraTextInDocumentTitle: tag ? ' tag' : undefined,
   });
 
@@ -68,38 +76,39 @@ export const TagPage = () => {
         <NotesList
           parentUrl={`/tags/${tagSlug}`}
           notes={notes ?? []}
-          isLoading={isNotesLoading}
+          isLoading={isNotesLoading || isTagLoading}
           hasCreateNewNoteButton={!!tag}
         >
-          {tag ? (
-            <>
-              {isDesktop && (
-                <Button variant="border" onClick={handleDeleteTagClick}>
-                  <DeleteIcon /> Delete Tag
-                </Button>
-              )}
+          {!isTagLoading &&
+            (tag ? (
+              <>
+                {isDesktop && (
+                  <Button variant="border" onClick={handleDeleteTagClick}>
+                    <DeleteIcon /> Delete Tag
+                  </Button>
+                )}
 
-              <h1 className="text-preset-1 lg:sr-only">
-                <span className="text-neutral-600 dark:text-neutral-300">
-                  Notes Tagged:{' '}
-                </span>
-                {tag.name}
-              </h1>
+                <h1 className="text-preset-1 lg:sr-only">
+                  <span className="text-neutral-600 dark:text-neutral-300">
+                    Notes Tagged:{' '}
+                  </span>
+                  {tag.name}
+                </h1>
 
-              {isSuccess &&
-                (notes.length > 0 ? (
-                  <p className="text-preset-5 text-neutral-700 dark:text-neutral-200">
-                    All notes with the "{tag.name}" tag are shown here.
-                  </p>
-                ) : (
-                  <Notice>
-                    You don’t have any notes with "{tag.name}" tag yet.
-                  </Notice>
-                ))}
-            </>
-          ) : (
-            <Notice>Tag not found.</Notice>
-          )}
+                {isSuccess &&
+                  (notes.length > 0 ? (
+                    <p className="text-preset-5 text-neutral-700 dark:text-neutral-200">
+                      All notes with the "{tag.name}" tag are shown here.
+                    </p>
+                  ) : (
+                    <Notice>
+                      You don’t have any notes with "{tag.name}" tag yet.
+                    </Notice>
+                  ))}
+              </>
+            ) : (
+              <Notice>Tag not found.</Notice>
+            ))}
         </NotesList>
       )}
 
