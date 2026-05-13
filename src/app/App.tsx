@@ -6,7 +6,7 @@ export const App = () => {
   return (
     <>
       <AppProviders />
-      <SpeedInsights />;
+      <SpeedInsights />
     </>
   );
 };
