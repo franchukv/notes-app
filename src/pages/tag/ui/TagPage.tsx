@@ -74,7 +74,7 @@ export const TagPage = () => {
           {tag ? (
             <>
               {isDesktop && (
-                <Button variant="red" onClick={handleDeleteTagClick}>
+                <Button variant="border" onClick={handleDeleteTagClick}>
                   <DeleteIcon /> Delete Tag
                 </Button>
               )}
