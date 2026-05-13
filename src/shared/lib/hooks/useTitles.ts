@@ -4,10 +4,6 @@ import { setPageTitles } from '../../model';
 import { generateDocumentTitle } from '../utils';
 
 interface useTitlesProps {
-<<<<<<< HEAD
-  skip?: boolean;
-=======
->>>>>>> edc85e00dd610a20cd61055312f64c7a8093c43d
   documentTitle: string | undefined;
   headerTitle: string | undefined;
   isSinglePage?: boolean;
