@@ -34,7 +34,7 @@ export const UpdateColorThemeForm = () => {
   const onSubmit = async ({ theme }: ColorThemeFormData) => {
     const { error } = await updateSettings({
       userId: userId!,
-      settings: { colorTheme: theme },
+      settings: { ...profileSettings, colorTheme: theme },
     });
 
     if (error) {

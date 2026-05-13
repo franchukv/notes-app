@@ -34,7 +34,7 @@ export const UpdateFontThemeForm = () => {
   const onSubmit = async ({ theme }: FontThemeFormData) => {
     const { error } = await updateSettings({
       userId: userId!,
-      settings: { fontTheme: theme },
+      settings: { ...profileSettings, fontTheme: theme },
     });
 
     if (error) {
