@@ -1,3 +1,4 @@
+export { SkeletonTagButton } from './ui/SkeletonTagButton';
 export { TagButton } from './ui/TagButton';
 export { TagItem } from './ui/TagItem';
 export type { Tag, TagDTO } from './model/types';
