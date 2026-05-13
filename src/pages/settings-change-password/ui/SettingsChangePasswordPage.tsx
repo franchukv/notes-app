@@ -1,7 +1,7 @@
 import { useMatches, type UIMatch } from 'react-router';
 import { ActionBarWidget } from '@/widgets/action-bar';
 import { ChangePasswordForm } from '@/features/change-password';
-import { useAppSelector, usePageTitle } from '@/shared/lib';
+import { useAppSelector, useTitles } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
 
 export const SettingsChangePasswordPage = () => {
@@ -9,9 +9,9 @@ export const SettingsChangePasswordPage = () => {
 
   const isDesktop = useAppSelector(selectIsDesktop);
 
-  const pageTitle = matches[matches.length - 1].handle?.title;
+  const documentTitle = matches[matches.length - 1].handle?.title;
 
-  usePageTitle({ title: pageTitle, headerTitle: 'Settings' });
+  useTitles({ documentTitle, headerTitle: 'Settings', priority: 1 });
 
   return (
     <div className="py-5 w-full lg:max-w-142">

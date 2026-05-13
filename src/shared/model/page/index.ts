@@ -1,25 +1,29 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 interface PageState {
-  title: string;
+  documentTitle: string;
+  headerTitle: string;
 }
 
 const initialState: PageState = {
-  title: '',
+  documentTitle: '',
+  headerTitle: '',
 };
 
 export const pageSlice = createSlice({
   name: 'page',
   initialState,
   reducers: {
-    setPageTitle: (state, action: PayloadAction<string>) => {
-      state.title = action.payload;
+    setPageTitles: (state, action: PayloadAction<PageState>) => {
+      state.documentTitle = action.payload.documentTitle;
+      state.headerTitle = action.payload.headerTitle;
     },
   },
   selectors: {
-    selectPageTitle: (state) => state.title,
+    selectDocumentTitle: (state) => state.documentTitle,
+    selectHeaderTitle: (state) => state.headerTitle,
   },
 });
 
-export const { setPageTitle } = pageSlice.actions;
-export const { selectPageTitle } = pageSlice.selectors;
+export const { setPageTitles } = pageSlice.actions;
+export const { selectDocumentTitle, selectHeaderTitle } = pageSlice.selectors;

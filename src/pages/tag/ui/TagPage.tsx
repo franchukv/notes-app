@@ -5,7 +5,7 @@ import { ActionBarWidget } from '@/widgets/action-bar';
 import { openModal } from '@/widgets/modal-manager';
 import { useGetTagBySlugQuery } from '@/entities/tag';
 import { useGetNotesByTagSlugQuery } from '@/entities/note';
-import { useAppDispatch, useAppSelector, usePageTitle } from '@/shared/lib';
+import { useAppDispatch, useAppSelector, useTitles } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
 import { Button, Notice } from '@/shared/ui';
 import DeleteIcon from '@/shared/assets/icons/delete-icon.svg?react';
@@ -20,23 +20,28 @@ export const TagPage = () => {
   const isCreateNewNotePage = pathname.includes('/create-new-note');
   const parentUrl = '/tags';
 
-  const { data: tag, isLoading: isTagLoading } = useGetTagBySlugQuery({
+  const {
+    data: tag,
+    isLoading: isTagLoading,
+    isError: isTagError,
+  } = useGetTagBySlugQuery({
     slug: tagSlug!,
   });
   const {
     data: notes,
     isLoading: isNotesLoading,
-    isSuccess,
+    isSuccess: isNotesSuccess,
   } = useGetNotesByTagSlugQuery({ slug: tagSlug! });
 
-  usePageTitle({
-    title: isTagLoading
-      ? '...'
-      : isCreateNewNotePage
-        ? undefined
-        : !tag
-          ? 'Tag not found'
-          : tag?.name,
+  const title = isTagError
+    ? 'Tag not found'
+    : isCreateNewNotePage
+      ? undefined
+      : (tag?.name ?? tagSlug);
+
+  useTitles({
+    documentTitle: title,
+    headerTitle: title,
     extraTextInDocumentTitle: tag ? ' tag' : undefined,
   });
 
@@ -95,7 +100,7 @@ export const TagPage = () => {
                   {tag.name}
                 </h1>
 
-                {isSuccess &&
+                {isNotesSuccess &&
                   (notes.length > 0 ? (
                     <p className="text-preset-5 text-neutral-700 dark:text-neutral-200">
                       All notes with the "{tag.name}" tag are shown here.
