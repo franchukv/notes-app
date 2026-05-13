@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import { motion } from 'motion/react';
 import type { Toast as ToastType } from '../../model';
 import SuccessIcon from '../../assets/icons/success-icon.svg?react';
 import ErrorIcon from '../../assets/icons/error-icon.svg?react';
@@ -28,7 +29,12 @@ export const Toast = ({
   const Icon = icons[type];
 
   return (
-    <div className="p-2 flex items-center gap-2 text-preset-6 rounded-lg border border-neutral-200 bg-white shadow-[0_16px_32px_-12px_rgba(14,18,27,0.1)] sm:text-preset-5 dark:bg-neutral-800 dark:border-neutral-700">
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      className="p-2 flex items-center gap-2 text-preset-6 rounded-lg border border-neutral-200 bg-white shadow-[0_16px_32px_-12px_rgba(14,18,27,0.1)] sm:text-preset-5 dark:bg-neutral-800 dark:border-neutral-700"
+    >
       <Icon className="min-w-4 h-4 w-4 sm:min-w-5 sm:w-5 sm:h-5" />
 
       <div className="mr-auto">{message}</div>
@@ -45,6 +51,6 @@ export const Toast = ({
       >
         <CloseIcon className="h-full w-full" />
       </button>
-    </div>
+    </motion.div>
   );
 };
