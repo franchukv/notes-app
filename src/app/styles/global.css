@@ -160,6 +160,10 @@
     @apply bg-neutral-950! dark:bg-neutral-900!;
   }
 
+  .ql-editor {
+    @apply p-0! mt-3! sm:mt-4;
+  }
+
   .quill {
     @apply h-full wrap-break-word whitespace-pre-wrap;
   }
