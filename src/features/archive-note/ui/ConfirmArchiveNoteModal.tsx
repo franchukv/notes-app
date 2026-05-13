@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router';
 import { useToggleNoteArchivedMutation } from '@/entities/note';
 import { Button, Modal } from '@/shared/ui';
-import ArchiveIcon from '@/shared/assets/icons/archive-icon.svg?react';
 import { useToast } from '@/shared/lib';
+import ArchiveIcon from '@/shared/assets/icons/archive-icon.svg?react';
 
 interface ConfirmArchiveNoteModalProps {
   isOpen: boolean;

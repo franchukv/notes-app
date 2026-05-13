@@ -1,6 +1,5 @@
+import { motion } from 'motion/react';
 import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
-
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -30,12 +29,15 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
     return null;
   }
 
-  return createPortal(
-    <div className="overlay" onClick={onClose}>
-      <div className="m-auto flex" onClick={(e) => e.stopPropagation()}>
-        <div className="custom-container">{children}</div>
-      </div>
-    </div>,
-    document.body,
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      className="m-auto flex"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="custom-container">{children}</div>
+    </motion.div>
   );
 };

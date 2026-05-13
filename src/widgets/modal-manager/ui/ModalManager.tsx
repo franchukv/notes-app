@@ -1,3 +1,5 @@
+import { motion, AnimatePresence } from 'motion/react';
+import { createPortal } from 'react-dom';
 import { closeModal, selectActiveModal } from '../model/modalSlice';
 import { ConfirmDeleteNoteModal } from '@/features/delete-note';
 import { ConfirmArchiveNoteModal } from '@/features/archive-note';
@@ -7,17 +9,14 @@ import { useAppDispatch, useAppSelector } from '@/shared/lib';
 export const ModalManager = () => {
   const dispatch = useAppDispatch();
   const activeModal = useAppSelector(selectActiveModal);
+  let content: React.ReactNode;
 
   const handleClose = () => {
     dispatch(closeModal());
   };
 
-  if (!activeModal) {
-    return null;
-  }
-
-  if (activeModal.modal === 'confirm-delete-note') {
-    return (
+  if (activeModal?.modal === 'confirm-delete-note') {
+    content = (
       <ConfirmDeleteNoteModal
         isOpen
         onClose={handleClose}
@@ -28,8 +27,8 @@ export const ModalManager = () => {
     );
   }
 
-  if (activeModal.modal === 'confirm-delete-tag') {
-    return (
+  if (activeModal?.modal === 'confirm-delete-tag') {
+    content = (
       <ConfirmDeleteTagModal
         isOpen
         onClose={handleClose}
@@ -40,8 +39,8 @@ export const ModalManager = () => {
     );
   }
 
-  if (activeModal.modal === 'confirm-archive-note') {
-    return (
+  if (activeModal?.modal === 'confirm-archive-note') {
+    content = (
       <ConfirmArchiveNoteModal
         isOpen
         onClose={handleClose}
@@ -51,4 +50,22 @@ export const ModalManager = () => {
       />
     );
   }
+
+  return createPortal(
+    <AnimatePresence>
+      {activeModal && (
+        <motion.div
+          key="overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="overlay"
+          onClick={handleClose}
+        >
+          {content}
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body,
+  );
 };
