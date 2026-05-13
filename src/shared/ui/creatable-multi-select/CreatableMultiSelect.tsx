@@ -113,6 +113,7 @@ export const CreatableMultiSelect = <T extends FieldValues>({
             ClearIndicator,
             DropdownIndicator,
           }}
+          noOptionsMessage={() => 'There are no tags, create a new one'}
         />
       )}
     />
