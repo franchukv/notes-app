@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { z } from 'zod';
 import cn from 'classnames';
 import { useForm } from 'react-hook-form';
@@ -6,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { noteSchema, useCreateNoteMutation } from '@/entities/note';
 import { selectUserId } from '@/entities/user';
 import { useGetTagsQuery, type Tag } from '@/entities/tag';
-import { useAppSelector, useToast } from '@/shared/lib';
+import { useAppSelector, useNavigationGuard, useToast } from '@/shared/lib';
 import { Button, CreatableMultiSelect, Editor, Hint } from '@/shared/ui';
 import { selectIsDesktop } from '@/shared/model';
 import TagIcon from '@/shared/assets/icons/tag-icon.svg?react';
@@ -25,6 +26,7 @@ export const CreateNoteForm = ({
   parentUrl,
   defaultTag,
 }: CreateNoteFormProps) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const { showToast } = useToast();
 
@@ -35,7 +37,8 @@ export const CreateNoteForm = ({
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    reset,
+    formState: { errors, dirtyFields },
   } = useForm<CreateNoteFormData>({
     resolver: zodResolver(noteSchema),
     defaultValues: {
@@ -59,7 +62,8 @@ export const CreateNoteForm = ({
   };
 
   const onSubmit = async ({ title, tags, content }: CreateNoteFormData) => {
-    console.log(content === '<p></p>');
+    setIsSubmitting(true);
+
     const { data, error } = await createNote({
       userId: userId!,
       tags: tags ? tags.map((tag) => tag.label) : [],
@@ -69,14 +73,20 @@ export const CreateNoteForm = ({
 
     if (error) {
       showToast({ message: 'Failed to save note.', type: 'error' });
+      setIsSubmitting(false);
       return;
     }
 
+    reset({}, { keepValues: true });
     showToast({ message: 'Note saved successfully!' });
     navigate(
       tagSlug ? `/tags/${tagSlug}/${data?.slug}` : `/notes/${data?.slug}`,
     );
+
+    setIsSubmitting(false);
   };
+
+  useNavigationGuard(Object.keys(dirtyFields).length > 0 && !isSubmitting);
 
   return (
     <form

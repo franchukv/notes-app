@@ -24,6 +24,7 @@ export const useThemes = ({
       applyColorTheme(media.matches);
 
       media.addEventListener('change', (e) => applyColorTheme(e.matches));
+
       return () =>
         media.removeEventListener('change', (e) => applyColorTheme(e.matches));
     }

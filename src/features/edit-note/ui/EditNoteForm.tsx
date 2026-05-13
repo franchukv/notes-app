@@ -5,11 +5,17 @@ import { useNavigate } from 'react-router';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { noteSchema, useUpdateNoteMutation, type Note } from '@/entities/note';
 import { useGetTagsQuery } from '@/entities/tag';
-import { formatDate, useAppSelector, useToast } from '@/shared/lib';
+import {
+  formatDate,
+  useAppSelector,
+  useNavigationGuard,
+  useToast,
+} from '@/shared/lib';
 import { Button, CreatableMultiSelect, Editor, Hint } from '@/shared/ui';
 import { selectIsDesktop } from '@/shared/model';
 import TagIcon from '@/shared/assets/icons/tag-icon.svg?react';
 import ClockIcon from '@/shared/assets/icons/clock-icon.svg?react';
+import { useState } from 'react';
 
 interface EditNoteFormProps {
   note: Note;
@@ -19,6 +25,7 @@ interface EditNoteFormProps {
 type EditNoteFormData = z.infer<typeof noteSchema>;
 
 export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const { showToast } = useToast();
 
@@ -28,7 +35,8 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    reset,
+    formState: { errors, dirtyFields },
   } = useForm<EditNoteFormData>({
     resolver: zodResolver(noteSchema),
     defaultValues: {
@@ -52,6 +60,8 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
   };
 
   const onSubmit = async ({ title, tags, content }: EditNoteFormData) => {
+    setIsSubmitting(true);
+
     const { error } = await updateNote({
       id: note.id,
       tags: tags ? tags.map((tag) => tag.label) : [],
@@ -61,12 +71,17 @@ export const EditNoteForm = ({ note, parentUrl }: EditNoteFormProps) => {
 
     if (error) {
       showToast({ message: 'Failed to edit note.', type: 'error' });
+      setIsSubmitting(false);
       return;
     }
 
+    reset();
     showToast({ message: 'Note saved successfully!' });
     navigate(`/notes/${note.slug}`);
+    setIsSubmitting(false);
   };
+
+  useNavigationGuard(Object.keys(dirtyFields).length > 0 && !isSubmitting);
 
   return (
     <form

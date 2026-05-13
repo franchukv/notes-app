@@ -12,7 +12,7 @@ export const EditNotePage = () => {
 
   const isDesktop = useAppSelector(selectIsDesktop);
 
-  const parentUrl = tagSlug ? `/tags/${tagSlug}` : '/notes';
+  const parentUrl = tagSlug ? `/tags/${tagSlug}` : `/notes/${noteSlug}`;
 
   const {
     data: note,

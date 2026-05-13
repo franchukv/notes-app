@@ -6,7 +6,7 @@ import {
   useChangePasswordMutation,
 } from '@/entities/user';
 import { Button, InputField } from '@/shared/ui';
-import { isApiError, useToast } from '@/shared/lib';
+import { isApiError, useNavigationGuard, useToast } from '@/shared/lib';
 
 type ChangePasswordFormData = z.infer<typeof changePasswordSchema>;
 
@@ -17,7 +17,7 @@ export const ChangePasswordForm = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useForm<ChangePasswordFormData>({
     resolver: zodResolver(changePasswordSchema),
   });
@@ -39,6 +39,8 @@ export const ChangePasswordForm = () => {
     reset();
     showToast({ message: 'Password changed successfully!' });
   };
+
+  useNavigationGuard(Object.keys(dirtyFields).length > 0);
 
   return (
     <form
