@@ -1,17 +1,10 @@
-import { useMatches, type UIMatch } from 'react-router';
 import { ActionBarWidget } from '@/widgets/action-bar';
 import { UpdateFontThemeForm } from '@/features/update-font-theme';
-import { useAppSelector, useTitles } from '@/shared/lib';
+import { useAppSelector } from '@/shared/lib';
 import { selectIsDesktop } from '@/shared/model';
 
 export const SettingsFontThemePage = () => {
-  const matches = useMatches() as UIMatch<unknown, { title?: string }>[];
-
   const isDesktop = useAppSelector(selectIsDesktop);
-
-  const documentTitle = matches[matches.length - 1].handle?.title;
-
-  useTitles({ documentTitle, headerTitle: 'Settings', priority: 1 });
 
   return (
     <div className="py-5 w-full lg:max-w-142">
