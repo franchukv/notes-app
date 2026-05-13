@@ -112,31 +112,11 @@ export const noteApi = supabaseApi.injectEndpoints({
     }),
     getNotesByTagSlug: build.query<Note[], NoteSlugArgs>({
       queryFn: async ({ slug }) => {
-        const { data: noteTags, error: noteTagsError } = await supabase
-          .from('note_tags')
-          .select('note_id, tags!inner (slug)')
-          .eq('tags.slug', slug);
-
-        if (noteTagsError) {
-          return {
-            error: {
-              status: noteTagsError.code,
-              data: { message: noteTagsError.message },
-            },
-          };
-        }
-
-        const noteIds = noteTags.map((nt) => nt.note_id);
-
-        if (noteIds.length === 0) {
-          return { data: [] };
-        }
-
         const { data, error } = await supabase
           .from('notes')
-          .select(`*, note_tags ( tags (*) )`)
-          .in('id', noteIds)
-          .eq('is_archived', false);
+          .select('*, note_tags!inner(tags!inner(*))')
+          .eq('is_archived', false)
+          .eq('note_tags.tags.slug', slug);
 
         if (error) {
           return {
