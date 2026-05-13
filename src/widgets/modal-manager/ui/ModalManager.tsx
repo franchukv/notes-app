@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { closeModal, selectActiveModal } from '../model/modalSlice';
 import { ConfirmDeleteNoteModal } from '@/features/delete-note';
 import { ConfirmArchiveNoteModal } from '@/features/archive-note';
@@ -8,9 +9,9 @@ export const ModalManager = () => {
   const dispatch = useAppDispatch();
   const activeModal = useAppSelector(selectActiveModal);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     dispatch(closeModal());
-  };
+  }, [dispatch]);
 
   if (!activeModal) {
     return null;
