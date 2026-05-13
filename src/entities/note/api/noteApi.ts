@@ -201,7 +201,7 @@ export const noteApi = supabaseApi.injectEndpoints({
           .from('notes')
           .update({ is_archived: !isArchived })
           .eq('id', id)
-          .select()
+          .select('*, note_tags(tags(*))')
           .single();
 
         if (error) {
