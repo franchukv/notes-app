@@ -7,7 +7,7 @@ import HomeIcon from '@/shared/assets/icons/home-icon.svg?react';
 import ArchiveIcon from '@/shared/assets/icons/archive-icon.svg?react';
 
 export const Sidebar = () => {
-  const { data: tags } = useGetTagsQuery();
+  const { data: tags, isLoading } = useGetTagsQuery();
 
   return (
     <aside className="w-full min-h-dvh max-h-dvh py-3 px-4 flex flex-col border-r border-neutral-200 overflow-auto lg:max-w-60 xl:max-w-67.5 dark:border-neutral-800">
@@ -25,7 +25,7 @@ export const Sidebar = () => {
         </NavigationButton>
       </nav>
 
-      <TagsList title="Tags" tags={tags ?? []} />
+      <TagsList title="Tags" tags={tags ?? []} isLoading={isLoading} />
     </aside>
   );
 };
