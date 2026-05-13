@@ -1,8 +1,10 @@
+import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router';
 import { NoteItem, SkeletonNoteItem, type Note } from '@/entities/note';
 import { Button } from '@/shared/ui';
 import { selectIsDesktop } from '@/shared/model';
 import { useAppSelector } from '@/shared/lib';
+import { itemVariants, listVariants } from '@/shared/lib/animations';
 import PlusIcon from '@/shared/assets/icons/plus-icon.svg?react';
 
 interface NotesListProps {
@@ -40,30 +42,47 @@ export const NotesList = ({
 
           {children}
 
-          {isLoading ? (
-            <div className="flex flex-col">
-              <SkeletonNoteItem />
-              <SkeletonNoteItem />
-              <SkeletonNoteItem />
-              <SkeletonNoteItem />
-              <SkeletonNoteItem />
-            </div>
-          ) : (
-            <>
-              {notes.length > 0 && (
-                <div className="flex flex-col">
-                  {notes.map((note) => (
-                    <NoteItem
-                      key={note.id}
-                      parentUrl={parentUrl}
-                      query={query}
-                      {...note}
-                    />
+          <div className="flex flex-col">
+            <AnimatePresence mode="wait">
+              {isLoading ? (
+                <motion.div
+                  key="skeletons"
+                  variants={listVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                >
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <motion.div key={index} variants={itemVariants}>
+                      <SkeletonNoteItem key={index} />
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
+              ) : (
+                <>
+                  {notes.length > 0 && (
+                    <motion.div
+                      key="items"
+                      variants={listVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                    >
+                      {notes.map((note) => (
+                        <motion.div key={note.id} variants={itemVariants}>
+                          <NoteItem
+                            parentUrl={parentUrl}
+                            query={query}
+                            {...note}
+                          />
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                  )}
+                </>
               )}
-            </>
-          )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </div>
