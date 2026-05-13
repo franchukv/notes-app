@@ -12,6 +12,8 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
       return;
     }
 
+    document.body.style.overflow = 'hidden';
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
@@ -21,7 +23,8 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      return document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
     };
   }, [isOpen, onClose]);
 
