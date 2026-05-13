@@ -46,26 +46,9 @@ export const profileApi = supabaseApi.injectEndpoints({
     }),
     updateProfileSettings: build.mutation<Profile, UpdateProfileSettingsArgs>({
       queryFn: async ({ userId, settings }) => {
-        const { data: current, error: fetchError } = await supabase
-          .from('profiles')
-          .select('settings')
-          .eq('id', userId)
-          .single();
-
-        if (fetchError) {
-          return {
-            error: {
-              status: fetchError.code,
-              data: { message: fetchError.message },
-            },
-          };
-        }
-
-        const merged = { ...current.settings, ...settings };
-
         const { data, error } = await supabase
           .from('profiles')
-          .update({ settings: merged })
+          .update({ settings })
           .eq('id', userId)
           .select('id, settings')
           .single();
