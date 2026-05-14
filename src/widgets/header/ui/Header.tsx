@@ -41,7 +41,7 @@ export const Header = () => {
             {title}
           </span>
 
-          <SearchForm />
+          <SearchForm defaultValue={query} />
 
           <Link
             to="/settings"

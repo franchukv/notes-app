@@ -1,43 +1,51 @@
+import { useEffect, useState, type ChangeEvent } from 'react';
 import cn from 'classnames';
-import type z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import { searchSchema } from '../model/validation/search-schema';
 import { InputField } from '@/shared/ui';
 import SearchIcon from '@/shared/assets/icons/search-icon.svg?react';
+import { useDebounce } from '@/shared/lib/hooks';
 
 interface SearchFormProps {
   className?: string;
   defaultValue?: string;
 }
 
-type SearchFormData = z.infer<typeof searchSchema>;
-
-export const SearchForm = ({ className, defaultValue }: SearchFormProps) => {
+export const SearchForm = ({
+  className,
+  defaultValue = '',
+}: SearchFormProps) => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<SearchFormData>({
-    resolver: zodResolver(searchSchema),
-    defaultValues: {
-      search: defaultValue,
-    },
-  });
+  const [value, setValue] = useState(defaultValue);
+  const debouncedValue = useDebounce({ value: value.trim() });
 
-  const onSubmit = async ({ search }: SearchFormData) => {
-    navigate(`/search?q=${encodeURIComponent(search)}`);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
   };
+
+  const handleSubmit = (e: React.SubmitEvent) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    navigate(
+      debouncedValue
+        ? `/search?q=${encodeURIComponent(debouncedValue)}`
+        : '/search',
+    );
+  }, [navigate, debouncedValue]);
 
   return (
     <form
       className={cn('max-w-75 w-full relative', className)}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit}
     >
       <SearchIcon className="absolute left-4 top-3 z-1 text-neutral-500" />
+
       <InputField
-        register={register('search')}
+        value={value}
+        onChange={handleChange}
         type="search"
         placeholder="Search by title or content..."
-        required
         className="pl-11"
       />
     </form>

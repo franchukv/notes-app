@@ -6,7 +6,7 @@ import Eye from '../../assets/icons/eye-icon.svg?react';
 import EyeClosed from '../../assets/icons/eye-closed-icon.svg?react';
 
 interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-  register: UseFormRegisterReturn;
+  register?: UseFormRegisterReturn;
   extraLink?: React.ReactNode;
   title?: string;
   hint?: string;

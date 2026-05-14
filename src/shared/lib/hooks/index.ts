@@ -4,3 +4,4 @@ export { useTitles } from './useTitles';
 export { useDeviceType } from './useDeviceType';
 export { useToast } from './useToast';
 export { useNavigationGuard } from './useNavigationGuard';
+export { useDebounce } from './useDebounce';
