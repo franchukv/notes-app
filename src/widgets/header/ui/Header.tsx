@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import cn from 'classnames';
 import { Link, useLocation, useParams, useSearchParams } from 'react-router';
 import { SearchForm } from '@/features/search';
@@ -20,7 +21,11 @@ export const Header = () => {
   const isSettingsPage = pathname.includes('/settings');
 
   return (
-    <header className="w-full py-3 px-4 flex items-center gap-4 sm:py-6 sm:px-8 lg:py-4.5 lg:border-b lg:border-neutral-200 dark:lg:border-neutral-800">
+    <motion.header
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="w-full py-3 px-4 flex items-center gap-4 sm:py-6 sm:px-8 lg:py-4.5 lg:border-b lg:border-neutral-200 dark:lg:border-neutral-800"
+    >
       {!isDesktop ? (
         <Link to="/notes">
           <Logo />
@@ -55,6 +60,6 @@ export const Header = () => {
           </Link>
         </>
       )}
-    </header>
+    </motion.header>
   );
 };

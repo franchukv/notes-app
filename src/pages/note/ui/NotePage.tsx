@@ -45,17 +45,13 @@ export const NotePage = () => {
   });
 
   return (
-    <div className="w-full flex">
-      <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait">
+      <div className="w-full flex">
         <div className="h-full w-full py-5 flex flex-col lg:border-r lg:border-neutral-200 lg:max-w-[calc(100%-(180px))] xl:max-w-[calc(100%-290px)] dark:lg:border-neutral-800">
           <div className="custom-container h-full flex">
             <div className="w-full flex flex-col gap-3 sm:gap-4">
               {!isDesktop && (
-                <motion.div
-                  key="action-bar"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                   <ActionBarWidget parentUrl={parentUrl}>
                     {isSuccess && (
                       <NoteActionsWidget parentUrl={parentUrl} note={note} />
@@ -70,7 +66,6 @@ export const NotePage = () => {
                 <SkeletonNoteContent isArchivedNote={isArchivedNote} />
               ) : (
                 <motion.div
-                  key="not-found"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
@@ -97,7 +92,7 @@ export const NotePage = () => {
             </div>
           </aside>
         )}
-      </AnimatePresence>
-    </div>
+      </div>
+    </AnimatePresence>
   );
 };

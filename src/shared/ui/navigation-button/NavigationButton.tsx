@@ -22,7 +22,7 @@ export const NavigationButton = ({
           'w-full py-2.5 px-3 flex items-center gap-2 text-preset-4 rounded-lg transition-all duration-300 hover:bg-neutral-100 active:bg-neutral-100 hover:text-neutral-600 active:text-neutral-600 dark:hover:bg-neutral-800 dark:active:bg-neutral-800',
           className,
           isActive &&
-            'bg-neutral-100 text-neutral-950! [&>svg]:text-blue-500 cursor-default dark:bg-neutral-800 dark:text-white!',
+            'bg-neutral-100 text-neutral-950! [&>svg]:text-blue-500 pointer-events-none dark:bg-neutral-800 dark:text-white!',
         )
       }
     >

@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import React from 'react';
 import cn from 'classnames';
 import { NavLink } from 'react-router';
@@ -21,7 +22,11 @@ export const BottomNavigationBar = () => {
   const isMobile = useAppSelector(selectIsMobile);
 
   return (
-    <nav className="fixed bottom-0 left-0 w-full py-3 px-4 grid grid-cols-5 bg-white border-t border-neutral-200 shadow-[0_-4px_6px_0_rgba(240,240,240,0.6)] sm:px-8 sm:grid-cols-9 dark:bg-neutral-950 dark:border-neutral-800 dark:shadow-[0_-4px_6px_0_rgba(0,0,0,0.5)]">
+    <motion.nav
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="fixed bottom-0 left-0 w-full py-3 px-4 grid grid-cols-5 bg-white border-t border-neutral-200 shadow-[0_-4px_6px_0_rgba(240,240,240,0.6)] sm:px-8 sm:grid-cols-9 dark:bg-neutral-950 dark:border-neutral-800 dark:shadow-[0_-4px_6px_0_rgba(0,0,0,0.5)]"
+    >
       {buttons.map((button, index) => (
         <React.Fragment key={button.text}>
           <NavLink
@@ -44,6 +49,6 @@ export const BottomNavigationBar = () => {
           )}
         </React.Fragment>
       ))}
-    </nav>
+    </motion.nav>
   );
 };

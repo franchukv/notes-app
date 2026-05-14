@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import { Link } from 'react-router';
 import { TagsList } from '../@x/TagsList';
 import { useGetTagsQuery } from '@/entities/tag';
@@ -10,7 +11,11 @@ export const Sidebar = () => {
   const { data: tags, isLoading } = useGetTagsQuery();
 
   return (
-    <aside className="w-full min-h-dvh max-h-dvh py-3 px-4 flex flex-col border-r border-neutral-200 overflow-auto lg:max-w-60 xl:max-w-67.5 dark:border-neutral-800">
+    <motion.aside
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="w-full min-h-dvh max-h-dvh py-3 px-4 flex flex-col border-r border-neutral-200 overflow-auto lg:max-w-60 xl:max-w-67.5 dark:border-neutral-800"
+    >
       <Link to="/notes" className="my-3">
         <Logo />
       </Link>
@@ -26,6 +31,6 @@ export const Sidebar = () => {
       </nav>
 
       <TagsList title="Tags" tags={tags ?? []} isLoading={isLoading} />
-    </aside>
+    </motion.aside>
   );
 };

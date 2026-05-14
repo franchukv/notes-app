@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import { useNavigate, useParams } from 'react-router';
 import { ActionBarWidget } from '@/widgets/action-bar';
 import { CreateNoteForm } from '@/features/create-note';
@@ -20,7 +21,11 @@ export const CreateNotePage = () => {
   );
 
   return (
-    <div className="w-full py-5 flex lg:border-r lg:border-neutral-200 lg:max-w-[calc(100%-(240px+180px))] xl:max-w-[calc(100%-(290px*2))] dark:lg:border-neutral-800">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="w-full py-5 flex lg:border-r lg:border-neutral-200 lg:max-w-[calc(100%-(240px+180px))] xl:max-w-[calc(100%-(290px*2))] dark:lg:border-neutral-800"
+    >
       <div className="custom-container">
         <div className="h-full flex flex-col gap-3 sm:gap-4">
           {!isDesktop && (
@@ -50,6 +55,6 @@ export const CreateNotePage = () => {
           />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
