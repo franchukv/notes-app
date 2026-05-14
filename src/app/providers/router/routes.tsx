@@ -132,6 +132,10 @@ export const routes = [
                   },
                 ],
               },
+              {
+                path: '*',
+                Component: NotFoundPage,
+              },
             ],
           },
         ],
@@ -164,11 +168,6 @@ export const routes = [
             },
           },
         ],
-      },
-      {
-        path: '*',
-        Component: NotFoundPage,
-        handle: { title: 'Page not found' },
       },
     ],
   },
