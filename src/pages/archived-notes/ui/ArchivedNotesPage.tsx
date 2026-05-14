@@ -31,7 +31,7 @@ export const ArchivedNotesPage = () => {
           </p>
 
           {isSuccess && notes.length === 0 && (
-            <Notice key="notice">No notes have been archived yet.</Notice>
+            <Notice>No notes have been archived yet.</Notice>
           )}
         </NotesList>
       )}

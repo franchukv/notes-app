@@ -102,13 +102,13 @@ export const TagPage = () => {
                       All notes with the "{tag.name}" tag are shown here.
                     </p>
                   ) : (
-                    <Notice key="notice">
+                    <Notice>
                       You don’t have any notes with "{tag.name}" tag yet.
                     </Notice>
                   ))}
               </>
             ) : (
-              <Notice key="notice">Tag not found.</Notice>
+              <Notice>Tag not found.</Notice>
             ))}
         </NotesList>
       )}

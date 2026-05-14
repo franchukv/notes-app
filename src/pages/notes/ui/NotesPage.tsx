@@ -21,7 +21,7 @@ export const NotesPage = () => {
           <h1 className="text-preset-1 lg:sr-only">All Notes</h1>
 
           {isSuccess && notes.length === 0 && (
-            <Notice key="notice">
+            <Notice>
               You don’t have any active notes yet. <br />
               Start a new note to capture your thoughts and ideas.
             </Notice>
