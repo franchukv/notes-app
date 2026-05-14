@@ -8,7 +8,7 @@ import { Notice } from '@/shared/ui';
 
 export const SearchPage = () => {
   const [searchParams] = useSearchParams();
-  const { pathname } = useLocation();
+  const { key, pathname } = useLocation();
 
   const isDesktop = useAppSelector(selectIsDesktop);
 
@@ -26,6 +26,7 @@ export const SearchPage = () => {
     <div className="min-h-full w-full flex">
       {(isDesktop || isRootPath) && (
         <NotesList
+          customKey={key}
           parentUrl="/search"
           query={query}
           notes={notes ?? []}
