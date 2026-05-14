@@ -26,7 +26,7 @@ export const TagsList = ({ title, tags, isLoading }: TagsListProps) => {
               animate="visible"
               exit="exit"
             >
-              {Array.from({ length: 10 }).map((_, index) => (
+              {Array.from({ length: 5 }).map((_, index) => (
                 <motion.div key={index} variants={itemVariants}>
                   <SkeletonTagButton key={index} />
                 </motion.div>
