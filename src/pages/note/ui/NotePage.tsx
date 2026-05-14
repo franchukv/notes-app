@@ -46,18 +46,24 @@ export const NotePage = () => {
 
   return (
     <div className="w-full flex">
-      <div className="h-full w-full py-5 flex flex-col lg:border-r lg:border-neutral-200 lg:max-w-[calc(100%-(180px))] xl:max-w-[calc(100%-290px)] dark:lg:border-neutral-800">
-        <div className="custom-container h-full flex">
-          <div className="w-full flex flex-col gap-3 sm:gap-4">
-            {!isDesktop && (
-              <ActionBarWidget parentUrl={parentUrl}>
-                {isSuccess && (
-                  <NoteActionsWidget parentUrl={parentUrl} note={note} />
-                )}
-              </ActionBarWidget>
-            )}
+      <AnimatePresence mode="wait">
+        <div className="h-full w-full py-5 flex flex-col lg:border-r lg:border-neutral-200 lg:max-w-[calc(100%-(180px))] xl:max-w-[calc(100%-290px)] dark:lg:border-neutral-800">
+          <div className="custom-container h-full flex">
+            <div className="w-full flex flex-col gap-3 sm:gap-4">
+              {!isDesktop && (
+                <motion.div
+                  key="action-bar"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  <ActionBarWidget parentUrl={parentUrl}>
+                    {isSuccess && (
+                      <NoteActionsWidget parentUrl={parentUrl} note={note} />
+                    )}
+                  </ActionBarWidget>
+                </motion.div>
+              )}
 
-            <AnimatePresence mode="wait">
               {isSuccess ? (
                 <NoteContent note={note} />
               ) : isLoading ? (
@@ -73,20 +79,25 @@ export const NotePage = () => {
                   Note not found
                 </motion.div>
               )}
-            </AnimatePresence>
-          </div>
-        </div>
-      </div>
-
-      {isDesktop && isSuccess && (
-        <aside className="h-full w-full py-5 flex flex-col gap-3 lg:max-w-45 xl:max-w-72.5">
-          <div className="custom-container">
-            <div className="flex flex-col gap-3">
-              <NoteActionsWidget parentUrl={parentUrl} note={note} />
             </div>
           </div>
-        </aside>
-      )}
+        </div>
+
+        {isDesktop && isSuccess && (
+          <aside className="h-full w-full py-5 flex flex-col gap-3 lg:max-w-45 xl:max-w-72.5">
+            <div className="custom-container">
+              <motion.div
+                key="action-buttons"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex flex-col gap-3"
+              >
+                <NoteActionsWidget parentUrl={parentUrl} note={note} />
+              </motion.div>
+            </div>
+          </aside>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
