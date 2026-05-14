@@ -18,7 +18,7 @@ export const NotFoundPage = () => {
 
           <h2 className="text-preset-2 sm:text-preset-1">Page not found</h2>
 
-          <p className="text-preset-4 sm:text-preset-3 font-normal leading-[150%]">
+          <p className="text-preset-4 sm:text-preset-3 font-normal! leading-[150%] text-neutral-700 dark:text-neutral-200">
             The page you are looking for does not exist or may have been moved.
             <br />
             Try returning to the main page or checking the URL.
