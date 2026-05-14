@@ -27,7 +27,7 @@ export const Button = <T extends ElementType = 'button'>({
   const classNames = cn(
     'flex items-center justify-center gap-2 text-center transition-all duration-300 cursor-pointer disabled:pointer-events-none [&>svg]:h-5 [&>svg]:w-5',
     !variant.includes('link')
-      ? 'min-w-32.5 min-h-11.5 py-3 px-4 text-preset-4 rounded-lg border focus-visible:bg-blue-500 disabled:bg-neutral-100 disabled:text-neutral-300! disabled:border-neutral-100! dark:disabled:bg-neutral-700 dark:disabled:border-neutral-700!'
+      ? 'min-w-22.5 min-h-11.5 py-3 px-4 text-preset-4 rounded-lg border focus-visible:bg-blue-500 disabled:bg-neutral-100 disabled:text-neutral-300! disabled:border-neutral-100! dark:disabled:bg-neutral-700 dark:disabled:border-neutral-700! min-[340px]:min-w-32.5'
       : 'text-preset-5',
     variant === 'primary' &&
       'text-white bg-blue-500 border-blue-500 not-focus-visible:hover:bg-blue-700 not-focus-visible:hover:border-blue-700 not-focus-visible:active:border-blue-700 not-focus-visible:active:bg-blue-700',
