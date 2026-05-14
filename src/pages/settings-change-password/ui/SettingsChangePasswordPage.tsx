@@ -7,7 +7,7 @@ import { selectIsDesktop } from '@/shared/model';
 export const SettingsChangePasswordPage = () => {
   const isDesktop = useAppSelector(selectIsDesktop);
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -32,6 +32,6 @@ export const SettingsChangePasswordPage = () => {
           <ChangePasswordForm />
         </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };

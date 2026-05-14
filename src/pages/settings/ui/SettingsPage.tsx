@@ -19,7 +19,7 @@ export const SettingsPage = () => {
   const [logout] = useLogoutMutation();
 
   return (
-    <div className="min-h-full w-full flex">
+    <section className="min-h-full w-full flex">
       {(isDesktop || isRootPath) && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -31,7 +31,7 @@ export const SettingsPage = () => {
               <h1 className="text-preset-1 lg:sr-only">Settings</h1>
 
               <div className="flex flex-col gap-2">
-                <div className="flex flex-col gap-2">
+                <nav className="flex flex-col gap-2">
                   <NavigationButton to="/settings/color-theme">
                     <SunIcon /> Color Theme
                   </NavigationButton>
@@ -43,7 +43,7 @@ export const SettingsPage = () => {
                   <NavigationButton to="/settings/change-password">
                     <LockIcon /> Change Password
                   </NavigationButton>
-                </div>
+                </nav>
 
                 <div className="pt-2 flex flex-col gap-2 border-t border-neutral-200 dark:border-neutral-800 ">
                   <Button
@@ -65,6 +65,6 @@ export const SettingsPage = () => {
           <Outlet />
         </AnimatePresence>
       )}
-    </div>
+    </section>
   );
 };

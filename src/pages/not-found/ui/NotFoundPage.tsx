@@ -7,7 +7,7 @@ export const NotFoundPage = () => {
   useTitles({ documentTitle: 'Page not found', headerTitle: '' });
 
   return (
-    <div className="py-5 h-full">
+    <section className="py-5 h-full">
       <div className="custom-container h-full">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -34,6 +34,6 @@ export const NotFoundPage = () => {
           </Button>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };

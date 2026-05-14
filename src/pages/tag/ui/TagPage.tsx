@@ -51,7 +51,7 @@ export const TagPage = () => {
   };
 
   return (
-    <div
+    <section
       className={cn(
         'min-h-full w-full flex overflow-auto',
         !isDesktop && !noteSlug && 'max-lg:pt-5 max-lg:flex-col',
@@ -114,6 +114,6 @@ export const TagPage = () => {
       )}
 
       {(isDesktop || noteSlug || isCreateNewNotePage) && <Outlet />}
-    </div>
+    </section>
   );
 };

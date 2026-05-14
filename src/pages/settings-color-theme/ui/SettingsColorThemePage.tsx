@@ -8,7 +8,7 @@ export const SettingsColorThemePage = () => {
   const isDesktop = useAppSelector(selectIsDesktop);
 
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -37,6 +37,6 @@ export const SettingsColorThemePage = () => {
           <UpdateColorThemeForm />
         </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };

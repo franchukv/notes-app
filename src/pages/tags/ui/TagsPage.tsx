@@ -18,11 +18,11 @@ export const TagsPage = () => {
   return (
     <>
       {!isDesktop && !tagSlug ? (
-        <div className="py-5">
+        <section className="py-5">
           <div className="custom-container">
             <TagsList title="Tags" tags={tags ?? []} isLoading={isLoading} />
           </div>
-        </div>
+        </section>
       ) : (
         <Outlet />
       )}

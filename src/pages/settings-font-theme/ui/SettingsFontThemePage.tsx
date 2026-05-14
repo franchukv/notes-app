@@ -8,7 +8,7 @@ export const SettingsFontThemePage = () => {
   const isDesktop = useAppSelector(selectIsDesktop);
 
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="py-5 w-full lg:max-w-142"
@@ -36,6 +36,6 @@ export const SettingsFontThemePage = () => {
           <UpdateFontThemeForm />
         </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };

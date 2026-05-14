@@ -23,7 +23,7 @@ export const FormLayout = ({
       )}
     >
       {(icon || title || description) && (
-        <header className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4">
           {icon}
 
           <div className="flex flex-col items-center gap-2 text-center">
@@ -35,7 +35,7 @@ export const FormLayout = ({
               </p>
             )}
           </div>
-        </header>
+        </div>
       )}
 
       <div className="flex flex-col items-center gap-4">{children}</div>

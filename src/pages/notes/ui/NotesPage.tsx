@@ -15,7 +15,7 @@ export const NotesPage = () => {
   const { data: notes, isLoading, isSuccess } = useGetNotArchivedNotesQuery();
 
   return (
-    <div className="min-h-full w-full flex">
+    <section className="min-h-full w-full flex">
       {(isDesktop || isRootPath) && (
         <NotesList parentUrl="/notes" notes={notes ?? []} isLoading={isLoading}>
           <h1 className="text-preset-1 lg:sr-only">All Notes</h1>
@@ -30,6 +30,6 @@ export const NotesPage = () => {
       )}
 
       {(isDesktop || !isRootPath) && <Outlet />}
-    </div>
+    </section>
   );
 };

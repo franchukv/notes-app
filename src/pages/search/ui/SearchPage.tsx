@@ -23,7 +23,7 @@ export const SearchPage = () => {
   });
 
   return (
-    <div className="min-h-full w-full flex">
+    <section className="min-h-full w-full flex">
       {(isDesktop || isRootPath) && (
         <NotesList
           customKey={key}
@@ -77,6 +77,6 @@ export const SearchPage = () => {
       )}
 
       {(isDesktop || !isRootPath) && <Outlet />}
-    </div>
+    </section>
   );
 };

@@ -15,7 +15,7 @@ export const ArchivedNotesPage = () => {
   const { data: notes, isLoading, isSuccess } = useGetArchivedNotesQuery();
 
   return (
-    <div className="min-h-full w-full flex">
+    <section className="min-h-full w-full flex">
       {(isDesktop || isRootPath) && (
         <NotesList
           parentUrl="/archived-notes"
@@ -37,6 +37,6 @@ export const ArchivedNotesPage = () => {
       )}
 
       {(isDesktop || !isRootPath) && <Outlet />}
-    </div>
+    </section>
   );
 };

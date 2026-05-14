@@ -24,7 +24,7 @@ export const EditNotePage = () => {
   });
 
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="w-full py-5 flex lg:border-r lg:border-neutral-200 lg:max-w-[calc(100%-(240px+180px))] xl:max-w-[calc(100%-(290px*2))] dark:lg:border-neutral-800"
@@ -59,6 +59,6 @@ export const EditNotePage = () => {
           {isSuccess && <EditNoteForm note={note} parentUrl={parentUrl} />}
         </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };
