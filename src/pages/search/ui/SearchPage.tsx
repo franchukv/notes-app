@@ -15,7 +15,12 @@ export const SearchPage = () => {
   const query = searchParams.get('q')?.trim() ?? '';
   const isRootPath = pathname === '/search';
 
-  const { data: notes, isLoading, isSuccess } = useSearchNotesQuery({ query });
+  const {
+    data: notes,
+    isLoading,
+    isFetching,
+    isSuccess,
+  } = useSearchNotesQuery({ query });
 
   useTitles({
     documentTitle: 'Search',
@@ -30,7 +35,7 @@ export const SearchPage = () => {
           parentUrl="/search"
           query={query}
           notes={notes ?? []}
-          isLoading={isLoading}
+          isLoading={isLoading || isFetching}
           hasCreateNewNoteButton={false}
         >
           <h1 className="text-preset-1 lg:sr-only">

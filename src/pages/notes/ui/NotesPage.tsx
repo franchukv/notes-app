@@ -12,12 +12,21 @@ export const NotesPage = () => {
 
   const isRootPath = pathname === '/notes';
 
-  const { data: notes, isLoading, isSuccess } = useGetNotArchivedNotesQuery();
+  const {
+    data: notes,
+    isLoading,
+    isFetching,
+    isSuccess,
+  } = useGetNotArchivedNotesQuery();
 
   return (
     <section className="min-h-full w-full flex">
       {(isDesktop || isRootPath) && (
-        <NotesList parentUrl="/notes" notes={notes ?? []} isLoading={isLoading}>
+        <NotesList
+          parentUrl="/notes"
+          notes={notes ?? []}
+          isLoading={isLoading || isFetching}
+        >
           <h1 className="text-preset-1 lg:sr-only">All Notes</h1>
 
           {isSuccess && notes.length === 0 && (

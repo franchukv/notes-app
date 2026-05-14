@@ -12,7 +12,12 @@ export const ArchivedNotesPage = () => {
 
   const isRootPath = pathname === '/archived-notes';
 
-  const { data: notes, isLoading, isSuccess } = useGetArchivedNotesQuery();
+  const {
+    data: notes,
+    isLoading,
+    isFetching,
+    isSuccess,
+  } = useGetArchivedNotesQuery();
 
   return (
     <section className="min-h-full w-full flex">
@@ -21,7 +26,7 @@ export const ArchivedNotesPage = () => {
           parentUrl="/archived-notes"
           notes={notes ?? []}
           hasCreateNewNoteButton={false}
-          isLoading={isLoading}
+          isLoading={isLoading || isFetching}
         >
           <h1 className="text-preset-1 lg:sr-only">Archived Notes</h1>
 

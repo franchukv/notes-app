@@ -26,6 +26,7 @@ export const TagPage = () => {
   const {
     data: notes,
     isLoading: isNotesLoading,
+    isFetching: isNotesFetching,
     isSuccess: isNotesSuccess,
   } = useGetNotesByTagSlugQuery({ slug: tagSlug! });
 
@@ -73,7 +74,7 @@ export const TagPage = () => {
         <NotesList
           parentUrl={`/tags/${tagSlug}`}
           notes={notes ?? []}
-          isLoading={isNotesLoading || isTagLoading}
+          isLoading={isNotesLoading || isNotesFetching || isTagLoading}
           hasCreateNewNoteButton={!!tag}
         >
           {isDesktop && (
