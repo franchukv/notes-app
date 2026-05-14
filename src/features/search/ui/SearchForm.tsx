@@ -34,9 +34,7 @@ export const SearchForm = ({
   };
 
   useEffect(() => {
-    const wasSearchPage = wasSearchPageRef.current;
-
-    if (wasSearchPage && !isSearchPage) {
+    if (wasSearchPageRef.current && !isSearchPage) {
       skipRedirectRef.current = true;
       setValue('');
     }
