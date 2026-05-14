@@ -5,8 +5,8 @@ export const listVariants = {
   visible: {
     opacity: 1,
     transition: {
-      delayChildren: 0.1,
-      staggerChildren: 0.1,
+      delayChildren: 0.05,
+      staggerChildren: 0.05,
     },
   },
   exit: {
@@ -27,6 +27,6 @@ export const itemVariants = {
   exit: {
     opacity: 0,
     x: 10,
-    transition: { duration: 0.1 },
+    transition: { duration: 0.05 },
   },
 };
