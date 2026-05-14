@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import { ActionBarWidget } from '@/widgets/action-bar';
 import { UpdateFontThemeForm } from '@/features/update-font-theme';
 import { useAppSelector } from '@/shared/lib';
@@ -7,7 +8,11 @@ export const SettingsFontThemePage = () => {
   const isDesktop = useAppSelector(selectIsDesktop);
 
   return (
-    <div className="py-5 w-full lg:max-w-142">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="py-5 w-full lg:max-w-142"
+    >
       <div className="custom-container">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-3">
@@ -31,6 +36,6 @@ export const SettingsFontThemePage = () => {
           <UpdateFontThemeForm />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

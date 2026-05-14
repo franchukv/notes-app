@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import { ActionBarWidget } from '@/widgets/action-bar';
 import { ChangePasswordForm } from '@/features/change-password';
 import { useAppSelector } from '@/shared/lib';
@@ -5,9 +6,13 @@ import { selectIsDesktop } from '@/shared/model';
 
 export const SettingsChangePasswordPage = () => {
   const isDesktop = useAppSelector(selectIsDesktop);
-
   return (
-    <div className="py-5 w-full lg:max-w-142">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="py-5 w-full lg:max-w-142"
+    >
       <div className="custom-container">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-3">
@@ -27,6 +32,6 @@ export const SettingsChangePasswordPage = () => {
           <ChangePasswordForm />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

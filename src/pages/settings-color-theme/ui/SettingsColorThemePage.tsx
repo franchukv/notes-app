@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import { ActionBarWidget } from '@/widgets/action-bar';
 import { UpdateColorThemeForm } from '@/features/update-color-theme';
 import { useAppSelector } from '@/shared/lib';
@@ -7,7 +8,12 @@ export const SettingsColorThemePage = () => {
   const isDesktop = useAppSelector(selectIsDesktop);
 
   return (
-    <div className="py-5 w-full lg:max-w-142">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="py-5 w-full lg:max-w-142"
+    >
       <div className="custom-container">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-3">
@@ -31,6 +37,6 @@ export const SettingsColorThemePage = () => {
           <UpdateColorThemeForm />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
