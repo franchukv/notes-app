@@ -29,7 +29,6 @@ export const SearchPage = () => {
   });
 
   if (isDesktop && isRootPath && !query) {
-    console.log('in');
     return <Navigate to="/notes" replace />;
   }
 
