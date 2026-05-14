@@ -27,11 +27,13 @@ export const SearchForm = ({
   };
 
   useEffect(() => {
-    navigate(
-      debouncedValue
-        ? `/search?q=${encodeURIComponent(debouncedValue)}`
-        : '/search',
-    );
+    if (debouncedValue) {
+      navigate(
+        debouncedValue.length > 0
+          ? `/search?q=${encodeURIComponent(debouncedValue)}`
+          : '/search',
+      );
+    }
   }, [navigate, debouncedValue]);
 
   return (

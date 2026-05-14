@@ -28,7 +28,8 @@ export const SearchPage = () => {
     headerTitle: query,
   });
 
-  if (isDesktop && !query) {
+  if (isDesktop && isRootPath && !query) {
+    console.log('in');
     return <Navigate to="/notes" replace />;
   }
 
