@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type ChangeEvent } from 'react';
+import {
+  useEffect,
+  useEffectEvent,
+  useRef,
+  useState,
+  type ChangeEvent,
+} from 'react';
 import cn from 'classnames';
 import { useLocation, useNavigate } from 'react-router';
 import { InputField } from '@/shared/ui';
@@ -33,43 +39,53 @@ export const SearchForm = ({
     e.preventDefault();
   };
 
-  useEffect(() => {
+  const resetSearchOnRouteLeave = useEffectEvent((isSearchPage: boolean) => {
     if (wasSearchPageRef.current && !isSearchPage) {
       skipRedirectRef.current = true;
       setValue('');
     }
 
     wasSearchPageRef.current = isSearchPage;
+  });
+
+  const updateSearchRouteFromQuery = useEffectEvent(
+    (debouncedValue: string, isSearchPage: boolean) => {
+      if (skipRedirectRef.current) {
+        skipRedirectRef.current = false;
+        return;
+      }
+
+      if (isSearchPage && !debouncedValue) {
+        navigate('/search', {
+          replace: true,
+        });
+
+        return;
+      }
+
+      if (!debouncedValue) {
+        return;
+      }
+
+      if (isSearchPage) {
+        navigate(`/search?q=${encodeURIComponent(debouncedValue)}`, {
+          replace: true,
+        });
+
+        return;
+      }
+
+      navigate(`/search?q=${encodeURIComponent(debouncedValue)}`);
+    },
+  );
+
+  useEffect(() => {
+    resetSearchOnRouteLeave(isSearchPage);
   }, [isSearchPage]);
 
   useEffect(() => {
-    if (skipRedirectRef.current) {
-      skipRedirectRef.current = false;
-      return;
-    }
-
-    if (isSearchPage && !debouncedValue) {
-      navigate('/search', {
-        replace: true,
-      });
-
-      return;
-    }
-
-    if (!debouncedValue) {
-      return;
-    }
-
-    if (isSearchPage) {
-      navigate(`/search?q=${encodeURIComponent(debouncedValue)}`, {
-        replace: true,
-      });
-
-      return;
-    }
-
-    navigate(`/search?q=${encodeURIComponent(debouncedValue)}`);
-  }, [debouncedValue, isSearchPage, navigate]);
+    updateSearchRouteFromQuery(debouncedValue, isSearchPage);
+  }, [debouncedValue, isSearchPage]);
 
   return (
     <form
