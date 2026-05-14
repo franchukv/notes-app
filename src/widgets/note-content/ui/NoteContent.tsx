@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import { motion } from 'motion/react';
 import type { Note } from '@/entities/note';
 import { formatDate } from '@/shared/lib';
@@ -62,7 +63,7 @@ export const NoteContent = ({ note }: NoteContentProps) => {
           animate={{ opacity: 1 }}
           className="typical-content"
           dangerouslySetInnerHTML={{
-            __html: content.replaceAll('&nbsp;', ' '),
+            __html: DOMPurify.sanitize(content.replaceAll('&nbsp;', ' ')),
           }}
         />
       ) : (
