@@ -1,22 +1,32 @@
-import { useEffect, useState, type ChangeEvent } from 'react';
+import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import cn from 'classnames';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { InputField } from '@/shared/ui';
 import SearchIcon from '@/shared/assets/icons/search-icon.svg?react';
-import { useDebounce } from '@/shared/lib/hooks';
+import { useAppSelector, useDebounce } from '@/shared/lib/hooks';
+import { selectIsDesktop } from '@/shared/model';
 
 interface SearchFormProps {
   className?: string;
   defaultValue?: string;
+  isSearchPage?: boolean;
 }
 
 export const SearchForm = ({
   className,
   defaultValue = '',
 }: SearchFormProps) => {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const [value, setValue] = useState(defaultValue);
   const debouncedValue = useDebounce({ value: value.trim() });
+
+  const isSearchPage = pathname.startsWith('/search');
+
+  const wasSearchPageRef = useRef(isSearchPage);
+  const skipRedirectRef = useRef(false);
+
+  const isDesktop = useAppSelector(selectIsDesktop);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -27,14 +37,50 @@ export const SearchForm = ({
   };
 
   useEffect(() => {
-    if (debouncedValue) {
-      navigate(
-        debouncedValue.length > 0
-          ? `/search?q=${encodeURIComponent(debouncedValue)}`
-          : '/search',
-      );
+    if (!isDesktop) {
+      return;
     }
-  }, [navigate, debouncedValue]);
+
+    const wasSearchPage = wasSearchPageRef.current;
+
+    if (wasSearchPage && !isSearchPage) {
+      skipRedirectRef.current = true;
+      setValue('');
+    }
+
+    wasSearchPageRef.current = isSearchPage;
+  }, [isSearchPage, isDesktop]);
+
+  useEffect(() => {
+    if (!isDesktop) {
+      if (skipRedirectRef.current) {
+        skipRedirectRef.current = false;
+        return;
+      }
+
+      if (isSearchPage && !debouncedValue) {
+        navigate('/search', {
+          replace: true,
+        });
+
+        return;
+      }
+
+      if (!debouncedValue) {
+        return;
+      }
+
+      if (isSearchPage) {
+        navigate(`/search?q=${encodeURIComponent(debouncedValue)}`, {
+          replace: true,
+        });
+
+        return;
+      }
+    }
+
+    navigate(`/search?q=${encodeURIComponent(debouncedValue)}`);
+  }, [debouncedValue, isSearchPage, navigate, isDesktop]);
 
   return (
     <form

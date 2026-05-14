@@ -24,7 +24,7 @@ export const Header = () => {
     <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="w-full py-3 px-4 flex items-center gap-4 sm:py-6 sm:px-8 lg:py-4.5 lg:border-b lg:border-neutral-200 dark:lg:border-neutral-800"
+      className="w-full py-3 px-4 flex items-center gap-4 sm:py-6 lg:py-4.5 lg:border-b lg:border-neutral-200 dark:lg:border-neutral-800"
     >
       {!isDesktop ? (
         <Link to="/notes">

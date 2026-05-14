@@ -1,10 +1,4 @@
-import {
-  Link,
-  Navigate,
-  Outlet,
-  useLocation,
-  useSearchParams,
-} from 'react-router';
+import { Link, Outlet, useLocation, useSearchParams } from 'react-router';
 import { NotesList } from '@/widgets/notes-list';
 import { SearchForm } from '@/features/search';
 import { useSearchNotesQuery } from '@/entities/note';
@@ -18,19 +12,15 @@ export const SearchPage = () => {
 
   const isDesktop = useAppSelector(selectIsDesktop);
 
-  const query = searchParams.get('q') ?? '';
+  const query = searchParams.get('q')?.trim() ?? '';
   const isRootPath = pathname === '/search';
 
   const { data: notes, isLoading, isSuccess } = useSearchNotesQuery({ query });
 
   useTitles({
     documentTitle: 'Search',
-    headerTitle: query,
+    headerTitle: query ? query : 'Search',
   });
-
-  if (isDesktop && isRootPath && !query) {
-    return <Navigate to="/notes" replace />;
-  }
 
   return (
     <div className="min-h-full w-full flex">
@@ -73,6 +63,13 @@ export const SearchPage = () => {
                 create a new note
               </Link>
               .
+            </Notice>
+          )}
+
+          {isRootPath && !query && (
+            <Notice>
+              Nothing here yet. <br />
+              Use the search form to start your query.
             </Notice>
           )}
         </NotesList>

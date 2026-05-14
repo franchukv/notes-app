@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { NoteItem, SkeletonNoteItem, type Note } from '@/entities/note';
 import { Button } from '@/shared/ui';
 import { selectIsDesktop } from '@/shared/model';
@@ -24,6 +24,7 @@ export const NotesList = ({
   hasCreateNewNoteButton = true,
   children,
 }: NotesListProps) => {
+  const { key } = useLocation();
   const isDesktop = useAppSelector(selectIsDesktop);
 
   return (
@@ -74,7 +75,7 @@ export const NotesList = ({
                 >
                   {notes.map((note) => (
                     <NoteItem
-                      key={note.id}
+                      key={key}
                       variants={itemVariants}
                       parentUrl={parentUrl}
                       query={query}
