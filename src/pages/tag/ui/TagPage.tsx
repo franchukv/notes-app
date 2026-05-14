@@ -20,11 +20,7 @@ export const TagPage = () => {
   const isCreateNewNotePage = pathname.includes('/create-new-note');
   const parentUrl = '/tags';
 
-  const {
-    data: tag,
-    isLoading: isTagLoading,
-    isError: isTagError,
-  } = useGetTagBySlugQuery({
+  const { data: tag, isLoading: isTagLoading } = useGetTagBySlugQuery({
     slug: tagSlug!,
   });
   const {
@@ -33,11 +29,7 @@ export const TagPage = () => {
     isSuccess: isNotesSuccess,
   } = useGetNotesByTagSlugQuery({ slug: tagSlug! });
 
-  const title = isTagError
-    ? 'Tag not found'
-    : isCreateNewNotePage
-      ? undefined
-      : (tag?.name ?? tagSlug);
+  const title = isCreateNewNotePage ? undefined : (tag?.name ?? tagSlug);
 
   useTitles({
     documentTitle: title,
@@ -84,15 +76,19 @@ export const TagPage = () => {
           isLoading={isNotesLoading || isTagLoading}
           hasCreateNewNoteButton={!!tag}
         >
+          {isDesktop && (
+            <Button
+              variant="border"
+              onClick={handleDeleteTagClick}
+              disabled={isTagLoading}
+            >
+              <DeleteIcon /> Delete Tag
+            </Button>
+          )}
+
           {!isTagLoading &&
             (tag ? (
               <>
-                {isDesktop && (
-                  <Button variant="border" onClick={handleDeleteTagClick}>
-                    <DeleteIcon /> Delete Tag
-                  </Button>
-                )}
-
                 <h1 className="text-preset-1 lg:sr-only">
                   <span className="text-neutral-600 dark:text-neutral-300">
                     Notes Tagged:{' '}
@@ -106,13 +102,13 @@ export const TagPage = () => {
                       All notes with the "{tag.name}" tag are shown here.
                     </p>
                   ) : (
-                    <Notice>
+                    <Notice key="notice">
                       You don’t have any notes with "{tag.name}" tag yet.
                     </Notice>
                   ))}
               </>
             ) : (
-              <Notice>Tag not found.</Notice>
+              <Notice key="notice">Tag not found.</Notice>
             ))}
         </NotesList>
       )}

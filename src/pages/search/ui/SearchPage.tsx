@@ -66,7 +66,7 @@ export const SearchPage = () => {
           )}
 
           {query && isSuccess && notes.length === 0 && (
-            <Notice>
+            <Notice key="notice">
               No notes match your search. <br />
               Try a different keyword or{' '}
               <Link to="/notes/create-new-note" className="underline-link">

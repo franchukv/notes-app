@@ -47,7 +47,7 @@ export const TagsList = ({ title, tags, isLoading }: TagsListProps) => {
               ))}
             </motion.div>
           ) : (
-            <Notice>There are no tags yet.</Notice>
+            <Notice key="notice">There are no tags yet.</Notice>
           )}
         </AnimatePresence>
       </div>
