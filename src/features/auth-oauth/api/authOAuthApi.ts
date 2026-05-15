@@ -1,4 +1,5 @@
 import { supabase, supabaseApi } from '@/shared/api';
+import { SITE_URL } from '@/shared/config';
 
 export const authOAuthApi = supabaseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -7,7 +8,7 @@ export const authOAuthApi = supabaseApi.injectEndpoints({
         const { error } = await supabase.auth.signInWithOAuth({
           provider: 'google',
           options: {
-            redirectTo: 'http://localhost:5173',
+            redirectTo: SITE_URL,
           },
         });
 

@@ -1,4 +1,5 @@
 import { supabase, supabaseApi } from '@/shared/api';
+import { SITE_URL } from '@/shared/config';
 
 interface SendPasswordResetArgs {
   email: string;
@@ -9,7 +10,7 @@ export const authForgotPasswordApi = supabaseApi.injectEndpoints({
     sendPasswordReset: build.mutation<void, SendPasswordResetArgs>({
       queryFn: async ({ email }) => {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
-          redirectTo: 'http://localhost:5173/reset-password',
+          redirectTo: `${SITE_URL}/reset-password`,
         });
 
         if (error) {
