@@ -1,4 +1,4 @@
-import type { ProfileSettings } from '../../model';
+import type { ProfileSettings } from '../../../model';
 
 const KEY = 'profile_settings';
 
