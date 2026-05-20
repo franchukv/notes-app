@@ -1,3 +1,3 @@
-export { generateDocumentTitle } from './generateDocumentTitle';
-export { formatDate } from './formatDate';
-export { profileStorage } from './profileStorage';
+export { generateDocumentTitle } from './generateDocumentTitle/generateDocumentTitle';
+export { formatDate } from './formatDate/formatDate';
+export { profileStorage } from './profileStorage/profileStorage';
