@@ -19,7 +19,7 @@ describe('Button component', () => {
     expect(screen.queryByText('Test')).not.toBeInTheDocument();
   });
 
-  test('its disabled when isLoading', () => {
+  test('disables button when isLoading', () => {
     render(<Button isLoading={true}>Test</Button>);
     expect(screen.getByRole('button')).toBeDisabled();
   });
