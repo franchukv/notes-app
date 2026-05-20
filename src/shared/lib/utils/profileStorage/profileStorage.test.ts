@@ -1,4 +1,3 @@
-import { test, expect, describe, beforeEach } from 'vitest';
 import { profileStorage } from './profileStorage';
 
 beforeEach(() => localStorage.clear());
