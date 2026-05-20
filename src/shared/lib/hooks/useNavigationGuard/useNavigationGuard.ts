@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useBlocker } from 'react-router';
 
-export const useNavigationGuard = (when: boolean) => {
-  const blocker = useBlocker(when);
+export const useNavigationGuard = (block: boolean) => {
+  const blocker = useBlocker(block);
 
   useEffect(() => {
     if (blocker.state !== 'blocked') {
@@ -19,7 +19,7 @@ export const useNavigationGuard = (when: boolean) => {
   }, [blocker.state]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if (!when) {
+    if (!block) {
       return;
     }
 
@@ -32,5 +32,5 @@ export const useNavigationGuard = (when: boolean) => {
     return () => {
       window.removeEventListener('beforeunload', handler);
     };
-  }, [when]);
+  }, [block]);
 };

@@ -3,5 +3,5 @@ export { useAppSelector } from './useAppSelector';
 export { useTitles } from './useTitles';
 export { useDeviceType } from './useDeviceType';
 export { useToast } from './useToast';
-export { useNavigationGuard } from './useNavigationGuard';
+export { useNavigationGuard } from './useNavigationGuard/useNavigationGuard';
 export { useDebounce } from './useDebounce';
