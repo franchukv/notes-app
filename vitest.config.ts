@@ -8,6 +8,9 @@ export default defineConfig({
     env: {
       TZ: 'UTC',
     },
+    coverage: {
+      provider: 'v8',
+    },
   },
   plugins: [
     {
