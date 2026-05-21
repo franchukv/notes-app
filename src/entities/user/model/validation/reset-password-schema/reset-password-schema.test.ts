@@ -1,7 +1,7 @@
 import { resetPasswordSchema } from './reset-password-schema';
 
 describe('resetPasswordSchema', () => {
-  test('passes when passwords correct and equal', () => {
+  test('passes when passwords are correct and equal', () => {
     const result = resetPasswordSchema.safeParse({
       password: 'password',
       confirmPassword: 'password',
@@ -19,7 +19,7 @@ describe('resetPasswordSchema', () => {
     expect(result.success).toBeFalsy();
   });
 
-  test('fails when passwords not equal', () => {
+  test('fails when passwords are not equal', () => {
     const result = resetPasswordSchema.safeParse({
       password: 'password',
       confirmPassword: 'confirmPassword',
