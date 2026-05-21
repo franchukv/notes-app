@@ -18,17 +18,17 @@ vi.mock('react-router', () => ({
 
 vi.stubGlobal('confirm', confirmMock);
 
+beforeEach(() => {
+  blockerState = 'unblocked';
+  addEventListenerSpy = vi.spyOn(window, 'addEventListener');
+  vi.clearAllMocks();
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
+});
+
 describe('useNavigationGuard', () => {
-  beforeEach(() => {
-    addEventListenerSpy = vi.spyOn(window, 'addEventListener');
-    vi.clearAllMocks();
-    blockerState = 'unblocked';
-  });
-
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
   test("doesn't block navigation when block=false", () => {
     renderHook(() => useNavigationGuard(false));
 
@@ -62,8 +62,17 @@ describe('useNavigationGuard', () => {
     expect(resetMock).toHaveBeenCalled();
   });
 
+  test('calls preventDefault on beforeunload', () => {
+    const event = new Event('beforeunload');
+    vi.spyOn(event, 'preventDefault');
+
+    renderHook(() => useNavigationGuard(true));
+    window.dispatchEvent(event);
+
+    expect(event.preventDefault).toHaveBeenCalled();
+  });
+
   test('removes beforeunload listener on cleanup', () => {
-    blockerState = 'blocked';
     const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
     const { unmount } = renderHook(() => useNavigationGuard(true));
 
