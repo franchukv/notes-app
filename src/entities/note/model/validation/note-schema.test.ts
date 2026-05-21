@@ -25,17 +25,10 @@ describe('noteSchema', () => {
     });
 
     expect(result.success).toBeFalsy();
+    expect(result.error?.issues[0].message).toBe('Please enter the title');
 
     result = noteSchema.safeParse({});
 
     expect(result.success).toBeFalsy();
-  });
-
-  test('shows correct error message when title is empty', () => {
-    const result = noteSchema.safeParse({
-      title: '',
-    });
-
-    expect(result.error?.issues[0].message).toBe('Please enter the title');
   });
 });
