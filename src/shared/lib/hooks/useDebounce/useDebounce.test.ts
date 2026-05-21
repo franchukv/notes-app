@@ -1,15 +1,15 @@
 import { act, renderHook } from '@testing-library/react';
 import { useDebounce } from './useDebounce';
 
+beforeEach(() => {
+  vi.useFakeTimers();
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+});
+
 describe('useDebounce', () => {
-  beforeEach(() => {
-    vi.useFakeTimers();
-  });
-
-  afterEach(() => {
-    vi.useRealTimers();
-  });
-
   test('returs initial value immediately', () => {
     const { result } = renderHook(() => useDebounce({ value: 'initial' }));
     expect(result.current).toBe('initial');
