@@ -6,7 +6,7 @@ export {
   clearUserId,
   selectUserId,
 } from './model';
-export { resetPasswordSchema } from './model/validation/reset-password-schema';
+export { resetPasswordSchema } from './model/validation/reset-password-schema/reset-password-schema';
 export { changePasswordSchema } from './model/validation/change-password-schema';
 export { credentialsSchema } from './model/validation/credentials-schema';
 export {
