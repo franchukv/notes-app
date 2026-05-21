@@ -8,7 +8,7 @@ export {
 } from './model';
 export { resetPasswordSchema } from './model/validation/reset-password-schema/reset-password-schema';
 export { changePasswordSchema } from './model/validation/change-password-schema/change-password-schema';
-export { credentialsSchema } from './model/validation/credentials-schema';
+export { credentialsSchema } from './model/validation/credentials-schema/credentials-schema';
 export {
   useGetSessionQuery,
   useGetUserQuery,
