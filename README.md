@@ -2,7 +2,7 @@
 
 A full-featured note-taking web application built with React 19 and Supabase. Supports rich text editing, tag-based organization, archiving, full-text search, and user personalization — with a fully responsive layout for desktop, tablet, and mobile.
 
-**Live demo:** <a href="https://notes-app-bcks.vercel.app/" target="_blank">notes-app-bcks.vercel.app</a> | **Test credentials:** `test@test.com` / `00000000`
+**Live demo:** [notes-app-bcks.vercel.app](https://notes-app-bcks.vercel.app/) | **Test credentials:** `test@test.com` / `00000000`
 
 ---
 
