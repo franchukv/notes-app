@@ -63,6 +63,7 @@ describe('useNavigationGuard', () => {
   });
 
   test('removes beforeunload listener on cleanup', () => {
+    blockerState = 'blocked';
     const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
     const { unmount } = renderHook(() => useNavigationGuard(true));
 
